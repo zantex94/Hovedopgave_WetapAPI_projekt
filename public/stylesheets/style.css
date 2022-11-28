@@ -40,6 +40,9 @@ select{
   width: 23em;
   
 }
+textarea{
+   resize: vertical; 
+}
 .mainDiv{
   display: flex;
   align-items: center;
@@ -235,6 +238,22 @@ select{
   display: flex;
   justify-content: center;
   margin: 3% 0% 10%;
+}
+
+/**************************************************************************/
+
+/********************************create company product Wetap API page ********************************/
+.boxDiv_create_product_company{
+  padding: 0px 10px 15px 10px;
+}
+.div_button_create_update_company{
+  display: flex;
+  justify-content: center;
+  margin: 3% 0% 10%;
+}
+.boxDiv_create_product_company_date{
+  padding: 0px 10px 15px 10px;
+  margin-right: 5%;
 }
 
 /**************************************************************************/
