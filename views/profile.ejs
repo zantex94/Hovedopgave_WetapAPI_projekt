@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('navigation_bar.ejs'); -%>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+            <p class="p_Title">Navn:</p>
+            <input type="text" name="Name" placeholder="Navn" required>
+        </div>
+        <div class="boxDiv_profile">
+            <p class="p_Title">Telefonnummer:</p>
+            <input type="number" name="Phonenumber" placeholder="Telefonnummer" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+            <p class="p_Title">E-mail:</p>
+            <input class="custom_input" type="email" name="E-mail" placeholder="Eksempel@gmail.com" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+            <p class="p_Title">Adresse:</p>
+            <input class="custom_input" type="text" name="Address" placeholder="Adresse" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+        <p class="p_Title">Postnummer:</p>
+        <input type="number" name="Zip_code" placeholder="Postnummer" required>
+        </div>
+    <div class="boxDiv_profile">
+        <p class="p_Title">By:</p>
+        <input type="number" name="City" placeholder="By" required>
+    </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+            <p class="p_Title">Skift adgangskode</p>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+            <p class="p_Title">Gammel Adgangskode:</p>
+            <input class="custom_input" type="password" name="Old_password" placeholder="Gammel Adgangskode:" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
+            <p class="p_Title">Ny adgangskode:</p>
+            <input class="custom_input" type="password" name="New_password" placeholder="Ny adgangskode" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="div_button_profile">
+            <button class="button_save" type="submit">Gem ændringer</button>
+            <button class="button_remove" type="submit">Fjern profil</button>
+        </div>
+    </div>
+</main>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <form class="login-form" action="/register" method="post">
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Navn:</p>
+            <input type="text" name="Name" placeholder="Navn" required>
+        </div>
+        <div class="boxDiv_register">
+            <p class="p_Title">Telefonnummer:</p>
+            <input type="number" name="Phonenumber" placeholder="Telefonnummer" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">E-mail:</p>
+            <input class="custom_input" type="email" name="E-mail" placeholder="Eksempel@gmail.com" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Adresse:</p>
+            <input class="custom_input" type="text" name="Address" placeholder="Adresse" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+        <p class="p_Title">Postnummer:</p>
+        <input type="number" name="Zip_code" placeholder="Postnummer" required>
+        </div>
+    <div class="boxDiv_register">
+        <p class="p_Title">By:</p>
+        <input type="number" name="City" placeholder="By" required>
+    </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Adgangskode:</p>
+            <input class="custom_input" type="password" name="Password" placeholder="adgangskode" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Gentag adgangskode:</p>
+            <input class="custom_input" type="password" placeholder="gentag adgangskode" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="div_button_register">
+            <button type="submit">Opret</button>
+            <button type="submit">fortryd</button>
+        </div>
+    </div>
+    </form>  
+</main>
+  </body>
+</html>

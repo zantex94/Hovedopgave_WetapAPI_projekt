@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('navigation_bar.ejs'); -%>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+    <div class="innerDiv">
+        <div class="boxDiv_create_company">
+            <p class="p_Title">Navn:</p>
+            <input class="custom_input" type="text" name="company_name" placeholder="Firma navn" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_create_company">
+            <p class="p_Title">CVR:</p>
+            <input class="custom_input" type="text" name="CVR" placeholder="CVR nummer" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_create_company">
+            <p class="p_Title">Ansvarlig/admin i firmaet:</p>
+            <select name="Responsible_person" id="Responsible_person">
+                <option>Vælg</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_create_company">
+            <p class="p_Title">Teknikker:</p>
+            <input class="custom_input" type="text" name="techniques" placeholder="Nummer på teknikker" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="div_button_create_company">
+            <button type="submit">Opret firma</button>
+            <button type="submit">fortryd</button>
+        </div>
+    </div>
+</main>
+  </body>
+</html>
