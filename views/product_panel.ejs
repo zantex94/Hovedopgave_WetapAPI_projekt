@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('navigation_bar.ejs'); -%>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="innerDiv">
+    <div class="boxDiv_product_view" style="width: 80%;">
+    <select name="product" id="product">
+        <option>Vælg produkt</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      </div>
+      <div class="boxDiv_product_view">
+        <button class="add_button"type="submit">Tilføj</button>
+    </div>
+   </div> 
+   
+  <div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Billedet</th>
+            <th>Titel</th>
+            <th>Beskrivelse</th>
+            <th>Kategori</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>René_Seebach.png</td>
+            <td>Drikkedunk med logo</td>
+            <td>Wetap drikkedunk med logo “join the refillution”. Brudsikker og BPA-fri flaske der er god at have med sig på farten.
+            </td>
+            <td>Flasker</td>
+            <td><a class="admin_update_product" title="opdatere produkt">Opdatere</a></td>
+            <td><a class="admin_delete_product" title="fjern produkt">Fjern</a></td>
+        </tr>
+    </table>
+  
+  </div>
+</main>
+  </body>
+</html>

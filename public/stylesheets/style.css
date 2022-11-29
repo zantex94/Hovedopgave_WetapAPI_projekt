@@ -67,19 +67,49 @@ textarea{
 /**************************************************************************/
 
 /******************************************HEADER_BAR**************************************************************************/
-#header {
-  width: 100%;
+/* holds the header navigation */
+.navigationBar{
+  list-style-type: none;
+  margin-top: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+ .navigationList{
+float: left;
+} 
+
+.navigationText{
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+
+}
+.navigationText:hover{
+  background-color: #333;
+}
+
+/* #header { */
+  /* width: 100%; */
   /* height: 60px; */
-  padding: 2em;
-  background-color: var(--color-primary);
-  display: flex;
+  /* padding: 2em; */
+  /* background-color: var(--color-primary); */
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   /* position: fixed; */
-  z-index: 100;
+  /* z-index: 100;
   border-radius: solid;
   background-color: aliceblue;
 }
+.logo_header_bar {
+  display: flex;
+  justify-content: start;
+} */
+
 
 /* .burgermenu,
 .logo_header_bar,
@@ -87,10 +117,7 @@ textarea{
   width: 33%;
 }
 
-.logo_header_bar {
-  display: flex;
-  justify-content: start;
-}
+
 
 .user_kurv {
   display: flex;
@@ -111,7 +138,7 @@ textarea{
   .user_kurv img {
     margin: 0 0.5em;
   }
-} */
+} 
 
 
 /********************************index/Welcome page ********************************/
@@ -246,7 +273,7 @@ textarea{
 .boxDiv_create_product_company{
   padding: 0px 10px 15px 10px;
 }
-.div_button_create_update_company{
+.div_button_create_product_company{
   display: flex;
   justify-content: center;
   margin: 3% 0% 10%;
@@ -258,5 +285,152 @@ textarea{
 
 /**************************************************************************/
 
+/********************************create company product Wetap API page ********************************/
+.boxDiv_update_product_company{
+  padding: 0px 10px 15px 10px;
+}
+.div_button_update_product_company{
+  display: flex;
+  justify-content: center;
+  margin: 3% 0% 10%;
+}
+.boxDiv_update_product_company_date{
+  padding: 0px 10px 15px 10px;
+  margin-right: 5%;
+}
 
+/**************************************************************************/
+
+/********************************user panel and product panel Wetap API page ********************************/
+ /* Simplified version of Bootstrap's responsive table CSS */
+ .table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-responsive > table {
+  width: 100%;
+  table-layout: fixed;
+}
+.table td {
+    word-wrap: break-word;
+    max-width: 200px;
+    padding-left: 6%;
+    border-bottom: 1pt solid black;
+}
+
+.table th {
+  word-wrap: break-word;
+  max-width: 200px;
+  padding-left: 1%;
+  border-bottom: 1pt solid black;
+  padding-bottom:20px;
+}
+.table table tr {
+  border-bottom: 2pt solid black;
+}
+
+.admin_active{
+  background-color: #0DF10D;
+  color: white;
+  border: none;
+  border-radius: 25px 25px 25px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 75%;
+  padding-top: 4%;
+  padding-bottom: 5%;
+  height: 1em;
+  cursor: pointer;
+}
+.admin_notactive{
+  background-color: #FFD36B;
+  color: white;
+  border: none;
+  border-radius: 25px 25px 25px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 75%;
+  padding-top: 4%;
+  padding-bottom: 5%;
+  height: 1em;
+  cursor: pointer;
+}
+.admin_delete{
+  background-color: #FF0000;
+  color: white;
+  border: none;
+  border-radius: 25px 25px 25px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 75%;
+  padding-top: 4%;
+  padding-bottom: 5%;
+  height: 1em;
+  cursor: pointer;
+}
+.admin_update_product{
+  background-color: #0DF10D;
+  color: white;
+  border: none;
+  border-radius: 25px 25px 25px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 75%;
+  padding-top: 4%;
+  padding-bottom: 5%;
+  height: 1em;
+  cursor: pointer;
+}
+.admin_delete_product{
+  background-color: #FF0000;
+  color: white;
+  border: none;
+  border-radius: 25px 25px 25px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 75%;
+  padding-top: 4%;
+  padding-bottom: 5%;
+  height: 1em;
+  cursor: pointer;
+}
+.admin_active:hover{
+  background-color: #73f373;
+  cursor: pointer;
+}
+.admin_notactive:hover{
+  background-color: #fde1a0;
+  cursor: pointer;
+}
+.admin_delete:hover{
+  background-color: #f66d6d;
+  cursor: pointer;
+}
+.admin_update_product:hover{
+  background-color: #73f373;
+  cursor: pointer;
+}
+.admin_delete_product:hover{
+  background-color: #f66d6d;
+  cursor: pointer;
+}
+.add_button{
+min-width: 200% !important;
+}
+.boxDiv_product_view{
+  padding: 0px 10px 15px 10px;
+}
+/**************************************************************************/
 

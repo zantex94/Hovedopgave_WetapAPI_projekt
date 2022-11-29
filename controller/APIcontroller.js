@@ -44,9 +44,27 @@ exports.login = (req, res) => {
       title: "Opdatere Firma",
     });
   };
-    /* GET update company PAGE */
+    /* GET create company product PAGE */
     exports.create_company_product = (req, res) => {
     res.render("create_company_product", {
       title: "Opret firma produkt",
     });
   };
+    /* GET update company product PAGE */
+    exports.update_company_product = (req, res) => {
+      res.render("update_company_product", {
+        title: "Opdatere firma produkt",
+      });
+    };
+    /* GET user panel PAGE */
+    exports.user_panel = (req, res) => {
+      res.render("user_panel", {
+        title: "Brugerpanel",
+      });
+    };
+    /* GET product panel PAGE */
+    exports.product_panel = (req, res) => {
+      res.render("product_panel", {
+        title: "Produkt panel",
+      });
+    };

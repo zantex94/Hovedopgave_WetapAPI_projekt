@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('navigation_bar.ejs'); -%>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Navn</th>
+            <th>E-mail</th>
+            <th>Telefonnummer</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>René Seebach</td>
+            <td>test@gmail.com</td>
+            <td>24315476</td>
+            <td><a class="admin_active" title="deaktivere bruger">Aktiv</a></td>
+            <td><a class="admin_delete" title="fjern bruger">Fjern</a></td>
+        </tr>
+    </table>
+  
+  </div>
+</main>
+  </body>
+</html>

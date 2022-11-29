@@ -19,5 +19,12 @@ router.route("/create_company").get(APIController.create_company);
 router.route("/update_company").get(APIController.update_company);
 /**create company product screen for Wetap API */
 router.route("/create_company_product").get(APIController.create_company_product);
+/**create company product screen for Wetap API */
+router.route("/update_company_product").get(APIController.update_company_product);
+/**user panel screen for Wetap API */
+router.route("/user_panel").get(APIController.user_panel);
+/**user panel screen for Wetap API */
+router.route("/product_panel").get(APIController.product_panel);
+
 
 module.exports = router;
