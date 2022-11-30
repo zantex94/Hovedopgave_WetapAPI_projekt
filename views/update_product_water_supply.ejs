@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('navigation_bar.ejs'); -%>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Titel:</p>
+        <input class="custom_input" type="text" name="Description" placeholder="Bekriv produkt" required>
+    </div>
+  </div>
+  <div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Berøringsfri betjening:</p>
+        <input type="text" name="Product_operation" placeholder="Berøringsfri betjening" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Vandtype:</p>
+        <input type="text" name="Product_water_type" placeholder="Vandtype" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Beskrivelse:</p>
+        <textarea class="custom_input" type="text" name="Product_description" placeholder="Bekriv produkt" required></textarea>
+    </div>
+  </div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Automatisk rens:</p>
+        <input type="text" name="Product_auto_clean" placeholder="Automatisk rens" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Betalingstype:</p>
+        <input type="text" name="Product_payment" placeholder="Betalingstype" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Filter:</p>
+        <input type="text" name="Product_filter" placeholder="Filter" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Frostsikker:</p>
+        <input type="text" name="Product_quality" placeholder="Kvalitetsmærke" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Vægt:</p>
+        <input type="text" name="Product_weight" placeholder="Vægt" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Lægkagesystem:</p>
+        <input type="text" name="Product_savety" placeholder="Lægkagesystem" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Plc styring:</p>
+        <input type="text" name="Product_plc" placeholder="Plc styring" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Kabinetmateriale:</p>
+        <input type="text" name="Product_material" placeholder="Kabinetmateriale" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Køletemperatur:</p>
+        <input type="text" name="Product_cold_temperature" placeholder="Køletemperatur" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Vandtrykskrav:</p>
+        <input type="text" name="Product_water_requirement" placeholder="Vandtrykskrav" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Strømforsyning:</p>
+        <input type="text" name="Product_power" placeholder="Strømforsyning" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Dimensioner:</p>
+        <input type="text" name="Product_dimension" placeholder="Dimensioner" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Kølekapacitet:</p>
+        <input type="text" name="Product_capacity" placeholder="Kølekapacitet" required>
+    </div>
+    <div class="boxDiv_update_product_water_supply">
+        <p class="p_Title">Lys:</p>
+        <input type="text" name="Product_light" placeholder="Lys" required>
+    </div>
+</div>
+<div class="innerDiv">
+  <div class="boxDiv_update_product_water_supply">
+      <p class="p_Title">Billedet:</p>
+      <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
+  </div>
+</div>  
+    <div class="innerDiv">
+        <div class="div_button_update_product_water_supply">
+            <button type="submit">Opret</button>
+            <button type="submit">Fortryd</button>
+        </div>
+    </div>
+</main>
+  </body>
+</html>

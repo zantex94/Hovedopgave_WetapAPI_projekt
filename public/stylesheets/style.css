@@ -434,3 +434,81 @@ min-width: 200% !important;
 }
 /**************************************************************************/
 
+/********************************create product Wetap API page ********************************/
+.boxDiv_create_product_bottle{
+  padding: 0px 10px 15px 10px;
+}
+.div_button_create_product_bottle{
+  display: flex;
+  justify-content: center;
+  margin: 3% 0% 10%;
+}
+
+/**************************************************************************/
+
+/********************************update product Wetap API page ********************************/
+.boxDiv_update_product_bottle{
+  padding: 0px 10px 15px 10px;
+}
+.div_button_update_product_bottle{
+  display: flex;
+  justify-content: center;
+  margin: 3% 0% 10%;
+}
+
+/**************************************************************************/
+
+/********************************update product Wetap API page ********************************/
+.boxDiv_create_product_water_supply{
+  padding: 0px 10px 15px 10px;
+}
+.div_button_create_product_water_supply{
+  display: flex;
+  justify-content: center;
+  margin: 3% 0% 10%;
+}
+
+/**************************************************************************/
+
+/********************************update product Wetap API page ********************************/
+.boxDiv_update_product_water_supply{
+  padding: 0px 10px 15px 10px;
+}
+.div_button_update_product_water_supply{
+  display: flex;
+  justify-content: center;
+  margin: 3% 0% 10%;
+}
+
+/**************************************************************************/
+/********************************dashboard Wetap API page ********************************/
+.boxDiv_dashboard{
+  display: flex;
+  overflow: auto;
+  border: solid;
+  padding: 0px 10px 25px 10px;
+  border-radius: 25px;
+  width: 90%;
+  flex-wrap: wrap;
+}
+.boxDiv_company{
+  /* display: inline-flex; */
+  width: 20%;
+  padding: 0px 10px 15px 10px;
+  margin: 3%;
+  border: solid #2A8894;
+  border-radius: 25px 25px 25px 25px;
+  box-shadow: 5px 5px 10px #2A8894;
+}
+.icon_style{
+  margin-right: 1%;
+}
+.div_pencil_area{
+  display: flex;
+  justify-content: end;
+}
+.div_pencil_icon{
+  padding-top: 1%;
+}
+
+/**************************************************************************/

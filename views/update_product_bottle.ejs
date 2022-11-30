@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('navigation_bar.ejs'); -%>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="innerDiv">
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Titel:</p>
+        <input class="custom_input" type="text" name="Description" placeholder="Bekriv produkt" required>
+    </div>
+  </div>
+  <div class="innerDiv">
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Diameter:</p>
+        <input type="text" name="Product_diameter" placeholder="Diameter" required>
+    </div>
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Højde:</p>
+        <input type="text" name="Product_height" placeholder="Højde" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Beskrivelse:</p>
+        <textarea class="custom_input" type="text" name="Product_description" placeholder="Bekriv produkt" required></textarea>
+    </div>
+  </div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Farve:</p>
+        <input type="text" name="Product_color" placeholder="Farve" required>
+    </div>
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Vægt:</p>
+        <input type="text" name="Product_weight" placeholder="Vægt" required>
+    </div>
+</div>
+<div class="innerDiv">
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Volume:</p>
+        <input type="text" name="Product_volume" placeholder="Volume" required>
+    </div>
+    <div class="boxDiv_update_product_bottle">
+        <p class="p_Title">Kvalitetsmærke:</p>
+        <input type="text" name="Product_quality" placeholder="Kvalitetsmærke" required>
+    </div>
+</div>
+<div class="innerDiv">
+  <div class="boxDiv_update_product_bottle">
+      <p class="p_Title">Billedet:</p>
+      <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
+  </div>
+</div>  
+    <div class="innerDiv">
+        <div class="div_button_update_product_bottle">
+            <button type="submit">Opret</button>
+            <button type="submit">Fortryd</button>
+        </div>
+    </div>
+</main>
+  </body>
+</html>

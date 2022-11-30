@@ -68,3 +68,33 @@ exports.login = (req, res) => {
         title: "Produkt panel",
       });
     };
+    /* GET create bottle product panel PAGE */
+    exports.create_product_bottle = (req, res) => {
+      res.render("create_product_bottle", {
+        title: "Opret flaske",
+      });
+    };
+    /* GET update bottle product panel PAGE */
+    exports.update_product_bottle = (req, res) => {
+      res.render("update_product_bottle", {
+        title: "Opdatere flaske",
+      });
+    };
+    /* GET create product water supply panel PAGE */
+    exports.create_product_water_supply = (req, res) => {
+      res.render("create_product_water_supply", {
+        title: "Opret vandpost",
+      });
+    };
+     /* GET update product water supply panel PAGE */
+     exports.update_product_water_supply = (req, res) => {
+      res.render("update_product_water_supply", {
+        title: "Opdatere vandpost",
+      });
+    };
+     /* GET update product water supply panel PAGE */
+     exports.dashboard = (req, res) => {
+      res.render("dashboard", {
+        title: "Dashboard",
+      });
+    };

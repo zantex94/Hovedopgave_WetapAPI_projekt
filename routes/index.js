@@ -23,8 +23,18 @@ router.route("/create_company_product").get(APIController.create_company_product
 router.route("/update_company_product").get(APIController.update_company_product);
 /**user panel screen for Wetap API */
 router.route("/user_panel").get(APIController.user_panel);
-/**user panel screen for Wetap API */
+/**product panel screen for Wetap API */
 router.route("/product_panel").get(APIController.product_panel);
+/**create product bottle screen for Wetap API */
+router.route("/create_product_bottle").get(APIController.create_product_bottle);
+/**update product bottle screen for Wetap API */
+router.route("/update_product_bottle").get(APIController.update_product_bottle);
+/**create product water supply screen for Wetap API */
+router.route("/create_product_water_supply").get(APIController.create_product_water_supply);
+/**update product water supply screen for Wetap API */
+router.route("/update_product_water_supply").get(APIController.update_product_water_supply);
+/**dashboard screen for Wetap API */
+router.route("/dashboard").get(APIController.dashboard);
 
 
 module.exports = router;
