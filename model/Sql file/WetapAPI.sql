@@ -55,6 +55,7 @@ id BIGINT UNSIGNED NOT NULL,
 title VARCHAR(50) UNIQUE NOT NULL,
 beskrivelse VARCHAR(50) NOT NULL,
 billedet MEDIUMBLOB NOT NULL,
+vægt VARCHAR(50) NOT NULL,
 kategori VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
 foreign key(kategori) references produktkategori(kategori)
@@ -71,6 +72,7 @@ PRIMARY KEY (produktnummer),
 foreign key(cvr) references firma(cvr),
 foreign key(title) references produkt(title)
 );
+/** flaske **/
 CREATE TABLE farve(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
@@ -78,5 +80,131 @@ PRIMARY KEY (id),
 foreign key(id) references produkt(id)
 );
 
+CREATE TABLE volume(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE højde(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE diameter(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE kvalitetsmærke(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+/** vandpost **/
+
+CREATE TABLE berøringsfri_betjening(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE automatisk_rens(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE betalingsløsning(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE produkt_filter(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE frostsikker(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE lækagesystem(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE plc_styring(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE kabinetmateriale(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE køletemperatur(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE vandtrykskrav(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE strømforsyning(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE dimensioner(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE lys(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+
+CREATE TABLE kølekapacitet(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
 
 
