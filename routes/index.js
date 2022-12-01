@@ -35,6 +35,8 @@ router.route("/create_product_water_supply").get(APIController.create_product_wa
 router.route("/update_product_water_supply").get(APIController.update_product_water_supply);
 /**dashboard screen for Wetap API */
 router.route("/dashboard").get(APIController.dashboard);
+/**dashboard company screen for Wetap API */
+router.route("/dashboard_company").get(APIController.dashboard_company);
 
 
 module.exports = router;

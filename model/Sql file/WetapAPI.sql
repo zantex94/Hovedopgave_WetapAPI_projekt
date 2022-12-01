@@ -10,6 +10,7 @@ adresse VARCHAR(200) NOT NULL,
 postnummer INT(4) NOT NULL,
 _by VARCHAR(100) NOT NULL,
 telefonnummer INT(20) NOT NULL,
+status_bruger VARCHAR(25) NOT NULL,
 password VARCHAR(100) NOT NULL,
 rolle VARCHAR(10),
 PRIMARY KEY (id)
@@ -31,8 +32,8 @@ foreign key(email) references brugere(email)
 );
 
 
-INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `password`, `rolle`) VALUES
-('test@gmail.com', 'René Seebach', 'Lærkevej 3', 6200, 'kliplev', 20913871, '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAKiC', "admin");
+INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
+('test@gmail.com', 'René Seebach', 'Lærkevej 3', 6200, 'kliplev', 20913871, 'aktiv', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAKiC', "admin");
 
 
 
