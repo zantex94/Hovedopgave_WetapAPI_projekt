@@ -590,3 +590,127 @@ min-width: 200% !important;
 }
 
 /**************************************************************************/
+/********************************dashboard Wetap API page ********************************/
+.boxDiv_dashboard_overview{
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  /* border: solid; */
+  padding: 0px 10px 25px 10px;
+  border-radius: 25px;
+  width: 90%;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  height: 304px;
+}
+.boxDiv_dashboard_company{
+  display: flex;
+  width: 70%;
+  padding: 0px 10px 15px 10px;
+  margin: 3%;
+  border: solid #2A8894;
+  border-radius: 25px 25px 25px 25px;
+  box-shadow: 5px 5px 10px #2A8894;
+}
+
+
+.button_add_maschine{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 25%;
+  height: 1.5em;
+  padding-top: 1.5%;
+  /* margin-right: 11.5%; */
+  /* margin-left: 1%;  */
+}
+.button_add_maschine:hover{
+  background-color: #207783;
+  cursor: pointer;
+}
+.button_remove_customer{
+  background-color: #FF0000;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 25%;
+  height: 1.5em;
+  padding-top: 1.5%;
+  margin-right: 8.5%;
+  margin-left: 1%; 
+}
+.button_remove_customer:hover{
+  background-color: #f66d6d;
+  cursor: pointer;
+}
+.mainDiv_dashboard_company{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.boxDiv_button_dashboard_company{
+  display: flex; width: 45%;
+  justify-content: flex-end;
+}
+.boxDiv_title_dashboard_company{
+  display: flex; width: 55%; 
+  justify-content: flex-end;
+  align-items: center;
+}
+.select_dashboard_company{
+  border: solid #207783;
+  border-radius: 10px 0px 10px 10px;
+  height: 60%;
+  width: 15em;
+  margin-right: 25%;
+  
+}
+.custom_img {
+  width:70%; 
+  height:40%; 
+  margin-top: 22%;
+  position: static;
+  transition:transform 0.25s ease;
+}
+
+.custom_img:hover {
+  -webkit-transform:scale(2.5);
+  transform:scale(2.5);
+  z-index: 10;
+}
+.custom_img_product{
+  width:71px; 
+  height:40%; 
+  /* margin-top: 22%; */
+  position: static;
+  transition:transform 0.25s ease;
+}
+.custom_img_product:hover {
+  -webkit-transform:scale(2.5);
+  transform:scale(2.5);
+  z-index: 10;
+}
+.div_img{
+  width: 40%; 
+  display: flex;
+  justify-content: center;
+}
+.boxDiv_product_overview{
+width: 40%;
+}
+.boxDiv_product_overview_overall{
+  width: 40%;
+}
+.h3_title{
+  display: flex;
+  justify-content: center;
+}
+
+/**************************************************************************/
