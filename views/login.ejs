@@ -12,11 +12,17 @@
     </div>
   </div>
   <div class="innerDiv">
+    <form class="login-form" action="/login" method="post">
     <div class="boxDiv_login">
       <p class="p_Title">E-mail:</p>
-      <input class="input_login" type="email" placeholder="Eksempel@gmail.com" required>
+      <input class="input_login" type="email" name="email" placeholder="Eksempel@gmail.com" required>
       <p class="p_Title">Password:</p>
-      <input class="input_login" type="password" required>
+      <input class="input_login" name="password" type="password" required>
+      <% if (message.length > 0) { %>
+        <!-- <div class="btn_stor alert alert-danger"><%= message %></div> -->
+        <p class="p_Title_error"><%= message %></p>
+
+        <% } %>
       <div class="div_forgot_password">
         <a href="/">Glemt adgangskode?</a>
       </div>
@@ -28,6 +34,7 @@
         <button class="button_login" type="submit">Registere</button>
       </div>
   </div>
+  </form>
   </div>
 </main>
   </body>

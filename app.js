@@ -3,11 +3,47 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require("express-session");
+var bodyParser = require("body-parser");
+var passport = require("passport");
+var flash = require("connect-flash");
+const helmet = require("helmet");  
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+// Passport config
+require("./model/passport")(passport);
+
+// Body parser
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
+
+// Required for session
+app.use(
+  session({
+    // It holds the secret key for session
+    secret: "secret",
+    // force to save the session.
+    resave: true,
+    // save the session in a store.
+    saveUninitialized: true,
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session()); // Login session
+
+// Connect flash
+app.use(flash()); // Flash messages stored in session
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

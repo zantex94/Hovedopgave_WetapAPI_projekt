@@ -1,5 +1,44 @@
 // const model = require("../models/products");
 
+// ====================== /* PASSPORT */ ====================== //
+
+/* LOGIN */
+exports.login = (req, res) => {
+  console.log(req.user);
+  res.render("login", { 
+  message: req.flash("loginMessage"),
+   title: "Login" 
+  });
+};
+
+exports.loginSuccess = (req, res) => {
+  if (req.body.remember) {
+    req.session.cookie.maxAge = 60 * 60 * 24; // 86400 seconds = 1 day
+  } else {
+    req.session.cookie.expires = false;
+  }
+  res.redirect("/");
+};
+
+/* SIGNUP */
+exports.register = (req, res) => {
+  res.render("register", {
+    message: req.flash("signupMessage"),
+    title: "Opret bruger",
+    title_bar: "Opret bruger",
+  });
+};
+/* LOGOUT */
+exports.logout = (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.redirect("/login");
+};
+
+
+
+
+
 /* GET INDEX PAGE */
 exports.index = (req, res) => {
     res.render("index", {
@@ -7,18 +46,18 @@ exports.index = (req, res) => {
     });
   };
 
-  /* GET Login PAGE */
-exports.login = (req, res) => {
-  res.render("login", {
-    title: "Login",
-  });
-};
-  /* GET register PAGE */
-  exports.register = (req, res) => {
-    res.render("register", {
-      title: "Opret bruger",
-    });
-  };
+//   /* GET Login PAGE */
+// exports.login = (req, res) => {
+//   res.render("login", {
+//     title: "Login",
+//   });
+// };
+//   /* GET register PAGE */
+//   exports.register = (req, res) => {
+//     res.render("register", {
+//       title: "Opret bruger",
+//     });
+//   };
   /* GET confrim PAGE */
   exports.confirm = (req, res) => {
     res.render("confirm", {
@@ -104,9 +143,11 @@ exports.login = (req, res) => {
     };
      /* GET dashboard PAGE */
      exports.dashboard = (req, res) => {
+      console.log(req.user);
       res.render("dashboard", {
         title: "Dashboard",
         dashboard: "active",
+        user: req.user,
       });
     };
       /* GET update product water supply panel PAGE */
