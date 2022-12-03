@@ -24,102 +24,106 @@ module.exports = function (passport) {
     "local-register",
     new LocalStrategy(
       {
-        usernameField: "username",
+        usernameField: "email",
         passwordField: "password",
         passReqToCallback: true,
       },
-      function (req, res, username, password, done) {
-        // pool.query(
-        //   "SELECT * FROM brugere WHERE email = ?",
-        //   [username],
-        //   function (err, rows) {
-        //     if (err) return done(err);
-        //     if (rows.length) {
-        //       return done(
-        //         null,
-        //         false,
-        //         req.flash("signupMessage", "Denne bruger er allerede taget")
-        //       );
-        //     } else {              
-        //         let newUserMysql = {
-        //           username: username,
-        //           password: bcrypt.hashSync(password, 10),
-        //           email: req.body.email,
-        //           telefon: req.body.telefon,
-        //           adresse: req.body.adresse,
-        //           _by: req.body._by,
-        //           postnummer: req.body.postnummer,
-        //           rolle: 'privat',
-        //           cvr: req.body.cvr,
-        //           hjaelp: true,
-        //         };
+      function (req, email, password, done) {
+        console.log(email);
+        pool.query(
+          "SELECT * FROM brugere WHERE email = ?",
+          [email],
+          function (err, rows) {
+            if (err) return done(err);
+            if (rows.length) {
+              return done(
+                null,
+                false,
+                req.flash("signupMessage", "Denne email er allerede i brug")
+              );
+            } else {              
+                let newUserMysql = {
+                  navn: req.body.name,
+                  telefonnummer: req.body.phonenumber,
+                  email: email,
+                  adresse: req.body.address,
+                  postnummer: req.body.zip_code,
+                  _by: req.body.city,
+                  password: bcrypt.hashSync(password.toString(), 10),
+                  rolle: 'medarbejder',
+                  status_bruger: 'deaktiveret',
+                };
 
-        //         //See if there is something in CVR and it is 8 numbers long
-        //         if(newUserMysql.cvr.length == 8) {
-        //           console.log(`CVR = ${newUserMysql.cvr}`);
-        //           newUserMysql.rolle = 'erhverv';
-                                    
-        //           const insertQuery = 
-        //           `start TRANSACTION;
-
-        //           INSERT INTO brugere ( navn, password, email, telefonnummer, adresse, _by, postnummer, rolle, hjaelp ) VALUES
-        //           (?,?,?,?,?,?,?,?,?);
-                  
-        //           INSERT INTO brugere_erhverv (kundenummer, kontonummer, cvr) 
-        //           VALUES ((SELECT kundenummer FROM brugere WHERE email = ?), '123456789', ?);
-                  
-        //           commit;`
-
-        //           pool.query(
-        //             insertQuery,
-        //             [
-        //               newUserMysql.username,
-        //               newUserMysql.password,
-        //               newUserMysql.email,
-        //               newUserMysql.telefon,
-        //               newUserMysql.adresse,
-        //               newUserMysql._by,
-        //               newUserMysql.postnummer,
-        //               newUserMysql.rolle,
-        //               newUserMysql.hjaelp,
-        //               newUserMysql.email,
-        //               newUserMysql.cvr,
-        //             ],
-        //             function (err, rows) {
-        //               // newUserMysql.id = rows.insertId;
-        //               console.log("NEWUSERMYSQL: " + newUserMysql);
-        //               return done(null, newUserMysql);
-        //             }
-        //           );
-
-        //         }
-        //         else {
-        //           newUserMysql.hjaelp = false;
-        //           const insertQuery =
-        //         "INSERT INTO brugere ( navn, password, email, telefonnummer, adresse, _by, postnummer, rolle, hjaelp ) values (?,?,?,?,?,?,?,?,?)";
+                console.log(newUserMysql);
+                const insertQuery =
+                "INSERT INTO brugere ( email, navn, adresse, postnummer, _by, telefonnummer, status_bruger, password, rolle) values (?,?,?,?,?,?,?,?,?)";
               
-        //           pool.query(
-        //           insertQuery,
-        //           [
-        //             newUserMysql.username,
-        //             newUserMysql.password,
-        //             newUserMysql.email,
-        //             newUserMysql.telefon,
-        //             newUserMysql.adresse,
-        //             newUserMysql._by,
-        //             newUserMysql.postnummer,
-        //             newUserMysql.rolle,
-        //             newUserMysql.hjaelp,
-        //           ],
-        //           function (err, rows) {
-        //             // newUserMysql.id = rows.insertId;
-        //             return done(null, newUserMysql);
-        //           }
-        //         );
-        //       }
-        //     }
-        //   }
-        // );
+                  pool.query(
+                  insertQuery,
+                  [
+                    newUserMysql.email,
+                    newUserMysql.navn,
+                    newUserMysql.adresse,
+                    newUserMysql.postnummer,
+                    newUserMysql._by,
+                    newUserMysql.telefonnummer,
+                    newUserMysql.status_bruger,
+                    newUserMysql.password,
+                    newUserMysql.rolle,
+                  ],
+                  function (err, rows) {
+                    if(err){
+                      console.log(err);
+                    }
+                    console.log(rows);
+                    return done(null, rows);
+                  }
+                );
+                //See if there is something in CVR and it is 8 numbers long
+                // if(newUserMysql.cvr.length == 8) {
+                //   console.log(`CVR = ${newUserMysql.cvr}`);
+                //   newUserMysql.rolle = 'erhverv';
+                                    
+                //   const insertQuery = 
+                //   `start TRANSACTION;
+
+                //   INSERT INTO brugere ( navn, password, email, telefonnummer, adresse, _by, postnummer, rolle, hjaelp ) VALUES
+                //   (?,?,?,?,?,?,?,?,?);
+                  
+                //   INSERT INTO brugere_erhverv (kundenummer, kontonummer, cvr) 
+                //   VALUES ((SELECT kundenummer FROM brugere WHERE email = ?), '123456789', ?);
+                  
+                //   commit;`
+
+                //   pool.query(
+                //     insertQuery,
+                //     [
+                //       newUserMysql.username,
+                //       newUserMysql.password,
+                //       newUserMysql.email,
+                //       newUserMysql.telefon,
+                //       newUserMysql.adresse,
+                //       newUserMysql._by,
+                //       newUserMysql.postnummer,
+                //       newUserMysql.rolle,
+                //       newUserMysql.hjaelp,
+                //       newUserMysql.email,
+                //       newUserMysql.cvr,
+                //     ],
+                //     function (err, rows) {
+                //       // newUserMysql.id = rows.insertId;
+                //       console.log("NEWUSERMYSQL: " + newUserMysql);
+                //       return done(null, newUserMysql);
+                //     }
+                //   );
+
+                // }
+                // else {
+             
+              // }
+            }
+          }
+        );
       }
     )
   );
@@ -157,6 +161,13 @@ module.exports = function (passport) {
                     return res.status(400).json({ errors: errors.array() });
                   }
                 };
+                //If the user is not active.
+                if(rows[0].status_bruger == "deaktiveret")
+                return done(
+                  null,
+                  false,
+                  req.flash("loginMessage", "Bruger ikke aktiv")
+                );
             // If the user is found but the password is wrong
             if (!bcrypt.compareSync(password, rows[0].password))
               return done(

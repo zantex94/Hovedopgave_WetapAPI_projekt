@@ -19,9 +19,7 @@
       <p class="p_Title">Password:</p>
       <input class="input_login" name="password" type="password" required>
       <% if (message.length > 0) { %>
-        <!-- <div class="btn_stor alert alert-danger"><%= message %></div> -->
         <p class="p_Title_error"><%= message %></p>
-
         <% } %>
       <div class="div_forgot_password">
         <a href="/">Glemt adgangskode?</a>
@@ -31,7 +29,7 @@
         <button class="button_login" type="submit">Login</button>
       </div>
       <div class="div_button">
-        <button class="button_login" type="submit">Registere</button>
+        <a class="btn_button" href="/register"><p class="p_btn_button">Register</p></a>
       </div>
   </div>
   </form>

@@ -12,7 +12,7 @@ _by VARCHAR(100) NOT NULL,
 telefonnummer INT(20) NOT NULL,
 status_bruger VARCHAR(25) NOT NULL,
 password VARCHAR(100) NOT NULL,
-rolle VARCHAR(10),
+rolle VARCHAR(100),
 PRIMARY KEY (id)
 );
 CREATE TABLE billedet(

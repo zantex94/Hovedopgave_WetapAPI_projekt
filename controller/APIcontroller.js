@@ -1,4 +1,5 @@
 // const model = require("../models/products");
+// var logout = require('express-passport-logout');
 
 // ====================== /* PASSPORT */ ====================== //
 
@@ -17,26 +18,29 @@ exports.loginSuccess = (req, res) => {
   } else {
     req.session.cookie.expires = false;
   }
-  res.redirect("/");
+  res.redirect("/login");
 };
 
-/* SIGNUP */
+/* REGISTER */
 exports.register = (req, res) => {
   res.render("register", {
     message: req.flash("signupMessage"),
     title: "Opret bruger",
-    title_bar: "Opret bruger",
   });
 };
 /* LOGOUT */
 exports.logout = (req, res) => {
+  console.log(req.session);
   req.logout();
-  req.session.destroy();
+  // req.session.destroy(() =>
+  // res.redirect("/login"));
+  // );
+  // req.session.destroy();
   res.redirect("/login");
 };
 
 
-
+// ============================================ //
 
 
 /* GET INDEX PAGE */

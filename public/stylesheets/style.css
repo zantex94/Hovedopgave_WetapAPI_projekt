@@ -28,6 +28,45 @@ button:hover{
   background-color: #207783;
   cursor: pointer;
 }
+.p_btn_button{
+  margin: 5px;
+}
+.btn_button{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 100%;
+  height: 2em;
+  margin: 0%;
+}
+.btn_button:hover{
+  background-color: #207783;
+  cursor: pointer;
+}
+.btn_button_2{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  min-width: 100%;
+  height: 2em;
+  margin: 11%;
+}
+.btn_button_2:hover{
+  background-color: #207783;
+  cursor: pointer;
+}
 input{
   border: solid #207783;
   border-radius: 10px 0px 10px 10px;
