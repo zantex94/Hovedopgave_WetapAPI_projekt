@@ -4,6 +4,13 @@ const APIcontroller = require("../controller/APIcontroller");
 const passport = require("passport");
 const multer = require("multer");
 const upload = multer({storage: multer.memoryStorage()});
+// ====================== /* INDEX */ ====================== //
+/**Index home screen */
+router.route("/").get(APIcontroller.index);
+
+// ============================================ //
+
+// ====================== /* PASSPORT */ ====================== //
 
 /* CHECK IF LOGGED IN - Use APIcontroller.isLoggedIn FIRST, on relevant routes, to force login */
 exports.isLoggedIn = (req, res, next) => {
@@ -25,7 +32,7 @@ router
   APIcontroller.loginSuccess
 );
 
-/* SIGNUP ROUTES */
+/* register ROUTES */
 router
 .route("/register")
 .get(APIcontroller.register)
@@ -43,16 +50,18 @@ router
 .route("/logout")
 .get(APIcontroller.logout);
 
+// ============================================ //
 
+  // ====================== /* USER PANEL */ ====================== //
 
-/**Index home screen */
-router.route("/").get(APIcontroller.index);
+/**user panel screen for Wetap API */
+router
+.route("/user_panel").get(APIcontroller.user_panel);
 
-// /**login screen for Wetap API */
-// router.route("/login").get(APIcontroller.login);
-// /**register screen for Wetap API */
-// router.route("/register").get(APIcontroller.register);
+router
+.route("/user_panel/update/:id").get(APIcontroller.user_status);
 
+// ============================================ //
 
 
 /**confrim screen for Wetap API */
@@ -67,8 +76,6 @@ router.route("/update_company").get(APIcontroller.update_company);
 router.route("/create_company_product").get(APIcontroller.create_company_product);
 /**create company product screen for Wetap API */
 router.route("/update_company_product").get(APIcontroller.update_company_product);
-/**user panel screen for Wetap API */
-router.route("/user_panel").get(APIcontroller.user_panel);
 /**product panel screen for Wetap API */
 router.route("/product_panel").get(APIcontroller.product_panel);
 /**create product bottle screen for Wetap API */

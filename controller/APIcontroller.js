@@ -1,6 +1,12 @@
-// const model = require("../models/products");
+const model = require("../model/brugere");
 // var logout = require('express-passport-logout');
-
+// ====================== /* INDEX */ ====================== //
+/* GET INDEX PAGE */
+exports.index = (req, res) => {
+  res.render("index", {
+    title: "Velkommen til min hovedopgave",
+  });
+};
 // ====================== /* PASSPORT */ ====================== //
 
 /* LOGIN */
@@ -38,30 +44,6 @@ exports.logout = (req, res) => {
   // req.session.destroy();
   res.redirect("/login");
 };
-
-
-// ============================================ //
-
-
-/* GET INDEX PAGE */
-exports.index = (req, res) => {
-    res.render("index", {
-      title: "Velkommen til min hovedopgave",
-    });
-  };
-
-//   /* GET Login PAGE */
-// exports.login = (req, res) => {
-//   res.render("login", {
-//     title: "Login",
-//   });
-// };
-//   /* GET register PAGE */
-//   exports.register = (req, res) => {
-//     res.render("register", {
-//       title: "Opret bruger",
-//     });
-//   };
   /* GET confrim PAGE */
   exports.confirm = (req, res) => {
     res.render("confirm", {
@@ -69,12 +51,41 @@ exports.index = (req, res) => {
     });
   };
 
+// ============================================ //
+// ====================== /* PROFILE */ ====================== //
     /* GET profile PAGE */
   exports.profile = (req, res) => {
     res.render("profile", {
       title: "Profil",
     });
   };
+  // ============================================ //
+  // ====================== /* USER PANEL */ ====================== //
+    /* GET user panel PAGE */
+    exports.user_panel = async(req, res) => {
+      let brugere = await model.GetWetapBrugere(req, res);
+      // console.log(brugere[0])
+      res.render("user_panel", {
+        title: "Brugerpanel",
+        brugere: brugere[0],
+        user: req.user,
+      });
+    };
+    /* Update user status PAGE */
+    exports.user_status = async(req, res) => {
+      let updatebool = await model.UpdateWetapBrugereStatus(req, res);
+      // let brugere = await model.GetWetapBrugere(req, res);
+      // console.log(brugere[0])
+      res.redirect('/user_panel');
+      // res.render("user_panel", {
+      //   title: "Brugerpanel",
+      //   brugere: brugere[0],
+      //   user: req.user,
+      // });
+    };
+
+// ============================================ //
+
   /* GET create company PAGE */
   exports.create_company = (req, res) => {
     res.render("create_company", {
@@ -103,13 +114,7 @@ exports.index = (req, res) => {
         dashboard: "active",
       });
     };
-    /* GET user panel PAGE */
-    exports.user_panel = (req, res) => {
-      res.render("user_panel", {
-        title: "Brugerpanel",
-        brugere: "active",
-      });
-    };
+
     /* GET product panel PAGE */
     exports.product_panel = (req, res) => {
       res.render("product_panel", {

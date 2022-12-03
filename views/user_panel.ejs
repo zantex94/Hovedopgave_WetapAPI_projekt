@@ -18,13 +18,23 @@
             <th>Status</th>
             <th></th>
         </tr>
+          <!-- Loop start -->
+        <% brugere.forEach(function(brugere) { %> 
         <tr>
-            <td>René Seebach</td>
-            <td>test@gmail.com</td>
-            <td>24315476</td>
-            <td><a class="admin_active" title="deaktivere bruger">Aktiv</a></td>
-            <td><a class="admin_delete" title="fjern bruger">Fjern</a></td>
+            <td><%= brugere.navn %></td>
+            <td><%= brugere.email %></td>
+            <td><%= brugere.Telefonnummer %></td>
+            <% if (brugere.rolle == "admin") { %>
+            <td></td>
+            <td></td>
+            <% } else { %>
+              <td><a href="/user_panel/update/<%= brugere.id %>" class="admin_active" title="deaktivere bruger">Aktiv</a></td>
+              <td><a class="admin_delete" title="fjern bruger">Fjern</a></td>
+            <% } %>
+
         </tr>
+        <% }); %>
+        <!-- Loop end -->  
     </table>
   
   </div>
