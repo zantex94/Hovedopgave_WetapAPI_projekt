@@ -72,16 +72,18 @@ exports.logout = (req, res) => {
       });
     };
     /* Update user status PAGE */
-    exports.user_status = async(req, res) => {
-      let updatebool = await model.UpdateWetapBrugereStatus(req, res);
-      // let brugere = await model.GetWetapBrugere(req, res);
-      // console.log(brugere[0])
-      res.redirect('/user_panel');
-      // res.render("user_panel", {
-      //   title: "Brugerpanel",
-      //   brugere: brugere[0],
-      //   user: req.user,
-      // });
+    exports.user_status_active = async(req, res) => {
+      let updatebool = await model.UpdateWetapBrugereStatusAktiv(req, res);
+      if(updatebool){
+        res.redirect('/user_panel');
+      }
+    };
+     /* Update user status PAGE */
+     exports.user_status_notactive = async(req, res) => {
+      let updatebool = await model.UpdateWetapBrugereStatusDeaktiveret(req, res);
+      if(updatebool){
+        res.redirect('/user_panel');
+      }
     };
 
 // ============================================ //

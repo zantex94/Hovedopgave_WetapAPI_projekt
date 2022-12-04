@@ -15,7 +15,21 @@ module.exports = {
     }
   },
    // update brugere from Wetap. 
-   async UpdateWetapBrugereStatus(req, res) {
+   async UpdateWetapBrugereStatusDeaktiveret(req, res) {
+    try {
+        // using prepared statement to avoid sql injection
+      const { id } = req.params;      
+      console.log(req.params);
+      let sql = `update brugere set status_bruger = "deaktiveret" where id = ?`;
+      let udatebrugere = [id];
+      await pool.query(sql, udatebrugere);
+      return true;
+    } catch (e) {
+      console.error(e.message);
+    }
+  },
+   // update brugere from Wetap. 
+   async UpdateWetapBrugereStatusAktiv(req, res) {
     try {
         // using prepared statement to avoid sql injection
       const { id } = req.params;      

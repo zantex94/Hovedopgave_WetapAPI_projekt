@@ -28,8 +28,17 @@
             <td></td>
             <td></td>
             <% } else { %>
-              <td><a href="/user_panel/update/<%= brugere.id %>" class="admin_active" title="deaktivere bruger">Aktiv</a></td>
+              <% if (!user.rolle == "admin") { %>
+                <% if (brugere.status_bruger == "aktiv") { %>
+                  <td><a href="/user_panel/update/usernotactive/<%= brugere.id %>" class="admin_active" title="deaktivere bruger">aktiv</a></td>
+                <% } else { %>
+                 <td><a href="/user_panel/update/useractive/<%= brugere.id %>" class="admin_notactive" title="aktiver bruger">deaktiveret</a></td>
+                <% } %>
               <td><a class="admin_delete" title="fjern bruger">Fjern</a></td>
+              <% } else { %>
+                <td><%= brugere.status_bruger %></td>
+                <td></td>
+              <% } %>
             <% } %>
 
         </tr>

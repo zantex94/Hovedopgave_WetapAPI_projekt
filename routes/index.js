@@ -59,7 +59,9 @@ router
 .route("/user_panel").get(APIcontroller.user_panel);
 
 router
-.route("/user_panel/update/:id").get(APIcontroller.user_status);
+.route("/user_panel/update/useractive/:id").get(APIcontroller.user_status_active);
+router
+.route("/user_panel/update/usernotactive/:id").get(APIcontroller.user_status_notactive);
 
 // ============================================ //
 
