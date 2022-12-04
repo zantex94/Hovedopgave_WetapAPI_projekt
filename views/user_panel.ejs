@@ -21,20 +21,20 @@
           <!-- Loop start -->
         <% brugere.forEach(function(brugere) { %> 
         <tr>
-            <td><%= brugere.navn %></td>
+            <td><%= brugere.navn %></td>  
             <td><%= brugere.email %></td>
-            <td><%= brugere.Telefonnummer %></td>
+            <td><%= brugere.telefonnummer %></td>
             <% if (brugere.rolle == "admin") { %>
             <td></td>
             <td></td>
             <% } else { %>
-              <% if (!user.rolle == "admin") { %>
+              <% if (user.rolle == "admin") { %>
                 <% if (brugere.status_bruger == "aktiv") { %>
-                  <td><a href="/user_panel/update/usernotactive/<%= brugere.id %>" class="admin_active" title="deaktivere bruger">aktiv</a></td>
+                  <td><a href="/user_panel/update/usernotactive/<%= brugere.id %>" class="admin_active" title="deaktivere bruger">Aktiv</a></td>
                 <% } else { %>
-                 <td><a href="/user_panel/update/useractive/<%= brugere.id %>" class="admin_notactive" title="aktiver bruger">deaktiveret</a></td>
+                 <td><a href="/user_panel/update/useractive/<%= brugere.id %>" class="admin_notactive" title="aktiver bruger">Deaktiveret</a></td>
                 <% } %>
-              <td><a class="admin_delete" title="fjern bruger">Fjern</a></td>
+              <td><button type="submit" class="admin_delete" title="fjern bruger" onclick="deleteUser('<%= brugere.id %>')">Fjern</button></td>
               <% } else { %>
                 <td><%= brugere.status_bruger %></td>
                 <td></td>

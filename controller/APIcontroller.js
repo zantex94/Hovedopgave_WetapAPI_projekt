@@ -1,4 +1,5 @@
 const model = require("../model/brugere");
+const bcrypt = require("bcrypt");
 // var logout = require('express-passport-logout');
 // ====================== /* INDEX */ ====================== //
 /* GET INDEX PAGE */
@@ -55,10 +56,77 @@ exports.logout = (req, res) => {
 // ====================== /* PROFILE */ ====================== //
     /* GET profile PAGE */
   exports.profile = (req, res) => {
+    // console.log(req.user);
     res.render("profile", {
       title: "Profil",
+      user: req.user,
     });
   };
+  /* Update profile PAGE */
+  exports.update_profile = async(req, res) => {
+    //checking if the user puts ind old and new password in field
+    if(req.body.Old_password > 0 && req.body.New_password > 0){
+      //compare old one with exsisting one (password)
+      if (bcrypt.compareSync(req.body.Old_password, req.user.password)){
+        let newPasword = bcrypt.hashSync(req.body.New_password.toString(), 10)
+      //updating user in database.
+      let updateBruger = await model.updateWetapBruger(req, res, newPasword);
+      //get updated user from database.
+      let updatedBruger = await model.GetUpdatedWetapBruger(req, res);
+        //updating user session.
+      console.log(updatedBruger[0][0]);
+      req.user.navn = updatedBruger[0][0].navn;
+      req.user.email = updatedBruger[0][0].email;
+      req.user.adresse = updatedBruger[0][0].adresse;
+      req.user.postnummer = updatedBruger[0][0].postnummer;
+      req.user._by = updatedBruger[0][0]._by;
+      req.user.telefonnummer = updatedBruger[0][0].telefonnummer;
+      req.user.status_bruger = updatedBruger[0][0].status_bruger;
+      req.user.password = updatedBruger[0][0].password;
+      req.user.rolle = updatedBruger[0][0].rolle;
+      //successfull.
+      res.render("profile", {
+        title: "Profil",
+        user: req.user,
+        success: 'Bruger opdateret'
+      });
+      }else{
+        //not successful. password dosen´t match.
+        res.render("profile", {
+          title: "Profil",
+          user: req.user,
+          error: 'Password matcher ikke. Kunne ikke opdatere'
+        });
+      }
+    }else{
+      let updateBruger = await model.updateWetapBruger(req, res);
+      let updatedBruger = await model.GetUpdatedWetapBruger(req, res);
+        //updating user session.
+      req.user.navn = updatedBruger[0][0].navn;
+      req.user.email = updatedBruger[0][0].email;
+      req.user.adresse = updatedBruger[0][0].adresse;
+      req.user.postnummer = updatedBruger[0][0].postnummer;
+      req.user._by = updatedBruger[0][0]._by;
+      req.user.telefonnummer = updatedBruger[0][0].telefonnummer;
+      req.user.status_bruger = updatedBruger[0][0].status_bruger;
+      req.user.password = updatedBruger[0][0].password;
+      req.user.rolle = updatedBruger[0][0].rolle;
+        res.render("profile", {
+          title: "Profil",
+          user: req.user,
+          success: 'Bruger opdateret'
+        });
+      
+    }
+  };
+  /* delete profile PAGE */
+  exports.deleteuserprofile = async(req, res) => {
+    let deleteUser = await model.deleteWetapProfile(req, res);
+    if(deleteUser){
+      res.redirect("/login");
+    }
+  };
+
   // ============================================ //
   // ====================== /* USER PANEL */ ====================== //
     /* GET user panel PAGE */
@@ -82,6 +150,13 @@ exports.logout = (req, res) => {
      exports.user_status_notactive = async(req, res) => {
       let updatebool = await model.UpdateWetapBrugereStatusDeaktiveret(req, res);
       if(updatebool){
+        res.redirect('/user_panel');
+      }
+    };
+    /* delete bruger PAGE */
+    exports.deleteuser = async(req, res) => {
+      let deleteuser = await model.deleteWetapBruger(req, res);
+      if(deleteuser){
         res.redirect('/user_panel');
       }
     };

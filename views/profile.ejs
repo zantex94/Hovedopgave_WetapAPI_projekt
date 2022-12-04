@@ -7,38 +7,46 @@
     <div class="mainDiv">
     <div>
       <h1><%= title %></h1>
+
+  <div class="innerDiv">
+    <% if (locals.error) { %>
+        <p class="p_Title_error"><%= error %></p>
+        <% } %>
+        <% if (locals.success) { %>
+            <p class="p_Title_error"><%= success %></p>
+            <% } %>
     </div>
-  </div>
+  <form action="/profile" method="post">
     <div class="innerDiv">
         <div class="boxDiv_profile">
             <p class="p_Title">Navn:</p>
-            <input type="text" name="Name" placeholder="Navn" required>
+            <input type="text" name="Name" placeholder="Navn" maxlength="100" value="<%= user.navn %>" required>
         </div>
         <div class="boxDiv_profile">
             <p class="p_Title">Telefonnummer:</p>
-            <input type="number" name="Phonenumber" placeholder="Telefonnummer" required>
+            <input type="number" name="Phonenumber" placeholder="Telefonnummer" maxlength="20" value="<%= user.telefonnummer %>" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_profile">
             <p class="p_Title">E-mail:</p>
-            <input class="custom_input" type="email" name="E-mail" placeholder="Eksempel@gmail.com" required>
+            <input class="custom_input" type="email" name="Email" placeholder="Eksempel@gmail.com" maxlength="100" value="<%= user.email %>" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_profile">
             <p class="p_Title">Adresse:</p>
-            <input class="custom_input" type="text" name="Address" placeholder="Adresse" required>
+            <input class="custom_input" type="text" name="Address" placeholder="Adresse" maxlength="200" value="<%= user.adresse %>" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_profile">
         <p class="p_Title">Postnummer:</p>
-        <input type="number" name="Zip_code" placeholder="Postnummer" required>
+        <input type="number" name="Zip_code" placeholder="Postnummer" maxlength="4" value="<%= user.postnummer %>" required>
         </div>
     <div class="boxDiv_profile">
         <p class="p_Title">By:</p>
-        <input type="number" name="City" placeholder="By" required>
+        <input type="text" name="City" placeholder="By" maxlength="100" value="<%= user._by %>" required>
     </div>
     </div>
     <div class="innerDiv">
@@ -49,19 +57,22 @@
     <div class="innerDiv">
         <div class="boxDiv_profile">
             <p class="p_Title">Gammel Adgangskode:</p>
-            <input class="custom_input" type="password" name="Old_password" placeholder="Gammel Adgangskode:" required>
+            <input class="custom_input" type="password" name="Old_password" placeholder="Gammel Adgangskode:" maxlength="100">
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_profile">
             <p class="p_Title">Ny adgangskode:</p>
-            <input class="custom_input" type="password" name="New_password" placeholder="Ny adgangskode" required>
+            <input class="custom_input" type="password" name="New_password" placeholder="Ny adgangskode" maxlength="100">
         </div>
     </div>
     <div class="innerDiv">
         <div class="div_button_profile">
             <button class="button_save" type="submit">Gem ændringer</button>
-            <button class="button_remove" type="submit">Fjern profil</button>
+        </form>
+            <% if (user.rolle == "medarbejder") { %>
+                <button class="admin_delete" title="fjern bruger" onclick="deleteUserProfile('<%= user.id %>')">Fjern</button>
+            <% } %>
         </div>
     </div>
 </main>

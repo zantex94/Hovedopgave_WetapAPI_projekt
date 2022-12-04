@@ -62,14 +62,24 @@ router
 .route("/user_panel/update/useractive/:id").get(APIcontroller.user_status_active);
 router
 .route("/user_panel/update/usernotactive/:id").get(APIcontroller.user_status_notactive);
+router
+.route("/user_panel/deleteuser/:id").get(APIcontroller.deleteuser);
+
+// ============================================ //
+// ====================== /* PROFILE */ ====================== //
+/**profile screen for Wetap API */
+router
+.route("/profile")
+.get(APIcontroller.profile)
+.post(APIcontroller.update_profile);
+router
+.route("/profile/deleteuserProfile/:id").get(APIcontroller.deleteuserprofile);
 
 // ============================================ //
 
 
 /**confrim screen for Wetap API */
 router.route("/confirm").get(APIcontroller.confirm);
-/**profile screen for Wetap API */
-router.route("/profile").get(APIcontroller.profile);
 /**create company screen for Wetap API */
 router.route("/create_company").get(APIcontroller.create_company);
 /**create company screen for Wetap API */
