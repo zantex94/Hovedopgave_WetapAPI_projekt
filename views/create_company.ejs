@@ -9,6 +9,12 @@
       <h1><%= title %></h1>
     </div>
   </div>
+  <div class="innerDiv">
+    <% if (locals.error) { %>
+       <p class="p_Title_error"><%= error %></p>
+       <% } %>
+   </div>
+  <form class="create_company-form" action="/create_company" method="post">
     <div class="innerDiv">
         <div class="boxDiv_create_company">
             <p class="p_Title">Navn:</p>
@@ -18,32 +24,36 @@
     <div class="innerDiv">
         <div class="boxDiv_create_company">
             <p class="p_Title">CVR:</p>
-            <input class="custom_input" type="text" name="CVR" placeholder="CVR nummer" required>
+            <input class="custom_input" type="number" name="cvr" placeholder="CVR nummer" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_create_company">
-            <p class="p_Title">Ansvarlig/admin i firmaet:</p>
-            <select name="Responsible_person" id="Responsible_person">
+            <p class="p_Title">Ansvarlig i firmaet:</p>
+             <!-- Loop start -->
+            <select name="responsible_person" id="responsible_person">
                 <option>Vælg</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                <% brugereErhverv.forEach(function(brugereErhverv) { %> 
+                <option value="<%= brugereErhverv.email %>">Email: <%= brugereErhverv.email %> Cvr: <%= brugereErhverv.cvr %></option>
+                <% }); %>
+                <!-- Loop end -->  
               </select>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_create_company">
             <p class="p_Title">Teknikker:</p>
-            <input class="custom_input" type="text" name="techniques" placeholder="Nummer på teknikker" required>
+            <input class="custom_input" type="number" name="techniques" placeholder="Nummer på teknikker" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="div_button_create_company">
-            <button type="submit">Opret firma</button>
-            <button type="submit">fortryd</button>
+            <button type="submit">opret firma</button>
+            <a class="button_add_company_dashboard_cancel" href="/dashboard" >fortryd</a>
+            <!-- <button type="submit">fortryd</button> -->
         </div>
     </div>
+    </form>
 </main>
   </body>
 </html>

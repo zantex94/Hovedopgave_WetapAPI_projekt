@@ -14,3 +14,17 @@ function deleteUserProfile(id) {
       location.href = '/profile/deleteuserProfile/' + id;
   }
 }
+
+const init = function () {
+  if ($("profile_form")) {
+    console.log("in scope event form");
+    // looking for particular form, if found setup validation
+    $("profile_form").addEventListener("submit", function(event){
+      console.log("in scope event");
+      if(event.submitter.matches('#removeProfile')){
+        event.preventDefault();
+      }
+    });
+  }
+};
+window.addEventListener("load", init);

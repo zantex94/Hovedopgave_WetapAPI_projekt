@@ -109,6 +109,11 @@ textarea{
   margin: inherit;
   font-size: 0.8em;
 }
+.p_Title_success{
+  color: rgb(13, 241, 74);
+  margin: inherit;
+  font-size: 0.8em;
+}
 /**************************************************************************/
 
 /******************************************HEADER_BAR**************************************************************************/
@@ -296,6 +301,7 @@ textarea{
 .button_save{
   margin: 3% !important;
 }
+
 .button_remove{
   margin: 3% !important;
   background-color: red;
@@ -314,6 +320,24 @@ textarea{
   display: flex;
   justify-content: center;
   margin: 3% 0% 10%;
+}
+.button_add_company_dashboard_cancel{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5px;
+  height: 20px;
+  margin-top: 11%;
+  padding: 5%;
+  min-width: 100%;
+}
+.button_add_company_dashboard_cancel:hover{
+  background-color: #207783;
+  cursor: pointer;
 }
 
 /**************************************************************************/
@@ -603,6 +627,18 @@ min-width: 200% !important;
   margin-right: 11.5%;
   margin-left: 1%; 
 }
+.button_add_company_dashboard{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5em;
+  padding: 5%;
+  min-width: 100%;
+}
 .custom_input_search{
   border: solid #207783;
   border-radius: 10px 0px 10px 10px;
@@ -610,6 +646,10 @@ min-width: 200% !important;
   width: 25%;
 }
 .button_search:hover{
+  background-color: #207783;
+  cursor: pointer;
+}
+.button_add_company_dashboard:hover{
   background-color: #207783;
   cursor: pointer;
 }

@@ -76,14 +76,26 @@ router
 .route("/profile/deleteuserProfile/:id").get(APIcontroller.deleteuserprofile);
 
 // ============================================ //
+// ====================== /* DASHBOARD */ ====================== //
+/**dashboard screen for Wetap API */
+router.route("/dashboard").get(APIcontroller.dashboard);
+/**create company screen for Wetap API */
+router.route("/create_company")
+.get(APIcontroller.create_company)
+.post(APIcontroller.insert_company);
+/**update company screen for Wetap API */
+// router.route("/update_company").get(APIcontroller.update_company);
+router
+.route("/update_company/:cvr").get(APIcontroller.update_company);
+router
+.route("/update_company").post(APIcontroller.updating_company);
 
+
+
+// ============================================ //
 
 /**confrim screen for Wetap API */
 router.route("/confirm").get(APIcontroller.confirm);
-/**create company screen for Wetap API */
-router.route("/create_company").get(APIcontroller.create_company);
-/**create company screen for Wetap API */
-router.route("/update_company").get(APIcontroller.update_company);
 /**create company product screen for Wetap API */
 router.route("/create_company_product").get(APIcontroller.create_company_product);
 /**create company product screen for Wetap API */
@@ -98,8 +110,6 @@ router.route("/update_product_bottle").get(APIcontroller.update_product_bottle);
 router.route("/create_product_water_supply").get(APIcontroller.create_product_water_supply);
 /**update product water supply screen for Wetap API */
 router.route("/update_product_water_supply").get(APIcontroller.update_product_water_supply);
-/**dashboard screen for Wetap API */
-router.route("/dashboard").get(APIcontroller.dashboard);
 /**dashboard company screen for Wetap API */
 router.route("/dashboard_company").get(APIcontroller.dashboard_company);
 

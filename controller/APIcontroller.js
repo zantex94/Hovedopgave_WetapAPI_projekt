@@ -1,4 +1,5 @@
 const model = require("../model/brugere");
+const model_company_dashboard = require("../model/company_dashboard");
 const bcrypt = require("bcrypt");
 // var logout = require('express-passport-logout');
 // ====================== /* INDEX */ ====================== //
@@ -163,20 +164,120 @@ exports.logout = (req, res) => {
 
 // ============================================ //
 
+// ====================== /* DASHBOARD PANEL */ ====================== //
+    /* GET dashboard PAGE */
+    exports.dashboard = async(req, res) => {
+      let allCompanies = await model_company_dashboard.GetAllCompanies(req, res);
+    // console.log(req.user);
+    res.render("dashboard", {
+      title: "Dashboard",
+      dashboard: "active",
+      user: req.user,
+      allCompanies: allCompanies[0]
+    });
+  };
   /* GET create company PAGE */
-  exports.create_company = (req, res) => {
+  exports.create_company = async(req, res) => {
+    // call all bruger erhverv customers to be selected.
+    let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);
     res.render("create_company", {
       title: "Opret Firma",
       dashboard: "active",
+      brugereErhverv: brugereErhverv[0],
     });
   };
+  /* INSERT company PAGE */
+  exports.insert_company = async(req, res) => {
+    let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);
+    console.log(req.body);
+    if(req.body.responsible_person == 'Vælg'){
+    res.render("create_company", {
+      title: "Opret Firma",
+      dashboard: "active",
+      brugereErhverv: brugereErhverv[0],
+      error: "Der skal vælges en ansvarlig!"
+    });
+    }else{
+      let newCompany = await model_company_dashboard.InsertNewCompany(req, res);
+      if(newCompany){
+        //updating user so that it can act as a admin.
+        let newAdmin = await model_company_dashboard.UpdateUserAdminCompany(req, res);
+        let allCompanies = await model_company_dashboard.GetAllCompanies(req, res);
+        if(newAdmin){
+          res.render("dashboard", {
+            title: "Dashboard",
+            dashboard: "active",
+            success: "Firma oprettet!",
+            allCompanies: allCompanies[0]
+          });
+        }
+      }else{
+        res.render("create_company", {
+          title: "Opret Firma",
+          dashboard: "active",
+          error: "Firma eksistere allerede!",
+          brugereErhverv: brugereErhverv[0],
+        });
+      }
+
+    }
+  };
   /* GET update company PAGE */
-  exports.update_company = (req, res) => {
+  exports.update_company = async(req, res) => {
+    let getCompany = await model_company_dashboard.GetCvrCompany(req, res);
+    let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);
+    console.log(getCompany[0]);
     res.render("update_company", {
       title: "Opdatere Firma",
       dashboard: "active",
+      getCompany: getCompany[0],
+      brugereErhverv: brugereErhverv[0],
     });
   };
+   /* Update company PAGE */
+   exports.updating_company = async(req, res) => {
+    let updateCompany = await model_company_dashboard.UpdateCompany(req, res);
+    if(updateCompany){
+      // update all erhverv on cvr to be kunde.
+      let updateCvrAdmin = await model_company_dashboard.UpdateCompanyAdmin(req, res);
+      if(updateCvrAdmin){
+      // setup new admin for cvr company
+      let newAdmin = await model_company_dashboard.UpdateUserAdminCompany(req, res);
+        if(newAdmin){
+          let allCompanies = await model_company_dashboard.GetAllCompanies(req, res);
+
+            res.render("dashboard", {
+              title: "Dashboard",
+              dashboard: "active",
+              success: "Firma opdateret!",
+              allCompanies: allCompanies[0]
+            });
+      }
+    }
+      
+      // if(updateCvrAdmin){
+      //   // setup new admin for cvr company
+      //   let newAdmin = await model_company_dashboard.UpdateUserAdminCompany(req, res);
+      //   if(newAdmin){
+    
+      //   }
+      // }
+  
+    }else{
+      let getCompany = await model_company_dashboard.GetCvrCompany(req, res);
+      let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);
+      res.render("update_company", {
+        title: "Opdatere Firma",
+        dashboard: "active",
+        getCompany: getCompany[0],
+        brugereErhverv: brugereErhverv[0],
+        error: "Kunne ikke opdatere. Tjek venligst felterne!"
+      });
+    }
+  
+  };
+  // ============================================ //
+
     /* GET create company product PAGE */
     exports.create_company_product = (req, res) => {
     res.render("create_company_product", {
@@ -225,15 +326,6 @@ exports.logout = (req, res) => {
       res.render("update_product_water_supply", {
         title: "Opdatere vandpost",
         produkt: "active",
-      });
-    };
-     /* GET dashboard PAGE */
-     exports.dashboard = (req, res) => {
-      console.log(req.user);
-      res.render("dashboard", {
-        title: "Dashboard",
-        dashboard: "active",
-        user: req.user,
       });
     };
       /* GET update product water supply panel PAGE */

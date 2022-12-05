@@ -7,16 +7,23 @@
     <div class="mainDiv">
     <div>
       <h1><%= title %></h1>
+    </div>
+</div>
+<div class="innerDiv">
+    <div>
+        <p><i style="font-size: 80px;" class="fa fa-user-circle"></i></p>
+      </div>
+   </div>
 
-  <div class="innerDiv">
-    <% if (locals.error) { %>
+    <div class="innerDiv">
+     <% if (locals.error) { %>
         <p class="p_Title_error"><%= error %></p>
         <% } %>
         <% if (locals.success) { %>
-            <p class="p_Title_error"><%= success %></p>
+            <p class="p_Title_success"><%= success %></p>
             <% } %>
     </div>
-  <form action="/profile" method="post">
+  <form id="profile_form" action="/profile" method="post">
     <div class="innerDiv">
         <div class="boxDiv_profile">
             <p class="p_Title">Navn:</p>
@@ -69,12 +76,12 @@
     <div class="innerDiv">
         <div class="div_button_profile">
             <button class="button_save" type="submit">Gem ændringer</button>
-        </form>
             <% if (user.rolle == "medarbejder") { %>
-                <button class="admin_delete" title="fjern bruger" onclick="deleteUserProfile('<%= user.id %>')">Fjern</button>
+                <button id="removeProfile" class="button_remove" title="fjern bruger" onclick="deleteUserProfile('<%= user.id %>')">Fjern</button>
             <% } %>
         </div>
     </div>
+</form>
 </main>
   </body>
 </html>

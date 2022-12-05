@@ -9,41 +9,51 @@
       <h1><%= title %></h1>
     </div>
   </div>
+  <div class="innerDiv">
+    <% if (locals.error) { %>
+       <p class="p_Title_error"><%= error %></p>
+       <% } %>
+   </div>
+   <form class="update_company-form" action="/update_company" method="post">
     <div class="innerDiv">
         <div class="boxDiv_update_company">
             <p class="p_Title">Navn:</p>
-            <input class="custom_input" type="text" name="company_name" placeholder="Firma navn" required>
+            <input class="custom_input" type="text" name="company_name" value="<%= getCompany[0].title %>" maxlength="50" minlength="1" placeholder="Firma navn" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_update_company">
             <p class="p_Title">CVR:</p>
-            <input class="custom_input" type="text" name="CVR" placeholder="CVR nummer" required>
+            <input class="custom_input" type="text" name="cvr" placeholder="CVR nummer" maxlength="8" minlength="8" value="<%= getCompany[0].cvr %>" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_update_company">
-            <p class="p_Title">Ansvarlig/admin i firmaet:</p>
-            <select name="Responsible_person" id="Responsible_person">
-                <option>Vælg</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+            <p class="p_Title">Ansvarlig i firmaet:</p>
+              <!-- Loop start -->
+              <select name="responsible_person" id="responsible_person">
+                <option name="<%= getCompany[0].email %>"><%= getCompany[0].email %></option>
+                <% brugereErhverv.forEach(function(brugereErhverv) { %> 
+                <option value="<%= brugereErhverv.email %>">Email: <%= brugereErhverv.email %> Cvr: <%= brugereErhverv.cvr %></option>
+                <% }); %>
+                <!-- Loop end -->  
               </select>
         </div>
     </div>
     <div class="innerDiv">
         <div class="boxDiv_update_company">
             <p class="p_Title">Teknikker:</p>
-            <input class="custom_input" type="text" name="techniques" placeholder="Nummer på teknikker" required>
+            <input class="custom_input" type="number" name="techniques" value="<%= getCompany[0].teknikker %>" minlength="4" maxlength="50" placeholder="Nummer på teknikker" required>
         </div>
     </div>
     <div class="innerDiv">
         <div class="div_button_update_company">
             <button type="submit">Opdatere</button>
-            <button type="submit">fortryd</button>
+            <input name="Old_cvr" value="<%= getCompany[0].cvr %>" type="hidden">
+            <a class="button_add_company_dashboard_cancel" href="/dashboard" >fortryd</a>
         </div>
     </div>
+    </form>
 </main>
   </body>
 </html>

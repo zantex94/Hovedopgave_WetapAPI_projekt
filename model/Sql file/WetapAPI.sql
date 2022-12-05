@@ -24,7 +24,7 @@ foreign key(email) references brugere(email)
 );
 
 CREATE TABLE brugere_erhverv(
-id BIGINT UNSIGNED NOT NULL,
+id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 cvr INT NOT NULL,
 email VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
@@ -35,21 +35,42 @@ foreign key(email) references brugere(email)
 INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
 ('test@gmail.com', 'René Seebach', 'Lærkevej 3', 6200, 'kliplev', 20913871, 'aktiv', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAKiC', "admin");
 
+INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
+('jensfaarup@gmail.com', 'Jens Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
 
+INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
+('12345678', 'jensfaarup@gmail.com');
+
+INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
+('larsfaarup@gmail.com', 'Lars Jensen', 'Lærkevej 3', 6200, 'Vojens', 54342312, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
+
+INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
+('12345678', 'larsfaarup@gmail.com');
+
+INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
+('bentdjursland@gmail.com', 'Bent Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
+
+INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
+('87654321', 'bentdjursland@gmail.com');
 
 CREATE TABLE firma(
 cvr BIGINT UNSIGNED NOT NULL,
 title VARCHAR(50) NOT NULL,
 email VARCHAR(100) NOT NULL,
+teknikker INT(50) NOT NULL,
 PRIMARY KEY (cvr),
 foreign key(email) references brugere(email)
 );
 
 CREATE TABLE produktkategori(
-kategori VARCHAR(100) NOT NULL,
-title VARCHAR(50) NOT NULL,
+kategori VARCHAR(200) NOT NULL,
+title VARCHAR(200) NOT NULL,
 PRIMARY KEY (kategori)
 );
+INSERT INTO `produktkategori` (`kategori`, `title`) VALUES
+('Udendørs vandpost', 'Vandposter til udendørs brug');
+INSERT INTO `produktkategori` (`kategori`, `title`) VALUES
+('Flasker', 'Drikkedunke med mulighed for refill');
 
 CREATE TABLE produkt(
 id BIGINT UNSIGNED NOT NULL,

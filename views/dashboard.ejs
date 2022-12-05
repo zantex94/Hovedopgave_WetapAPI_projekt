@@ -10,34 +10,51 @@
     </div>
     <div class="boxDiv_search">
       <input class="custom_input_search" type="text" name="Search" placeholder="Søg" required>
-      <a class="button_search" href="test"><i class="fa fa-search" title="search"></i></a>
+      <a class="button_search"><i class="fa fa-search" title="search"></i></a>
     </div>
     <div>
     </div>
   </div>
   <div class="innerDiv">
+    <% if (locals.success) { %>
+       <p class="p_Title_success"><%= success %></p>
+       <% } %>
+       <% if (!locals.allCompanies) { %>
+        <p>Endnu ingen firmaer oprettet endnu</p>
+        <% } %>
+   </div>
+  <div class="innerDiv">
     <div class="boxdiv_dashboard_button">
     <div class="boxDiv_dashboard_button_add">
-      <button class="add_button"type="submit">Tilføj</button>
+      <a class="button_add_company_dashboard" href="/create_company" >Tilføj</a>
   </div>
   </div>
 </div>
   <div class="innerDiv">
     <div class="boxDiv_dashboard">
+      <!-- <a href="/dashboard"> -->
+        <% if (locals.allCompanies) { %>
+            <!-- Loop start -->
+        <% allCompanies.forEach(function(allCompanies) { %>
       <div class="boxDiv_company">
+        <!-- <div class="boxDiv_company" onclick="location.href='/create_company';" style="cursor: pointer; z-index: 1;"> -->
+
         <div class="div_pencil_area">
-          <div class="div_pencil_icon"><i class="fa fa-pencil"></i></div>
+          <div class="div_pencil_icon" style="z-index: 10; cursor: pointer;" onclick="location.href='/update_company/<%= allCompanies.cvr %>';"><i class="fa fa-pencil"></i></div>
         </div>
           <div>
-            <p><i  class="fa fa-building icon_style"></i> Faarup</p>
+            <p><i  class="fa fa-building icon_style"></i><%= allCompanies.title %></p>
           </div>
           <div>
-            <p><i  class="fa fa-address-book icon_style"></i> Jens bøgner christensen andersen hansen andersen andersen andersen</p>
+            <p><i  class="fa fa-address-book icon_style"></i><%= allCompanies.email %></p>
           </div>
           <div>
-            <p><i  class="fa fa-wrench icon_style" title="teknikker"></i>27147831 </p>
+            <p><i  class="fa fa-wrench icon_style" title="teknikker"></i><%= allCompanies.teknikker %></p>
           </div>
       </div>
+      <% }); %>
+      <!-- Loop end -->  
+        <% } %>
     </div>
   </div>
 </main>
