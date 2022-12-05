@@ -570,7 +570,7 @@ min-width: 200% !important;
 .boxDiv_dashboard{
   display: flex;
   overflow: auto;
-  border: solid;
+  /* border: solid; */
   padding: 0px 10px 25px 10px;
   border-radius: 25px;
   width: 90%;

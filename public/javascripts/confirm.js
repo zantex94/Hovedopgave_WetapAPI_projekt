@@ -15,6 +15,7 @@ function deleteUserProfile(id) {
   }
 }
 
+
 const init = function () {
   if ($("profile_form")) {
     console.log("in scope event form");
@@ -26,5 +27,15 @@ const init = function () {
       }
     });
   }
+  //Selects all .closeData elements
+var parents = document.querySelectorAll('.boxDiv_company');
+
+//For each .closeData, find the first div and stops the propagation
+for(var i = 0; i < parents.length; i++) {
+    var child = parents[i].querySelector('div');
+    child.addEventListener('click', function(pEvent) {
+        pEvent.stopPropagation();
+    })
+}
 };
 window.addEventListener("load", init);

@@ -38,13 +38,10 @@ exports.register = (req, res) => {
 };
 /* LOGOUT */
 exports.logout = (req, res) => {
-  console.log(req.session);
-  req.logout();
-  // req.session.destroy(() =>
-  // res.redirect("/login"));
-  // );
-  // req.session.destroy();
-  res.redirect("/login");
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/login');
+  });
 };
   /* GET confrim PAGE */
   exports.confirm = (req, res) => {
@@ -245,7 +242,6 @@ exports.logout = (req, res) => {
       let newAdmin = await model_company_dashboard.UpdateUserAdminCompany(req, res);
         if(newAdmin){
           let allCompanies = await model_company_dashboard.GetAllCompanies(req, res);
-
             res.render("dashboard", {
               title: "Dashboard",
               dashboard: "active",
@@ -255,14 +251,6 @@ exports.logout = (req, res) => {
       }
     }
       
-      // if(updateCvrAdmin){
-      //   // setup new admin for cvr company
-      //   let newAdmin = await model_company_dashboard.UpdateUserAdminCompany(req, res);
-      //   if(newAdmin){
-    
-      //   }
-      // }
-  
     }else{
       let getCompany = await model_company_dashboard.GetCvrCompany(req, res);
       let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);

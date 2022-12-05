@@ -6,7 +6,7 @@ module.exports = {
     try {
         // using prepared statement to avoid sql injection
     //   const brugere = 'medarbejder';
-      let sql = `select * from brugere`;
+      let sql = `select * from brugere where brugere.rolle = "admin" or brugere.rolle = "medarbejder"`;
     //   let bool = [brugere];
       let Allbrugere = await pool.query(sql);
       return Allbrugere;
