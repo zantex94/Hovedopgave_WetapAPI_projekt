@@ -116,11 +116,25 @@ module.exports = {
       LEFT JOIN kølekapacitet as kk ON kk.id = p.id
       LEFT JOIN vandtype as vt ON vt.id = p.id;
       `;
-    //   let bool = [brugere];
       let allProducts = await pool.query(sql);
       return allProducts;
     } catch (e) {
       console.error(e.message);
+    }
+  },
+   // Delete product from Wetap. 
+   async deleteWetapProduct(req, res) {
+    try {
+        // using prepared statement to avoid sql injection
+      const { id } = req.params;      
+      let sql = `delete from produkt where id = ?`;
+      let udatebrugere = [id];
+      await pool.query(sql, udatebrugere);
+      return true;
+    } catch (e) {
+      console.error(e.message);
+      return false;
+
     }
   },
 }

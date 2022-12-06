@@ -44,8 +44,7 @@
             <td><%= getAllProducts.beskrivelse %></td>
             <td><%= getAllProducts.kategori %></td>
             <td><a href="/product_panel/updateproduct/<%= getAllProducts.id %>"class="product_update_panel" title="opdatere produkt">Opdatere</a></td>
-            <td><button type="submit" class="admin_delete" title="fjern bruger" onclick="deleteUser('<%= getAllProducts.id %>')">Fjern</button></td>
-            <!-- <td><a class="product_delete_panel" title="fjern produkt">Fjern</a></td> -->
+            <td><button type="submit" class="admin_delete" title="fjern produkt" onclick="deleteProduct('<%= getAllProducts.id %>')">Fjern</button></td>
         </tr>
         <% }); %>
         <!-- Loop end -->  

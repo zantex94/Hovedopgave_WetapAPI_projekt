@@ -8,10 +8,10 @@ const $ = function (rs) {
         location.href = '/user_panel/deleteuser/' + id;
     }
 }
-// delete a user on user_panel
+// delete a product on product_panel
 function deleteProduct(id) {
   if (confirm("Sikker på at fjerne produktet permanent? Dette kan medføre alvorlige konsekvenser for kunder der gør brug af dette!")) {
-      location.href = '/user_panel/deleteuser/' + id;
+      location.href = '/product_panel/deleteProduct/' + id;
   }
 }
 // delete a user from profile
