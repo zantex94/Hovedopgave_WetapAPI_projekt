@@ -312,16 +312,10 @@ exports.logout = (req, res) => {
         };
       /* Delete a product PAGE */
       exports.product_delete = async(req, res) => {
-        console.log('in delete');
         let deleteProduct = await model_product.deleteWetapProduct(req, res);
         let getAllProducts = await model_product.GetWetapProducts(req, res);
         if(deleteProduct){
-          res.render("product_panel", {
-            title: "Produkt panel",
-            produkt: "active",
-            success: "Produkt fjernet!",
-            getAllProducts: getAllProducts[0],
-          });
+          res.redirect('/product_panel');
         }else{
           res.render("product_panel", {
             title: "Produkt panel",
@@ -334,10 +328,13 @@ exports.logout = (req, res) => {
       };
   
       /* GET update product water supply panel PAGE */
-      exports.update_product_water_supply = (req, res) => {
+      exports.update_product_water_supply = async(req, res) => {
+        let getAProduct = await model_product.GetAWetapProduct(req, res);
+        // console.log(getAProduct[0]);
       res.render("update_product_water_supply", {
         title: "Opdatere vandpost",
         produkt: "active",
+        getAProduct: getAProduct[0],
       });
     };
 

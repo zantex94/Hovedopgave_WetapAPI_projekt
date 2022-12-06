@@ -24,7 +24,8 @@
         <a class="button_add_product" href="/create_product_water_supply" >Tilføj</a>
     </div>
    </div> 
-   
+   <% if (!getAllProducts.locals) { %>
+
   <div class="table-responsive">
     <table class="table">
         <tr>
@@ -35,7 +36,6 @@
             <th></th>
             <th></th>
         </tr>
-        <% if (!getAllProducts.locals) { %>
            <!-- Loop start -->
            <% getAllProducts.forEach(function(getAllProducts) { %> 
         <tr>
@@ -43,14 +43,17 @@
             <td><%= getAllProducts.title %></td>
             <td><%= getAllProducts.beskrivelse %></td>
             <td><%= getAllProducts.kategori %></td>
-            <td><a href="/product_panel/updateproduct/<%= getAllProducts.id %>"class="product_update_panel" title="opdatere produkt">Opdatere</a></td>
+            <td><a href="/product_panel/<%= getAllProducts.id %>"class="product_update_panel" title="opdatere produkt">Opdatere</a></td>
             <td><button type="submit" class="admin_delete" title="fjern produkt" onclick="deleteProduct('<%= getAllProducts.id %>')">Fjern</button></td>
         </tr>
         <% }); %>
         <!-- Loop end -->  
-        <% } %>
-
     </table>
+    <% }else { %>
+      <div class="no_records"><p>Der findes endnu ingen produkter!</p></div>
+      <% } %>
+
+
   
   </div>
 </main>

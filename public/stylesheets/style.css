@@ -536,6 +536,10 @@ cursor: pointer;
 .img_picture{
   width: 6em;
 }
+.no_records{
+  display: flex;
+  justify-content: center;
+}
 
 /**************************************************************************/
 

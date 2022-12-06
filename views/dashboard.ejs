@@ -19,7 +19,7 @@
     <% if (locals.success) { %>
        <p class="p_Title_success"><%= success %></p>
        <% } %>
-       <% if (!locals.allCompanies) { %>
+       <% if (locals.allCompanies > 0) { %>
         <p>Endnu ingen firmaer oprettet endnu</p>
         <% } %>
    </div>
@@ -40,7 +40,7 @@
         <div class="boxDiv_company" onclick="location.href='/product_panel';" style="cursor: pointer; z-index: 1;">
 
         <div class="div_pencil_area">
-          <div class="div_pencil_icon" style="z-index: 10; cursor: pointer;" onclick="location.href='/update_company/<%= allCompanies.cvr %>';"><i class="fa fa-pencil"></i></div>
+          <div class="div_pencil_icon" style="z-index: 10; cursor: pointer;" onclick="location.href='/update_company/<%= allCompanies.cvr %>';"><i class="fa fa-pencil" title="Opdatere"></i></div>
         </div>
           <div>
             <p><i  class="fa fa-building icon_style"></i><%= allCompanies.title %></p>

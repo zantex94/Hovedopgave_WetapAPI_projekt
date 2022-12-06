@@ -109,9 +109,13 @@ router
 
 
 /**update product water supply screen for Wetap API */
-router.route("/update_product_water_supply").get(APIcontroller.update_product_water_supply);
+// router.route("/update_product_water_supply").get(APIcontroller.update_product_water_supply);
+/**delete product water supply in  Wetap API */
 router
 .route("/product_panel/deleteProduct/:id").get(APIcontroller.product_delete);
+/**update product water supply in  Wetap API */
+router
+.route("/product_panel/:id").get(APIcontroller.update_product_water_supply);
 
 // ============================================ //
 
