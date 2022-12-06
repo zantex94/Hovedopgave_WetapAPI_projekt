@@ -50,6 +50,9 @@ router
 .route("/logout")
 .get(APIcontroller.logout);
 
+/**confrim screen for Wetap API */
+router.route("/confirm").get(APIcontroller.confirm);
+
 // ============================================ //
 
   // ====================== /* USER PANEL */ ====================== //
@@ -94,23 +97,32 @@ router
 
 // ============================================ //
 
-/**confrim screen for Wetap API */
-router.route("/confirm").get(APIcontroller.confirm);
-/**create company product screen for Wetap API */
-router.route("/create_company_product").get(APIcontroller.create_company_product);
-/**create company product screen for Wetap API */
-router.route("/update_company_product").get(APIcontroller.update_company_product);
+// ====================== /* PRODUCT  */ ====================== //
+
 /**product panel screen for Wetap API */
 router.route("/product_panel").get(APIcontroller.product_panel);
-/**create product bottle screen for Wetap API */
-router.route("/create_product_bottle").get(APIcontroller.create_product_bottle);
-/**update product bottle screen for Wetap API */
-router.route("/update_product_bottle").get(APIcontroller.update_product_bottle);
 /**create product water supply screen for Wetap API */
-router.route("/create_product_water_supply").get(APIcontroller.create_product_water_supply);
+router
+.route("/create_product_water_supply")
+.get(APIcontroller.create_product_water_supply)
+.post(upload.single('Product_file'),APIcontroller.insert_product_water_supply);
+
+
 /**update product water supply screen for Wetap API */
 router.route("/update_product_water_supply").get(APIcontroller.update_product_water_supply);
 /**dashboard company screen for Wetap API */
+
+// ============================================ //
+
+router.route("/create_company_product").get(APIcontroller.create_company_product);
+/**create company product screen for Wetap API */
+router.route("/update_company_product").get(APIcontroller.update_company_product);
+// /**create product bottle screen for Wetap API */
+// router.route("/create_product_bottle").get(APIcontroller.create_product_bottle);
+// /**update product bottle screen for Wetap API */
+// router.route("/update_product_bottle").get(APIcontroller.update_product_bottle);
+/**create product water supply screen for Wetap API */
+
 router.route("/dashboard_company").get(APIcontroller.dashboard_company);
 
 

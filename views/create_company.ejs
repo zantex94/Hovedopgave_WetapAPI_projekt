@@ -9,11 +9,6 @@
       <h1><%= title %></h1>
     </div>
   </div>
-  <div class="innerDiv">
-    <% if (locals.error) { %>
-       <p class="p_Title_error"><%= error %></p>
-       <% } %>
-   </div>
   <form class="create_company-form" action="/create_company" method="post">
     <div class="innerDiv">
         <div class="boxDiv_create_company">
@@ -50,7 +45,6 @@
         <div class="div_button_create_company">
             <button type="submit">opret firma</button>
             <a class="button_add_company_dashboard_cancel" href="/dashboard" >fortryd</a>
-            <!-- <button type="submit">fortryd</button> -->
         </div>
     </div>
     </form>

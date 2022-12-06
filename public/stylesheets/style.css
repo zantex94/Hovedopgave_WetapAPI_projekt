@@ -461,7 +461,7 @@ textarea{
   height: 1.8em;
   cursor: pointer;
 }
-.admin_update_product{
+.product_update_panel{
   background-color: #0DF10D;
   color: white;
   border: none;
@@ -476,7 +476,7 @@ textarea{
   height: 1em;
   cursor: pointer;
 }
-.admin_delete_product{
+.product_delete_panel{
   background-color: #FF0000;
   color: white;
   border: none;
@@ -517,9 +517,29 @@ min-width: 200% !important;
 .boxDiv_product_view{
   padding: 0px 10px 15px 10px;
 }
+.button_add_product{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5em;
+  padding: 5%;
+  min-width: 100%;
+}
+.button_add_product:hover{
+background-color: #207783;
+cursor: pointer;
+}
+.img_picture{
+  width: 6em;
+}
+
 /**************************************************************************/
 
-/********************************create product Wetap API page ********************************/
+/********************************create product bottle Wetap API page ********************************/
 .boxDiv_create_product_bottle{
   padding: 0px 10px 15px 10px;
 }
@@ -531,7 +551,7 @@ min-width: 200% !important;
 
 /**************************************************************************/
 
-/********************************update product Wetap API page ********************************/
+/********************************update product bottle Wetap API page ********************************/
 .boxDiv_update_product_bottle{
   padding: 0px 10px 15px 10px;
 }
@@ -551,6 +571,41 @@ min-width: 200% !important;
   display: flex;
   justify-content: center;
   margin: 3% 0% 10%;
+}
+.button_add_product_cancel{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5px;
+  height: 20px;
+  margin-top: 11%;
+  padding: 5%;
+  min-width: 100%;
+}
+.button_add_company_dashboard_cancel:hover{
+  background-color: #207783;
+  cursor: pointer;
+}
+
+.button_add_product_water_supply{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5em;
+  padding: 5%;
+  min-width: 100%;
+}
+.button_add_product_water_supply:hover{
+background-color: #207783;
+cursor: pointer;
 }
 
 /**************************************************************************/

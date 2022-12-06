@@ -10,9 +10,15 @@
     </div>
   </div>
   <div class="innerDiv">
+    <% if (locals.error) { %>
+       <p class="p_Title_error"><%= error %></p>
+       <% } %>
+   </div>
+   <form class="create_product_water_supply-form" action="/create_product_water_supply" method="post" enctype="multipart/form-data">
+  <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Titel:</p>
-        <input class="custom_input" type="text" name="Description" placeholder="Bekriv produkt" required>
+        <input class="custom_input" type="text" name="Title" placeholder="Bekriv titel" maxlength="200" minlength="1" required>
     </div>
   </div>
   <div class="innerDiv">
@@ -22,73 +28,73 @@
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Vandtype:</p>
-        <input type="text" name="Product_water_type" placeholder="Vandtype" required>
+        <input type="text" name="Product_water_type" placeholder="Vandtype" maxlength="200" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Beskrivelse:</p>
-        <textarea class="custom_input" type="text" name="Product_description" placeholder="Bekriv produkt" required></textarea>
+        <textarea class="custom_input" type="text" name="Product_description" placeholder="Bekriv produkt" maxlength="200" minlength="1" required></textarea>
     </div>
   </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Automatisk rens:</p>
-        <input type="text" name="Product_auto_clean" placeholder="Automatisk rens" required>
+        <input type="text" name="Product_auto_clean" placeholder="Automatisk rens" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Betalingstype:</p>
-        <input type="text" name="Product_payment" placeholder="Betalingstype" required>
+        <input type="text" name="Product_payment" placeholder="Betalingstype" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Filter:</p>
-        <input type="text" name="Product_filter" placeholder="Filter" required>
+        <input type="text" name="Product_filter" placeholder="Filter" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Frostsikker:</p>
-        <input type="text" name="Product_quality" placeholder="Kvalitetsmærke" required>
+        <input type="text" name="Product_quality" placeholder="Kvalitetsmærke" maxlength="100" minlength="1" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Vægt:</p>
-        <input type="text" name="Product_weight" placeholder="Vægt" required>
+        <input type="text" name="Product_weight" placeholder="Vægt" maxlength="200" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Lægkagesystem:</p>
-        <input type="text" name="Product_savety" placeholder="Lægkagesystem" required>
+        <input type="text" name="Product_savety" placeholder="Lægkagesystem" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Plc styring:</p>
-        <input type="text" name="Product_plc" placeholder="Plc styring" required>
+        <input type="text" name="Product_plc" placeholder="Plc styring" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Kabinetmateriale:</p>
-        <input type="text" name="Product_material" placeholder="Kabinetmateriale" required>
+        <input type="text" name="Product_material" placeholder="Kabinetmateriale" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Køletemperatur:</p>
-        <input type="text" name="Product_cold_temperature" placeholder="Køletemperatur" required>
+        <input type="text" name="Product_cold_temperature" placeholder="Køletemperatur" maxlength="100" minlength="1" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Vandtrykskrav:</p>
-        <input type="text" name="Product_water_requirement" placeholder="Vandtrykskrav" required>
+        <input type="text" name="Product_water_requirement" placeholder="Vandtrykskrav" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Strømforsyning:</p>
-        <input type="text" name="Product_power" placeholder="Strømforsyning" required>
+        <input type="text" name="Product_power" placeholder="Strømforsyning" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Dimensioner:</p>
-        <input type="text" name="Product_dimension" placeholder="Dimensioner" required>
+        <input type="text" name="Product_dimension" placeholder="Dimensioner" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
@@ -98,21 +104,30 @@
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Lys:</p>
-        <input type="text" name="Product_light" placeholder="Lys" required>
+        <input type="text" name="Product_light" placeholder="Lys" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
   <div class="boxDiv_create_product_water_supply">
       <p class="p_Title">Billedet:</p>
       <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
+      <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6" required>
   </div>
-</div>  
+</div>
+<!-- <div class="innerDiv">
+    <div class="boxDiv_create_product_water_supply">
+        <p class="p_Title">Contenttype:</p>
+    </div>
+  </div>     -->
     <div class="innerDiv">
         <div class="div_button_update_product_water_supply">
-            <button type="submit">Opret</button>
-            <button type="submit">Fortryd</button>
+            <button class="button_add_product_water_supply" type="submit">opret</button>
+            <a class="button_add_product_cancel" href="/product_panel" >fortryd</a>
         </div>
     </div>
+   </form>
 </main>
   </body>
+  <script src="../public/javascripts/file_helper.js"></script>
+
 </html>

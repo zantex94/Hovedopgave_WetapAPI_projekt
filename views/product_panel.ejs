@@ -10,16 +10,18 @@
     </div>
   </div>
   <div class="innerDiv">
+    <% if (locals.success) { %>
+       <p class="p_Title_success"><%= success %></p>
+       <% } %>
+   </div>
+  <div class="innerDiv">
     <div class="boxDiv_product_view" style="width: 80%;">
     <select name="product" id="product">
-        <option>Vælg produkt</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
+        <option>Udendørs vandpost</option>
       </select>
       </div>
       <div class="boxDiv_product_view">
-        <button class="add_button"type="submit">Tilføj</button>
+        <a class="button_add_product" href="/create_product_water_supply" >Tilføj</a>
     </div>
    </div> 
    
@@ -33,15 +35,22 @@
             <th></th>
             <th></th>
         </tr>
+        <% if (!getAllProducts.locals) { %>
+           <!-- Loop start -->
+           <% getAllProducts.forEach(function(getAllProducts) { %> 
         <tr>
-            <td>René_Seebach.png</td>
-            <td>Drikkedunk med logo</td>
-            <td>Wetap drikkedunk med logo “join the refillution”. Brudsikker og BPA-fri flaske der er god at have med sig på farten.
-            </td>
-            <td>Flasker</td>
-            <td><a class="admin_update_product" title="opdatere produkt">Opdatere</a></td>
-            <td><a class="admin_delete_product" title="fjern produkt">Fjern</a></td>
+            <td> <img class="img_picture"src="data:<%= getAllProducts.contenttype %>;base64,<%= getAllProducts.billedet.toString('base64') %>"></td>
+            <td><%= getAllProducts.title %></td>
+            <td><%= getAllProducts.beskrivelse %></td>
+            <td><%= getAllProducts.kategori %></td>
+            <td><a href="/product_panel/updateproduct/<%= getAllProducts.id %>"class="product_update_panel" title="opdatere produkt">Opdatere</a></td>
+            <td><button type="submit" class="admin_delete" title="fjern bruger" onclick="deleteUser('<%= getAllProducts.id %>')">Fjern</button></td>
+            <!-- <td><a class="product_delete_panel" title="fjern produkt">Fjern</a></td> -->
         </tr>
+        <% }); %>
+        <!-- Loop end -->  
+        <% } %>
+
     </table>
   
   </div>

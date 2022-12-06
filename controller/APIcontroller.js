@@ -1,5 +1,7 @@
 const model = require("../model/brugere");
 const model_company_dashboard = require("../model/company_dashboard");
+const model_product = require("../model/product");
+
 const bcrypt = require("bcrypt");
 // var logout = require('express-passport-logout');
 // ====================== /* INDEX */ ====================== //
@@ -266,28 +268,61 @@ exports.logout = (req, res) => {
   };
   // ============================================ //
 
-    /* GET create company product PAGE */
-    exports.create_company_product = (req, res) => {
-    res.render("create_company_product", {
-      title: "Opret firma produkt",
-      dashboard: "active",
-    });
-  };
-    /* GET update company product PAGE */
-    exports.update_company_product = (req, res) => {
-      res.render("update_company_product", {
-        title: "Opdatere firma produkt",
-        dashboard: "active",
-      });
-    };
+  // ====================== /* PRODUCT PANEL */ ====================== //
 
     /* GET product panel PAGE */
-    exports.product_panel = (req, res) => {
+    exports.product_panel = async(req, res) => {
+      let getAllProducts = await model_product.GetWetapProducts(req, res);
       res.render("product_panel", {
         title: "Produkt panel",
         produkt: "active",
+        getAllProducts: getAllProducts[0],
       });
     };
+
+      /* GET create product water supply panel PAGE */
+      exports.create_product_water_supply = (req, res) => {
+      res.render("create_product_water_supply", {
+        title: "Opret vandpost",
+        produkt: "active",
+      });
+    };
+
+      /* insert create product water supply panel PAGE */
+      exports.insert_product_water_supply = async(req, res) => {
+        let insertProduct = await model_product.InsertWetapProduct(req, res);
+
+        // console.log(req.body);
+        // console.log(req.file.buffer);
+        if(insertProduct){
+          let getAllProducts = await model_product.GetWetapProducts(req, res);
+          res.render("product_panel", {
+            title: "Produkt panel",
+            produkt: "active",
+            success: "Produkt oprettet!",
+            getAllProducts: getAllProducts[0],
+          });
+        }else{
+          res.render("create_product_water_supply", {
+            title: "Opret vandpost",
+            produkt: "active",
+            error: 'Kunne ikke oprette produkt',
+          });
+        };
+        }
+
+  
+      /* GET update product water supply panel PAGE */
+      exports.update_product_water_supply = (req, res) => {
+      res.render("update_product_water_supply", {
+        title: "Opdatere vandpost",
+        produkt: "active",
+      });
+    };
+
+    // ============================================ //
+
+    
     /* GET create bottle product panel PAGE */
     exports.create_product_bottle = (req, res) => {
       res.render("create_product_bottle", {
@@ -302,24 +337,25 @@ exports.logout = (req, res) => {
         produkt: "active",
       });
     };
-    /* GET create product water supply panel PAGE */
-    exports.create_product_water_supply = (req, res) => {
-      res.render("create_product_water_supply", {
-        title: "Opret vandpost",
-        produkt: "active",
-      });
-    };
-     /* GET update product water supply panel PAGE */
-     exports.update_product_water_supply = (req, res) => {
-      res.render("update_product_water_supply", {
-        title: "Opdatere vandpost",
-        produkt: "active",
-      });
-    };
       /* GET update product water supply panel PAGE */
-      exports.dashboard_company = (req, res) => {
+    exports.dashboard_company = (req, res) => {
       res.render("dashboard_company", {
         title: "Faarup",
         dashboard: "active",
       });
     };
+
+    /* GET create company product PAGE */
+    exports.create_company_product = (req, res) => {
+      res.render("create_company_product", {
+        title: "Opret firma produkt",
+        dashboard: "active",
+      });
+    };
+      /* GET update company product PAGE */
+      exports.update_company_product = (req, res) => {
+        res.render("update_company_product", {
+          title: "Opdatere firma produkt",
+          dashboard: "active",
+        });
+      };

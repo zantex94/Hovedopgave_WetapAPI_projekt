@@ -39,19 +39,19 @@ INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefon
 ('jensfaarup@gmail.com', 'Jens Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
 
 INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
-('12345678', 'jensfaarup@gmail.com');
+('40296077', 'jensfaarup@gmail.com');
 
 INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
 ('larsfaarup@gmail.com', 'Lars Jensen', 'Lærkevej 3', 6200, 'Vojens', 54342312, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
 
 INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
-('12345678', 'larsfaarup@gmail.com');
+('40296077', 'larsfaarup@gmail.com');
 
 INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
 ('bentdjursland@gmail.com', 'Bent Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
 
 INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
-('87654321', 'bentdjursland@gmail.com');
+('39528045', 'bentdjursland@gmail.com');
 
 CREATE TABLE firma(
 cvr BIGINT UNSIGNED NOT NULL,
@@ -73,11 +73,12 @@ INSERT INTO `produktkategori` (`kategori`, `title`) VALUES
 ('Flasker', 'Drikkedunke med mulighed for refill');
 
 CREATE TABLE produkt(
-id BIGINT UNSIGNED NOT NULL,
-title VARCHAR(50) UNIQUE NOT NULL,
-beskrivelse VARCHAR(50) NOT NULL,
+id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+title VARCHAR(800) UNIQUE NOT NULL,
+beskrivelse VARCHAR(800) NOT NULL,
 billedet MEDIUMBLOB NOT NULL,
-vægt VARCHAR(50) NOT NULL,
+contenttype VARCHAR(32) NOT NULL,
+vægt VARCHAR(200) NOT NULL,
 kategori VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
 foreign key(kategori) references produktkategori(kategori)
@@ -88,6 +89,7 @@ produktnummer BIGINT UNSIGNED NOT NULL,
 service_tjek DATE NOT NULL,
 oprettet DATE NOT NULL,
 billedet MEDIUMBLOB NOT NULL,
+contenttype VARCHAR(32) NOT NULL,
 cvr BIGINT UNSIGNED NOT NULL,
 title VARCHAR(50) NOT NULL,
 PRIMARY KEY (produktnummer),
@@ -225,6 +227,12 @@ foreign key(id) references produkt(id)
 CREATE TABLE kølekapacitet(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
+PRIMARY KEY (id),
+foreign key(id) references produkt(id)
+);
+CREATE TABLE vandtype(
+id BIGINT UNSIGNED NOT NULL,
+beskrivelse VARCHAR(200) NOT NULL,
 PRIMARY KEY (id),
 foreign key(id) references produkt(id)
 );
