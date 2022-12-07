@@ -267,6 +267,16 @@ exports.logout = (req, res) => {
   
   };
   // ============================================ //
+  // ====================== /* DASHBOARD COMPANY PANEL */ ====================== //
+    /* GET product panel PAGE */
+    exports.dashboard_company = async(req, res) => {
+      console.log(req.params);
+      res.render("dashboard_company", {
+        title: "Firma",
+        produkt: "active",
+      });
+    };
+  // ============================================ //
 
   // ====================== /* PRODUCT PANEL */ ====================== //
 
@@ -337,6 +347,52 @@ exports.logout = (req, res) => {
         getAProduct: getAProduct[0],
       });
     };
+      /* Update product water supply PAGE */
+      exports.updating_product_water_supply = async(req, res) => {
+        let updateAProduct = await model_product.UpdateWetapProduct(req, res);
+        // Check if update success.
+        if(updateAProduct){
+          // Checking if pictures needs an update.
+          if(req.body.Contenttype != ''){
+            let updateAProductPicture = await model_product.UpdateWetapProductPicture(req, res);
+            //checking if update success.
+            if(updateAProductPicture){
+              let getAllProducts = await model_product.GetWetapProducts(req, res);
+              res.render("product_panel", {
+                title: "Produkt panel",
+                produkt: "active",
+                getAllProducts: getAllProducts[0],
+                success: "Product opdateret!",
+              });
+            }else{
+              let getAProduct = await model_product.GetAWetapProductWhenFail(req, res);
+              res.render("update_product_water_supply", {
+                title: "Opdatere vandpost",
+                produkt: "active",
+                getAProduct: getAProduct[0],
+                error: "Kunne ikke opdatere. tjek venligst værdierne igen!"
+              });
+            }
+          }else{
+            let getAllProducts = await model_product.GetWetapProducts(req, res);
+            res.render("product_panel", {
+              title: "Produkt panel",
+              produkt: "active",
+              getAllProducts: getAllProducts[0],
+              success: "Product opdateret!",
+            });
+          }
+        }else{       
+        let getAProduct = await model_product.GetAWetapProductWhenFail(req, res);
+        res.render("update_product_water_supply", {
+          title: "Opdatere vandpost",
+          produkt: "active",
+          getAProduct: getAProduct[0],
+          error: "Kunne ikke opdatere. tjek venligst værdierne igen!"
+        });
+        }
+         
+    };
 
     // ============================================ //
 
@@ -355,13 +411,13 @@ exports.logout = (req, res) => {
         produkt: "active",
       });
     };
-      /* GET update product water supply panel PAGE */
-    exports.dashboard_company = (req, res) => {
-      res.render("dashboard_company", {
-        title: "Faarup",
-        dashboard: "active",
-      });
-    };
+    //   /* GET update product water supply panel PAGE */
+    // exports.dashboard_company = (req, res) => {
+    //   res.render("dashboard_company", {
+    //     title: "Faarup",
+    //     dashboard: "active",
+    //   });
+    // };
 
     /* GET create company product PAGE */
     exports.create_company_product = (req, res) => {
@@ -377,3 +433,5 @@ exports.logout = (req, res) => {
           dashboard: "active",
         });
       };
+
+  

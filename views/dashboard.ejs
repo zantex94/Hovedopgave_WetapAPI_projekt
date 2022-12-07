@@ -37,7 +37,7 @@
             <!-- Loop start -->
         <% allCompanies.forEach(function(allCompanies) { %>
       <!-- <div class="boxDiv_company"> -->
-        <div class="boxDiv_company" onclick="location.href='/product_panel';" style="cursor: pointer; z-index: 1;">
+        <div class="boxDiv_company" onclick="location.href='/dashboard_company/<%= allCompanies.cvr %>';" style="cursor: pointer; z-index: 1;">
 
         <div class="div_pencil_area">
           <div class="div_pencil_icon" style="z-index: 10; cursor: pointer;" onclick="location.href='/update_company/<%= allCompanies.cvr %>';"><i class="fa fa-pencil" title="Opdatere"></i></div>

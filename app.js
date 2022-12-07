@@ -48,6 +48,7 @@ app.use(flash()); // Flash messages stored in session
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views/wetap customer'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));

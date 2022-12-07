@@ -590,6 +590,20 @@ cursor: pointer;
   padding: 5%;
   min-width: 100%;
 }
+.button_update_product_cancel{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5px;
+  height: 20px;
+  margin-top: 11%;
+  padding: 5%;
+  min-width: 100%;
+}
 .button_add_company_dashboard_cancel:hover{
   background-color: #207783;
   cursor: pointer;
@@ -611,6 +625,14 @@ cursor: pointer;
 background-color: #207783;
 cursor: pointer;
 }
+.button_add_product_cancel:hover{
+  background-color: #207783;
+  cursor: pointer;
+  }
+.button_update_product_cancel:hover{
+  background-color: #207783;
+  cursor: pointer;
+  }
 
 /**************************************************************************/
 

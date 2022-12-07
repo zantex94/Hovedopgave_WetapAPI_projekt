@@ -24,7 +24,7 @@
   <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Berøringsfri betjening:</p>
-        <input type="text" name="Product_operation" placeholder="Berøringsfri betjening" required>
+        <input type="text" name="Product_operation" placeholder="Berøringsfri betjening" minlength="1" maxlength="100" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Vandtype:</p>
@@ -100,7 +100,7 @@
 <div class="innerDiv">
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Kølekapacitet:</p>
-        <input type="text" name="Product_capacity" placeholder="Kølekapacitet" required>
+        <input type="text" name="Product_capacity" placeholder="Kølekapacitet" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_create_product_water_supply">
         <p class="p_Title">Lys:</p>
@@ -114,11 +114,6 @@
       <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6" required>
   </div>
 </div>
-<!-- <div class="innerDiv">
-    <div class="boxDiv_create_product_water_supply">
-        <p class="p_Title">Contenttype:</p>
-    </div>
-  </div>     -->
     <div class="innerDiv">
         <div class="div_button_update_product_water_supply">
             <button class="button_add_product_water_supply" type="submit">opret</button>

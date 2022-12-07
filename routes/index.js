@@ -96,6 +96,11 @@ router
 
 
 // ============================================ //
+// ====================== /* DASHBOARD company*/ ====================== //
+// router.route("/update_company").get(APIcontroller.update_company);
+router
+.route("/dashboard_company/:cvr").get(APIcontroller.dashboard_company);
+// ============================================ //
 
 // ====================== /* PRODUCT  */ ====================== //
 
@@ -116,6 +121,9 @@ router
 /**update product water supply in  Wetap API */
 router
 .route("/product_panel/:id").get(APIcontroller.update_product_water_supply);
+router
+.route("/update_product_water_supply")
+.post(upload.single('Product_file'),APIcontroller.updating_product_water_supply);
 
 // ============================================ //
 
@@ -128,7 +136,9 @@ router.route("/update_company_product").get(APIcontroller.update_company_product
 // router.route("/update_product_bottle").get(APIcontroller.update_product_bottle);
 /**create product water supply screen for Wetap API */
 
-router.route("/dashboard_company").get(APIcontroller.dashboard_company);
+// router.route("/dashboard_company").get(APIcontroller.dashboard_company);
+
+
 
 
 module.exports = router;

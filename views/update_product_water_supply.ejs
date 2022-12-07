@@ -9,6 +9,11 @@
       <h1><%= title %></h1>
     </div>
   </div>
+  <div class="innerDiv">
+    <% if (locals.error) { %>
+       <p class="p_Title_error"><%= error %></p>
+       <% } %>
+   </div>
   <form class="update_product_water_supply-form" action="/update_product_water_supply" method="post" enctype="multipart/form-data">
     <div class="innerDiv">
         <div class="boxDiv_update_product_water_supply">
@@ -18,106 +23,108 @@
   <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Titel:</p>
-        <input class="custom_input" type="text" name="Description" placeholder="Bekriv produkt" value="<%= getAProduct[0].title %>" required>
+        <input class="custom_input" type="text" name="Title" placeholder="Bekriv produkt" value="<%= getAProduct[0].title %>" required>
     </div>
   </div>
   <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Berøringsfri betjening:</p>
-        <input type="text" name="Product_operation" placeholder="Berøringsfri betjening" value="<%= getAProduct[0].berøringsfri_betjening %>" required>
+        <input type="text" name="Product_operation" placeholder="Berøringsfri betjening" value="<%= getAProduct[0].berøringsfri_betjening %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Vandtype:</p>
-        <input type="text" name="Product_water_type" placeholder="Vandtype" value="<%= getAProduct[0].vandtype %>" required>
+        <input type="text" name="Product_water_type" placeholder="Vandtype" value="<%= getAProduct[0].vandtype %>" maxlength="200" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Beskrivelse:</p>
-        <textarea class="custom_input" type="text" name="Product_description" placeholder="Bekriv produkt" required><%= getAProduct[0].beskrivelse %></textarea>
+        <textarea class="custom_input" type="text" name="Product_description" placeholder="Bekriv produkt" maxlength="200" minlength="1" required><%= getAProduct[0].beskrivelse %></textarea>
     </div>
   </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Automatisk rens:</p>
-        <input type="text" name="Product_auto_clean" placeholder="Automatisk rens" value="<%= getAProduct[0].automatisk_rens %>" required>
+        <input type="text" name="Product_auto_clean" placeholder="Automatisk rens" value="<%= getAProduct[0].automatisk_rens %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Betalingstype:</p>
-        <input type="text" name="Product_payment" placeholder="Betalingstype" value="<%= getAProduct[0].betalingsløsning %>" required>
+        <input type="text" name="Product_payment" placeholder="Betalingstype" value="<%= getAProduct[0].betalingsløsning %>" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Filter:</p>
-        <input type="text" name="Product_filter" placeholder="Filter" value="<%= getAProduct[0].filter %>" required>
+        <input type="text" name="Product_filter" placeholder="Filter" value="<%= getAProduct[0].filter %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Frostsikker:</p>
-        <input type="text" name="Product_quality" placeholder="Frostsikker" value="<%= getAProduct[0].frostsikker %>" required>
+        <input type="text" name="Product_quality" placeholder="Frostsikker" value="<%= getAProduct[0].frostsikker %>" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Vægt:</p>
-        <input type="text" name="Product_weight" placeholder="Vægt" value="<%= getAProduct[0].vægt %>" required>
+        <input type="text" name="Product_weight" placeholder="Vægt" value="<%= getAProduct[0].vægt %>" maxlength="200" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Lægkagesystem:</p>
-        <input type="text" name="Product_savety" placeholder="Lægkagesystem" value="<%= getAProduct[0].lægkagesystem %>" required>
+        <input type="text" name="Product_savety" placeholder="Lægkagesystem" value="<%= getAProduct[0].lægkagesystem %>" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Plc styring:</p>
-        <input type="text" name="Product_plc" placeholder="Plc styring" value="<%= getAProduct[0].plc_system %>" required>
+        <input type="text" name="Product_plc" placeholder="Plc styring" value="<%= getAProduct[0].plc_system %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Kabinetmateriale:</p>
-        <input type="text" name="Product_material" placeholder="Kabinetmateriale" value="<%= getAProduct[0].kabinetmateriale %>" required>
+        <input type="text" name="Product_material" placeholder="Kabinetmateriale" value="<%= getAProduct[0].kabinetmateriale %>" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Køletemperatur:</p>
-        <input type="text" name="Product_cold_temperature" placeholder="Køletemperatur" value="<%= getAProduct[0].køletemperatur %>" required>
+        <input type="text" name="Product_cold_temperature" placeholder="Køletemperatur" value="<%= getAProduct[0].køletemperatur %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Vandtrykskrav:</p>
-        <input type="text" name="Product_water_requirement" placeholder="Vandtrykskrav" value="<%= getAProduct[0].vandtrykskrav %>" required>
+        <input type="text" name="Product_water_requirement" placeholder="Vandtrykskrav" value="<%= getAProduct[0].vandtrykskrav %>" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Strømforsyning:</p>
-        <input type="text" name="Product_power" placeholder="Strømforsyning" value="<%= getAProduct[0].strømforsyning %>" required>
+        <input type="text" name="Product_power" placeholder="Strømforsyning" value="<%= getAProduct[0].strømforsyning %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Dimensioner:</p>
-        <input type="text" name="Product_dimension" placeholder="Dimensioner" value="<%= getAProduct[0].dimensioner %>" required>
+        <input type="text" name="Product_dimension" placeholder="Dimensioner" value="<%= getAProduct[0].dimensioner %>" maxlength="100" minlength="1" required>
     </div>
 </div>
 <div class="innerDiv">
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Kølekapacitet:</p>
-        <input type="text" name="Product_capacity" placeholder="Kølekapacitet" value="<%= getAProduct[0].kølekapacitet %>" required>
+        <input type="text" name="Product_capacity" placeholder="Kølekapacitet" value="<%= getAProduct[0].kølekapacitet %>" maxlength="100" minlength="1" required>
     </div>
     <div class="boxDiv_update_product_water_supply">
         <p class="p_Title">Lys:</p>
-        <input type="text" name="Product_light" placeholder="Lys" value="<%= getAProduct[0].lys %>" required>
+        <input type="text" name="Product_light" placeholder="Lys" value="<%= getAProduct[0].lys %>" maxlength="100" minlength="1" required>
     </div>
 </div> 
 <div class="innerDiv">
   <div class="boxDiv_update_product_water_supply">
       <p class="p_Title">Opdatere billedet:</p>
-      <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
-      <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6" required>
+      <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet">
+      <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6">
   </div>
 </div>  
     <div class="innerDiv">
         <div class="div_button_update_product_water_supply">
-            <button type="submit">Opret</button>
-            <button type="submit">Fortryd</button>
+            <button class="button_add_product_water_supply" type="submit">Opret</button>
+            <a class="button_update_product_cancel" href="/product_panel" >fortryd</a>
+            <input hidden name="id" value="<%= getAProduct[0].id %>">
+
         </div>
     </div>
   </form>
