@@ -9,37 +9,30 @@
       <h1><%= title %></h1>
     </div>
   </div>
+  <form class="create_company_product-form" action="/create_company_product" method="post" enctype="multipart/form-data">
   <div class="innerDiv">
     <div class="boxDiv_create_product_company">
         <p class="p_Title">Produktnummer:</p>
-        <input type="number" name="Product_number" placeholder="Produktnummer" required>
-    </div>
-    <div class="boxDiv_create_product_company">
-        <p class="p_Title">CVR:</p>
-        <input type="number" name="CVR_number" placeholder="CVR nummer" required>
+        <input class="custom_input" type="number" name="Product_number" placeholder="Produktnummer" required>
     </div>
 </div>
 <div class="innerDiv">
   <div class="boxDiv_create_product_company">
       <p class="p_Title">Produkt:</p>
-      <select name="company_product" id="company_product">
+      <select name="Company_product" id="company_product">
           <option>Vælg produkt</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+          <!-- Loop start -->  
+          <% getAllProducts.forEach(function(getAllProducts) { %> 
+          <option value="<%= getAllProducts.title %>"><%= getAllProducts.title %></option>
+          <% }); %>
+          <!-- Loop end -->  
         </select>
-  </div>
-</div>
-<div class="innerDiv">
-  <div class="boxDiv_create_product_company">
-      <p class="p_Title">Beskrivelse:</p>
-      <textarea class="custom_input" type="text" name="Description" placeholder="Bekriv produkt" required></textarea>
   </div>
 </div>
 <div class="innerDiv">
   <div class="boxDiv_create_product_company_date">
       <p class="p_Title">Oprettet:</p>
-      <input type="date" name="Product_number" placeholder="Produktnummer" required>
+      <input type="date" name="Product_created" placeholder="Produktnummer" required>
   </div>
   <div class="boxDiv_create_product_company">
       <p class="p_Title">Næste service tjek:</p>
@@ -50,14 +43,18 @@
   <div class="boxDiv_create_product_company">
       <p class="p_Title">Billedet:</p>
       <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
+      <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6">
   </div>
 </div>  
     <div class="innerDiv">
         <div class="div_button_create_product_company">
-            <button type="submit">Opret produkt</button>
-            <button type="submit">Fortryd</button>
+            <button type="submit">opret produkt</button>
+            <a class="button_add_company_to_dashboard_cancel" href="/dashboard_company/<%= cvr.cvr %>" >fortryd</a>
+            <input type="number" name="cvr" placeholder="CVR nummer" value="<%= cvr.cvr %>" hidden>
         </div>
     </div>
+  </form>
 </main>
   </body>
+  <script src="../public/javascripts/file_helper.js"></script>
 </html>

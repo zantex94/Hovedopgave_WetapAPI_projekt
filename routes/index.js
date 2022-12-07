@@ -97,9 +97,15 @@ router
 
 // ============================================ //
 // ====================== /* DASHBOARD company*/ ====================== //
-// router.route("/update_company").get(APIcontroller.update_company);
+//Get dashboard company by CVR
 router
 .route("/dashboard_company/:cvr").get(APIcontroller.dashboard_company);
+//Get dashboard create company by CVR
+router
+.route("/create_company_product/:cvr").get(APIcontroller.create_company_product);
+// Create company product
+router
+.route("/create_company_product").post(upload.single('Product_file'),APIcontroller.creating_company_product);
 // ============================================ //
 
 // ====================== /* PRODUCT  */ ====================== //
@@ -127,7 +133,7 @@ router
 
 // ============================================ //
 
-router.route("/create_company_product").get(APIcontroller.create_company_product);
+// router.route("/create_company_product").get(APIcontroller.create_company_product);
 /**create company product screen for Wetap API */
 router.route("/update_company_product").get(APIcontroller.update_company_product);
 // /**create product bottle screen for Wetap API */

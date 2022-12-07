@@ -365,7 +365,25 @@ textarea{
 }
 .boxDiv_create_product_company_date{
   padding: 0px 10px 15px 10px;
-  margin-right: 5%;
+  margin-right: 2.8em;
+}
+.button_add_company_to_dashboard_cancel{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5px;
+  height: 17px;
+  margin-top: 11%;
+  padding: 5%;
+  min-width: 100%;
+}
+.button_add_company_to_dashboard_cancel:hover{
+  background-color: #207783;
+  cursor: pointer;
 }
 
 /**************************************************************************/

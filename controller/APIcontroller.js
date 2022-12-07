@@ -1,6 +1,7 @@
 const model = require("../model/brugere");
 const model_company_dashboard = require("../model/company_dashboard");
 const model_product = require("../model/product");
+const model_company_product = require("../model/company_product");
 
 const bcrypt = require("bcrypt");
 // var logout = require('express-passport-logout');
@@ -274,8 +275,52 @@ exports.logout = (req, res) => {
       res.render("dashboard_company", {
         title: "Firma",
         produkt: "active",
+        cvr: req.params,
       });
     };
+    /* GET create company product PAGE */
+    exports.create_company_product = async(req, res) => {
+      let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+      res.render("create_company_product", {
+        title: "Opret firma produkt",
+        dashboard: "active",
+        cvr: req.params,
+        getAllProducts: getAllProducts[0],
+      });
+    };
+    /* Create company product PAGE */
+    exports.creating_company_product = async(req, res) => {
+      // console.log(req.body.cvr);
+      console.log(req.body);
+      let insertProduct = await model_company_product.InsertCompanyProduct(req, res);
+      if(insertProduct){
+      console.log(req.body);
+      console.log(req.file.buffer);
+      console.log(req.body.cvr)
+      let cvr = req.body.cvr;
+      res.render("dashboard_company", {
+        title: "Firma",
+        dashboard: "active",
+        cvr: req.params,
+        cvr: cvr,
+      });
+    }else{
+      res.render("dashboard_company", {
+        title: "Firma",
+        dashboard: "active",
+        error: "produktnummer findes allerede",
+        cvr: req.params,
+        cvr: cvr,
+      });
+    }
+    };
+      /* GET update company product PAGE */
+      exports.update_company_product = (req, res) => {
+        res.render("update_company_product", {
+          title: "Opdatere firma produkt",
+          dashboard: "active",
+        });
+      };
   // ============================================ //
 
   // ====================== /* PRODUCT PANEL */ ====================== //
@@ -393,45 +438,23 @@ exports.logout = (req, res) => {
         }
          
     };
-
-    // ============================================ //
-
     
-    /* GET create bottle product panel PAGE */
-    exports.create_product_bottle = (req, res) => {
-      res.render("create_product_bottle", {
-        title: "Opret flaske",
-        produkt: "active",
-      });
-    };
-    /* GET update bottle product panel PAGE */
-    exports.update_product_bottle = (req, res) => {
-      res.render("update_product_bottle", {
-        title: "Opdatere flaske",
-        produkt: "active",
-      });
-    };
-    //   /* GET update product water supply panel PAGE */
-    // exports.dashboard_company = (req, res) => {
-    //   res.render("dashboard_company", {
-    //     title: "Faarup",
-    //     dashboard: "active",
+    // /* GET create bottle product panel PAGE */
+    // exports.create_product_bottle = (req, res) => {
+    //   res.render("create_product_bottle", {
+    //     title: "Opret flaske",
+    //     produkt: "active",
     //   });
     // };
+    // /* GET update bottle product panel PAGE */
+    // exports.update_product_bottle = (req, res) => {
+    //   res.render("update_product_bottle", {
+    //     title: "Opdatere flaske",
+    //     produkt: "active",
+    //   });
+    // };
+    // ============================================ //
 
-    /* GET create company product PAGE */
-    exports.create_company_product = (req, res) => {
-      res.render("create_company_product", {
-        title: "Opret firma produkt",
-        dashboard: "active",
-      });
-    };
-      /* GET update company product PAGE */
-      exports.update_company_product = (req, res) => {
-        res.render("update_company_product", {
-          title: "Opdatere firma produkt",
-          dashboard: "active",
-        });
-      };
+  
 
   

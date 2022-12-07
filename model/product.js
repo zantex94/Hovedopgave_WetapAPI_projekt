@@ -347,4 +347,15 @@ module.exports = {
       return false;
     }
   },
+   // Get product title from Wetap. 
+   async GetWetapProductTitle(req, res) {
+    try {
+    const sql = 
+    `SELECT title from produkt;` 
+      let alleProduktTitler = await pool.query(sql);
+      return alleProduktTitler;
+    } catch (e) {
+      console.error(e.message);
+    }
+  },
 }
