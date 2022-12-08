@@ -1,6 +1,8 @@
 DROP DATABASE IF EXISTS dbWetap;
 CREATE DATABASE dbWetap;
 USE dbWetap;
+set global net_buffer_length=1000000; 
+set global max_allowed_packet=1000000000;
 
 CREATE TABLE brugere(
 id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

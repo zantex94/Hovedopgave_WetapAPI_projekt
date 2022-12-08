@@ -388,7 +388,7 @@ textarea{
 
 /**************************************************************************/
 
-/********************************create company product Wetap API page ********************************/
+/********************************update company product Wetap API page ********************************/
 .boxDiv_update_product_company{
   padding: 0px 10px 15px 10px;
 }
@@ -399,7 +399,36 @@ textarea{
 }
 .boxDiv_update_product_company_date{
   padding: 0px 10px 15px 10px;
-  margin-right: 5%;
+  margin-right: 2.8em;
+}
+.img_picture_update{
+    float: left !important;
+    display: block !important;
+    color: black !important;
+    text-align: center !important;
+    padding: 7px 16px !important;
+    text-decoration: none !important;
+    font-size: 17px !important;
+    min-width: 10em;
+    max-width: 20em;
+}
+.button_update_company_to_dashboard_cancel{
+  background-color: #2A8894;
+  border: none;
+  border-radius: 0px 25px 25px 25px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 5px;
+  height: 21px;
+  margin-top: 11%;
+  padding: 5%;
+  min-width: 100%;
+}
+.button_update_company_to_dashboard_cancel:hover{
+  background-color: #207783;
+  cursor: pointer;
 }
 
 /**************************************************************************/
@@ -808,8 +837,7 @@ cursor: pointer;
   min-width: 25%;
   height: 1.5em;
   padding-top: 1.5%;
-  /* margin-right: 11.5%; */
-  /* margin-left: 1%;  */
+  margin-top: 10%;
 }
 .button_add_maschine:hover{
   background-color: #207783;
@@ -824,7 +852,7 @@ cursor: pointer;
   text-decoration: none;
   display: inline-block;
   min-width: 25%;
-  height: 1.5em;
+  height: 2.1em;
   padding-top: 1.5%;
   margin-right: 8.5%;
   margin-left: 1%; 
@@ -876,6 +904,19 @@ cursor: pointer;
   transition:transform 0.25s ease;
 }
 .custom_img_product:hover {
+  -webkit-transform:scale(2.5);
+  transform:scale(2.5);
+  z-index: 10;
+}
+.custom_img_product_cart{
+  min-width: 12em;
+  max-width: 12em; 
+  height:40%; 
+  margin-top: 22%;
+  position: static;
+  transition:transform 0.25s ease;
+}
+.custom_img_product_cart:hover {
   -webkit-transform:scale(2.5);
   transform:scale(2.5);
   z-index: 10;

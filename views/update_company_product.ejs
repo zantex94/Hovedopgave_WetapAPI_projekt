@@ -9,55 +9,67 @@
       <h1><%= title %></h1>
     </div>
   </div>
+  <form class="update_company_product-form" action="/update_company_product" method="post" enctype="multipart/form-data">
+  <div class="innerDiv">
+    <% if (locals.error) { %>
+       <p class="p_Title_error"><%= error %></p>
+       <% } %>
+       <% if (locals.success) { %>
+        <p class="p_Title_success"><%= success %></p>
+        <% } %>
+   </div>
+   <div class="innerDiv">
+    <div class="boxDiv_update_product_water_supply">
+        <img class="img_picture_update"src="data:<%= getAProduct[0].contenttype %>;base64,<%= getAProduct[0].billedet.toString('base64') %>">
+    </div>
+  </div> 
   <div class="innerDiv">
     <div class="boxDiv_update_product_company">
         <p class="p_Title">Produktnummer:</p>
-        <input type="number" name="Product_number" placeholder="Produktnummer" required>
-    </div>
-    <div class="boxDiv_update_product_company">
-        <p class="p_Title">CVR:</p>
-        <input type="number" name="CVR_number" placeholder="CVR nummer" required>
+        <input class="custom_input" type="number" name="Product_number" placeholder="Produktnummer" value="<%= getAProduct[0].produktnummer %>" required>
     </div>
 </div>
 <div class="innerDiv">
   <div class="boxDiv_update_product_company">
       <p class="p_Title">Produkt:</p>
       <select name="company_product" id="company_product">
-          <option>Vælg produkt</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+          <option value="<%= getAProduct[0].title %>"><%= getAProduct[0].title %></option>
+           <!-- Loop start -->  
+           <% getAllProducts.forEach(function(getAllProducts) { %> 
+            <% if (getAllProducts.title == getAProduct[0].title) { %>
+            <% }else { %>
+              <option value="<%= getAllProducts.title %>"><%= getAllProducts.title %></option>
+              <% } %>
+            <% }); %>
+            <!-- Loop end -->  
         </select>
-  </div>
-</div>
-<div class="innerDiv">
-  <div class="boxDiv_update_product_company">
-      <p class="p_Title">Beskrivelse:</p>
-      <textarea class="custom_input" type="text" name="Description" placeholder="Bekriv produkt" required></textarea>
   </div>
 </div>
 <div class="innerDiv">
   <div class="boxDiv_update_product_company_date">
       <p class="p_Title">Oprettet:</p>
-      <input type="date" name="Product_number" placeholder="Produktnummer" required>
+      <input type="date" name="Product_number" placeholder="Produktnummer" value="<%= getAProduct[0].oprettet %>"required>
   </div>
   <div class="boxDiv_update_product_company">
       <p class="p_Title">Næste service tjek:</p>
-      <input type="date" name="Service_check" required>
+      <input type="date" name="Service_check" value="<%= getAProduct[0].service_tjek %>" required>
   </div>
 </div>
 <div class="innerDiv">
   <div class="boxDiv_update_product_company">
       <p class="p_Title">Billedet:</p>
-      <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
+      <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet">
+      <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6">
   </div>
 </div>  
     <div class="innerDiv">
         <div class="div_button_update_product_company">
             <button type="submit">Opdatere</button>
-            <button type="submit">Fortryd</button>
+            <a class="button_update_company_to_dashboard_cancel" href="/dashboard_company/<%= getAProduct[0].cvr %>" >fortryd</a>
+            <input hidden name="Old_produktnummer" value="<%= getAProduct[0].produktnummer %>">
         </div>
     </div>
+    </form>
 </main>
   </body>
 </html>

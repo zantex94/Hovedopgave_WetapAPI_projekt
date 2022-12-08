@@ -106,6 +106,19 @@ router
 // Create company product
 router
 .route("/create_company_product").post(upload.single('Product_file'),APIcontroller.creating_company_product);
+// Create company product
+router
+.route("/dashboard_company/delete/:cvr").get(APIcontroller.delete_company);
+//Get create company product when failed
+router.route("/create_company_product_fail/:cvr").get(APIcontroller.get_create_company_product_fail);
+//Get create company product when success
+router.route("/create_company_product_success/:cvr").get(APIcontroller.get_create_company_product_success);
+//Get create company product when success
+router.route("/dashboard_company_fail/:cvr").get(APIcontroller.dashboard_company_fail);
+//Get update company product
+router.route("/update_company_product/:produktnummer").get(APIcontroller.update_company_product);
+//Post update company product
+router.route("/update_company_product").post(upload.single('Product_file'),APIcontroller.updating_company_product);
 // ============================================ //
 
 // ====================== /* PRODUCT  */ ====================== //
@@ -133,9 +146,10 @@ router
 
 // ============================================ //
 
-// router.route("/create_company_product").get(APIcontroller.create_company_product);
+
+
 /**create company product screen for Wetap API */
-router.route("/update_company_product").get(APIcontroller.update_company_product);
+// router.route("/update_company_product").get(APIcontroller.update_company_product);
 // /**create product bottle screen for Wetap API */
 // router.route("/create_product_bottle").get(APIcontroller.create_product_bottle);
 // /**update product bottle screen for Wetap API */

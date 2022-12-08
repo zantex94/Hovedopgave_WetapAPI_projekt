@@ -20,6 +20,12 @@ function deleteUserProfile(id) {
       location.href = '/profile/deleteuserProfile/' + id;
   }
 }
+// delete a company from wetap
+function deleteCompany(cvr) {
+  if (confirm("Sikker på at fjerne firmaet permanent fra Wetap?")) {
+      location.href = '/dashboard_company/delete/' + cvr;
+  }
+}
 
 
 const init = function () {

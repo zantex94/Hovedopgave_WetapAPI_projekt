@@ -186,6 +186,7 @@ exports.logout = (req, res) => {
       brugereErhverv: brugereErhverv[0],
     });
   };
+
   /* INSERT company PAGE */
   exports.insert_company = async(req, res) => {
     let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);
@@ -271,11 +272,17 @@ exports.logout = (req, res) => {
   // ====================== /* DASHBOARD COMPANY PANEL */ ====================== //
     /* GET product panel PAGE */
     exports.dashboard_company = async(req, res) => {
-      console.log(req.params);
+      let getAllProducts = await model_company_product.GetAllCompanyProducts(req, res);
+      let countAllProducts = await model_company_product.CountCompanyProducts(req, res);
+      let getFirmaTitle = await model_company_product.GetCompanyTitle(req, res);
+      console.log(getAllProducts[0]);
+      console.log(getFirmaTitle[0]);
       res.render("dashboard_company", {
-        title: "Firma",
-        produkt: "active",
+        dashboard: "active",
         cvr: req.params,
+        getAllProducts: getAllProducts[0],
+        countAllProducts: countAllProducts[0],
+        getFirmaTitle: getFirmaTitle[0],
       });
     };
     /* GET create company product PAGE */
@@ -290,37 +297,101 @@ exports.logout = (req, res) => {
     };
     /* Create company product PAGE */
     exports.creating_company_product = async(req, res) => {
-      // console.log(req.body.cvr);
-      console.log(req.body);
       let insertProduct = await model_company_product.InsertCompanyProduct(req, res);
       if(insertProduct){
-      console.log(req.body);
-      console.log(req.file.buffer);
-      console.log(req.body.cvr)
-      let cvr = req.body.cvr;
-      res.render("dashboard_company", {
-        title: "Firma",
-        dashboard: "active",
-        cvr: req.params,
-        cvr: cvr,
-      });
+      res.redirect('/create_company_product_success/' + req.body.cvr);
     }else{
-      res.render("dashboard_company", {
-        title: "Firma",
-        dashboard: "active",
-        error: "produktnummer findes allerede",
-        cvr: req.params,
-        cvr: cvr,
-      });
+      res.redirect('/create_company_product_fail/' + req.body.cvr);
     }
     };
+
+    /* GET create company product when fail PAGE */
+    exports.get_create_company_product_fail = async(req, res) => {
+      let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+      res.render("create_company_product", {
+        title: "Opret firma produkt",
+        dashboard: "active",
+        cvr: req.params,
+        error: 'Produktnummer findes allerede!',
+        getAllProducts: getAllProducts[0],
+      });
+    };
+      /* GET create company product when success PAGE */
+      exports.get_create_company_product_success = async(req, res) => {
+        let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+        res.render("create_company_product", {
+          title: "Opret firma produkt",
+          dashboard: "active",
+          cvr: req.params,
+          success: 'Firma produkt oprettet!',
+          getAllProducts: getAllProducts[0],
+        });
+      };
       /* GET update company product PAGE */
-      exports.update_company_product = (req, res) => {
+      exports.update_company_product = async(req, res) => {
+        let getAProduct = await model_company_dashboard.GetACompanyProduct(req, res);
+        let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+        console.log(getAProduct[0]);
         res.render("update_company_product", {
           title: "Opdatere firma produkt",
           dashboard: "active",
+          getAProduct: getAProduct[0],
+          getAllProducts: getAllProducts[0],
         });
       };
+      /* DELETE company */
+      exports.delete_company = async(req, res) => {
+        let deleteComapny = await model_company_dashboard.deleteCompany(req, res);
+        if(deleteComapny){
+          let allCompanies = await model_company_dashboard.GetAllCompanies(req, res);
+          res.render("dashboard", {
+            title: "Dashboard",
+            dashboard: "active",
+            user: req.user,
+            allCompanies: allCompanies[0],
+            success: 'Firma blev Fjernet!',
+          });
+        }else{
+          res.redirect('dashboard_company_fail/' + req.params);
+        }
+      };
+        /* GET create company product when fail PAGE */
+    exports.dashboard_company_fail = async(req, res) => {
+      let getAllProducts = await model_company_product.GetAllCompanyProducts(req, res);
+      let countAllProducts = await model_company_product.CountCompanyProducts(req, res);
+      let getFirmaTitle = await model_company_product.GetCompanyTitle(req, res);
+      console.log(getAllProducts[0]);
+      res.render("dashboard_company", {
+        dashboard: "active",
+        cvr: req.params,
+        getAllProducts: getAllProducts[0],
+        countAllProducts: countAllProducts[0],
+        error: 'Ikke muligt at fjerne firma!',
+        getFirmaTitle: getFirmaTitle[0],
+
+      });
+    };
+      /* Update company product PAGE */
+      exports.updating_company_product = async(req, res) => {
+      let getAProduct = await model_company_product.UpdateCompanyProduct(req, res);
+      if(getAProduct){
+        if(req.body.Contenttype != ''){
+          let updateProduct = await model_company_product.UpdateCompanyProductPicture(req, res);
+          if(updateProduct){
+            //success
+            res.redirect();
+          }else{
+            //fail on updating produkt
+          }
+        }else{
+          //fail
+        }
+    }else{
+      //fail
+    }
+     
+      
+    };
   // ============================================ //
 
   // ====================== /* PRODUCT PANEL */ ====================== //
@@ -346,9 +417,6 @@ exports.logout = (req, res) => {
       /* insert create product water supply panel PAGE */
       exports.insert_product_water_supply = async(req, res) => {
         let insertProduct = await model_product.InsertWetapProduct(req, res);
-
-        // console.log(req.body);
-        // console.log(req.file.buffer);
         if(insertProduct){
           let getAllProducts = await model_product.GetWetapProducts(req, res);
           res.render("product_panel", {

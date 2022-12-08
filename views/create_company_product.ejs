@@ -9,6 +9,14 @@
       <h1><%= title %></h1>
     </div>
   </div>
+  <div class="innerDiv">
+    <% if (locals.error) { %>
+       <p class="p_Title_error"><%= error %></p>
+       <% } %>
+       <% if (locals.success) { %>
+        <p class="p_Title_success"><%= success %></p>
+        <% } %>
+   </div>
   <form class="create_company_product-form" action="/create_company_product" method="post" enctype="multipart/form-data">
   <div class="innerDiv">
     <div class="boxDiv_create_product_company">
@@ -41,7 +49,7 @@
 </div>
 <div class="innerDiv">
   <div class="boxDiv_create_product_company">
-      <p class="p_Title">Billedet:</p>
+      <p class="p_Title">Billedet/kort:</p>
       <input class="custom_input" type="file" name="Product_file" placeholder="indsæt billedet" required>
       <input hidden class="custom_input" type="text" name="Contenttype" placeholder="Beskriv typen: eks: image/png" maxlength="32" minlength="6">
   </div>

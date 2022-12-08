@@ -111,4 +111,30 @@ module.exports = {
       return false;
     }
   },
+   // Delete comapany from Wetap. 
+   async deleteCompany(req, res) {
+    try {
+        // using prepared statement to avoid sql injection
+      const { cvr } = req.params;      
+      let sql = `delete from firma where cvr = ?`;
+      let udatebrugere = [cvr];
+      await pool.query(sql, udatebrugere);
+      return true;
+    } catch (e) {
+      console.error(e.message);
+    }
+  },
+     // Get a company product. 
+     async GetACompanyProduct(req, res) {
+      try {
+          // using prepared statement to avoid sql injection
+      let { produktnummer } = req.params;
+      let sql = `SELECT produktnummer, DATE_FORMAT(firmaprodukt.service_tjek,'%Y-%m-%d') as 'service_tjek', DATE_FORMAT(firmaprodukt.oprettet,'%Y-%m-%d') AS 'oprettet', firmaprodukt.contenttype, firmaprodukt.billedet, firmaprodukt.cvr, firmaprodukt.title FROM firmaprodukt where produktnummer = ?`;
+      let find = [produktnummer];
+        let getCompanyProduct = await pool.query(sql, find);
+        return getCompanyProduct;
+      } catch (e) {
+        console.error(e.message);
+      }
+    },
 }
