@@ -108,13 +108,14 @@ module.exports = {
         Service_check,
         Old_produktnummer,
     } = req.body;  
-    let sql = `UPDATE firmaprodukt SET produktnummer ? , service_tjek = ?, oprettet = ?, title = ? WHERE produktnummer = ?`;
+    let sql = `UPDATE firmaprodukt SET firmaprodukt.produktnummer = ?, firmaprodukt.service_tjek = ?, firmaprodukt.oprettet = ?, firmaprodukt.title = ? WHERE firmaprodukt.produktnummer = ?`;
       let insert = [Product_number, Service_check, Product_created, Company_product, Old_produktnummer];
-      await pool.query(sql, insert);
+      let inserted = await pool.query(sql, insert);
       return true;
     } catch (e) {
       console.error(e.message);
       return false;
+
     }
   },
   

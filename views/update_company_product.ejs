@@ -32,7 +32,7 @@
 <div class="innerDiv">
   <div class="boxDiv_update_product_company">
       <p class="p_Title">Produkt:</p>
-      <select name="company_product" id="company_product">
+      <select name="Company_product" id="company_product">
           <option value="<%= getAProduct[0].title %>"><%= getAProduct[0].title %></option>
            <!-- Loop start -->  
            <% getAllProducts.forEach(function(getAllProducts) { %> 
@@ -48,7 +48,7 @@
 <div class="innerDiv">
   <div class="boxDiv_update_product_company_date">
       <p class="p_Title">Oprettet:</p>
-      <input type="date" name="Product_number" placeholder="Produktnummer" value="<%= getAProduct[0].oprettet %>"required>
+      <input type="date" name="Product_created" placeholder="Produktnummer" value="<%= getAProduct[0].oprettet %>"required>
   </div>
   <div class="boxDiv_update_product_company">
       <p class="p_Title">Næste service tjek:</p>
@@ -72,4 +72,5 @@
     </form>
 </main>
   </body>
+  <script src="../public/javascripts/file_helper.js"></script>
 </html>

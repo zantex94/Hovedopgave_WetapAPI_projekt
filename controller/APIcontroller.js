@@ -14,6 +14,12 @@ exports.index = (req, res) => {
 };
 // ====================== /* PASSPORT */ ====================== //
 
+/* CHECK IF LOGGED IN - Use APIcontroller.isLoggedIn FIRST, on relevant routes, to force login */
+exports.isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) return next(); // If user is authenticated in the session, carry on
+  res.redirect("/login"); // if false, redirect to login
+};
+
 /* LOGIN */
 exports.login = (req, res) => {
   console.log(req.user);
@@ -133,21 +139,21 @@ exports.logout = (req, res) => {
     /* GET user panel PAGE */
     exports.user_panel = async(req, res) => {
       let brugere = await model.GetWetapBrugere(req, res);
-      // console.log(brugere[0])
+      console.log(req.user)
       res.render("user_panel", {
         title: "Brugerpanel",
         brugere: brugere[0],
         user: req.user,
       });
     };
-    /* Update user status PAGE */
+    /* Update user status active PAGE */
     exports.user_status_active = async(req, res) => {
       let updatebool = await model.UpdateWetapBrugereStatusAktiv(req, res);
       if(updatebool){
         res.redirect('/user_panel');
       }
     };
-     /* Update user status PAGE */
+     /* Update user status to deaktivate PAGE */
      exports.user_status_notactive = async(req, res) => {
       let updatebool = await model.UpdateWetapBrugereStatusDeaktiveret(req, res);
       if(updatebool){
@@ -168,7 +174,6 @@ exports.logout = (req, res) => {
     /* GET dashboard PAGE */
     exports.dashboard = async(req, res) => {
       let allCompanies = await model_company_dashboard.GetAllCompanies(req, res);
-    // console.log(req.user);
     res.render("dashboard", {
       title: "Dashboard",
       dashboard: "active",
@@ -183,6 +188,7 @@ exports.logout = (req, res) => {
     res.render("create_company", {
       title: "Opret Firma",
       dashboard: "active",
+      user: req.user,
       brugereErhverv: brugereErhverv[0],
     });
   };
@@ -190,13 +196,14 @@ exports.logout = (req, res) => {
   /* INSERT company PAGE */
   exports.insert_company = async(req, res) => {
     let brugereErhverv = await model_company_dashboard.GetBrugereErhverv(req, res);
-    console.log(req.body);
+    // console.log(req.body);
     if(req.body.responsible_person == 'Vælg'){
     res.render("create_company", {
       title: "Opret Firma",
       dashboard: "active",
       brugereErhverv: brugereErhverv[0],
-      error: "Der skal vælges en ansvarlig!"
+      error: "Der skal vælges en ansvarlig!",
+      user: req.user,
     });
     }else{
       let newCompany = await model_company_dashboard.InsertNewCompany(req, res);
@@ -209,7 +216,8 @@ exports.logout = (req, res) => {
             title: "Dashboard",
             dashboard: "active",
             success: "Firma oprettet!",
-            allCompanies: allCompanies[0]
+            allCompanies: allCompanies[0],
+            user: req.user,
           });
         }
       }else{
@@ -218,6 +226,7 @@ exports.logout = (req, res) => {
           dashboard: "active",
           error: "Firma eksistere allerede!",
           brugereErhverv: brugereErhverv[0],
+          user: req.user,
         });
       }
 
@@ -233,6 +242,7 @@ exports.logout = (req, res) => {
       dashboard: "active",
       getCompany: getCompany[0],
       brugereErhverv: brugereErhverv[0],
+      user: req.user,
     });
   };
    /* Update company PAGE */
@@ -250,7 +260,8 @@ exports.logout = (req, res) => {
               title: "Dashboard",
               dashboard: "active",
               success: "Firma opdateret!",
-              allCompanies: allCompanies[0]
+              allCompanies: allCompanies[0],
+              user: req.user,
             });
       }
     }
@@ -263,7 +274,8 @@ exports.logout = (req, res) => {
         dashboard: "active",
         getCompany: getCompany[0],
         brugereErhverv: brugereErhverv[0],
-        error: "Kunne ikke opdatere. Tjek venligst felterne!"
+        error: "Kunne ikke opdatere. Tjek venligst felterne!",
+        user: req.user,
       });
     }
   
@@ -283,6 +295,7 @@ exports.logout = (req, res) => {
         getAllProducts: getAllProducts[0],
         countAllProducts: countAllProducts[0],
         getFirmaTitle: getFirmaTitle[0],
+        user: req.user,
       });
     };
     /* GET create company product PAGE */
@@ -293,6 +306,7 @@ exports.logout = (req, res) => {
         dashboard: "active",
         cvr: req.params,
         getAllProducts: getAllProducts[0],
+        user: req.user,
       });
     };
     /* Create company product PAGE */
@@ -314,6 +328,7 @@ exports.logout = (req, res) => {
         cvr: req.params,
         error: 'Produktnummer findes allerede!',
         getAllProducts: getAllProducts[0],
+        user: req.user,
       });
     };
       /* GET create company product when success PAGE */
@@ -325,6 +340,7 @@ exports.logout = (req, res) => {
           cvr: req.params,
           success: 'Firma produkt oprettet!',
           getAllProducts: getAllProducts[0],
+          user: req.user,
         });
       };
       /* GET update company product PAGE */
@@ -337,6 +353,7 @@ exports.logout = (req, res) => {
           dashboard: "active",
           getAProduct: getAProduct[0],
           getAllProducts: getAllProducts[0],
+          user: req.user,
         });
       };
       /* DELETE company */
@@ -350,6 +367,7 @@ exports.logout = (req, res) => {
             user: req.user,
             allCompanies: allCompanies[0],
             success: 'Firma blev Fjernet!',
+            user: req.user,
           });
         }else{
           res.redirect('dashboard_company_fail/' + req.params);
@@ -368,29 +386,73 @@ exports.logout = (req, res) => {
         countAllProducts: countAllProducts[0],
         error: 'Ikke muligt at fjerne firma!',
         getFirmaTitle: getFirmaTitle[0],
-
+        user: req.user,
       });
     };
       /* Update company product PAGE */
       exports.updating_company_product = async(req, res) => {
-      let getAProduct = await model_company_product.UpdateCompanyProduct(req, res);
-      if(getAProduct){
+      let updateAProduct = await model_company_product.UpdateCompanyProduct(req, res);
+      console.log(req.body);
+      if(updateAProduct){
         if(req.body.Contenttype != ''){
           let updateProduct = await model_company_product.UpdateCompanyProductPicture(req, res);
           if(updateProduct){
             //success
-            res.redirect();
+            res.redirect('/update_company_product_success/' + req.body.Old_produktnummer);
           }else{
-            //fail on updating produkt
+            //fail on updating picture
+            res.redirect('/update_company_product_errorPicture/' + req.body.Old_produktnummer);
           }
         }else{
-          //fail
+          //success
+          res.redirect('/update_company_product_success/' + req.body.Old_produktnummer);
         }
-    }else{
-      //fail
+      }else{
+        //fail.
+      res.redirect('/update_company_product_error/' + req.body.Old_produktnummer);
     }
-     
-      
+    };
+      /* GET update company product when fail PAGE */
+      exports.get_updating_company_product_fail = async(req, res) => {
+      let getAProduct = await model_company_dashboard.GetACompanyProduct(req, res);
+      let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+      // console.log(getAProduct[0]);
+      res.render("update_company_product", {
+        title: "Opdatere firma produkt",
+        dashboard: "active",
+        getAProduct: getAProduct[0],
+        getAllProducts: getAllProducts[0],
+        error: 'kunne ikke opdatere',
+        user: req.user,
+      });
+    };
+      /* GET update company product when fail PAGE */
+      exports.get_updating_company_product_picture_fail = async(req, res) => {
+        let getAProduct = await model_company_dashboard.GetACompanyProduct(req, res);
+        let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+        // console.log(getAProduct[0]);
+        res.render("update_company_product", {
+          title: "Opdatere firma produkt",
+          dashboard: "active",
+          getAProduct: getAProduct[0],
+          getAllProducts: getAllProducts[0],
+          error: 'kunne ikke opdatere billedet',
+          user: req.user,
+        });
+      };
+
+     /* GET update company product when success PAGE */
+     exports.get_updating_company_product_success = async(req, res) => {
+      let getAProduct = await model_company_dashboard.GetACompanyProduct(req, res);
+      let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+      res.render("update_company_product", {
+        title: "Opdatere firma produkt",
+        dashboard: "active",
+        getAProduct: getAProduct[0],
+        getAllProducts: getAllProducts[0],
+        success: 'produkt opdateret!',
+        user: req.user,
+      });
     };
   // ============================================ //
 
@@ -403,6 +465,7 @@ exports.logout = (req, res) => {
         title: "Produkt panel",
         produkt: "active",
         getAllProducts: getAllProducts[0],
+        user: req.user,
       });
     };
 
@@ -411,6 +474,7 @@ exports.logout = (req, res) => {
       res.render("create_product_water_supply", {
         title: "Opret vandpost",
         produkt: "active",
+        user: req.user,
       });
     };
 
@@ -424,12 +488,14 @@ exports.logout = (req, res) => {
             produkt: "active",
             success: "Produkt oprettet!",
             getAllProducts: getAllProducts[0],
+            user: req.user,
           });
         }else{
           res.render("create_product_water_supply", {
             title: "Opret vandpost",
             produkt: "active",
             error: 'Kunne ikke oprette produkt',
+            user: req.user,
           });
         }
         };
@@ -445,6 +511,7 @@ exports.logout = (req, res) => {
             produkt: "active",
             error: "Produkt kunne ikke fjernes!",
             getAllProducts: getAllProducts[0],
+            user: req.user,
           });
         }
        
@@ -458,6 +525,7 @@ exports.logout = (req, res) => {
         title: "Opdatere vandpost",
         produkt: "active",
         getAProduct: getAProduct[0],
+        user: req.user,
       });
     };
       /* Update product water supply PAGE */
@@ -476,6 +544,7 @@ exports.logout = (req, res) => {
                 produkt: "active",
                 getAllProducts: getAllProducts[0],
                 success: "Product opdateret!",
+                user: req.user,
               });
             }else{
               let getAProduct = await model_product.GetAWetapProductWhenFail(req, res);
@@ -483,7 +552,8 @@ exports.logout = (req, res) => {
                 title: "Opdatere vandpost",
                 produkt: "active",
                 getAProduct: getAProduct[0],
-                error: "Kunne ikke opdatere. tjek venligst værdierne igen!"
+                error: "Kunne ikke opdatere. tjek venligst værdierne igen!",
+                user: req.user,
               });
             }
           }else{
@@ -493,6 +563,7 @@ exports.logout = (req, res) => {
               produkt: "active",
               getAllProducts: getAllProducts[0],
               success: "Product opdateret!",
+              user: req.user,
             });
           }
         }else{       
@@ -501,7 +572,8 @@ exports.logout = (req, res) => {
           title: "Opdatere vandpost",
           produkt: "active",
           getAProduct: getAProduct[0],
-          error: "Kunne ikke opdatere. tjek venligst værdierne igen!"
+          error: "Kunne ikke opdatere. tjek venligst værdierne igen!",
+          user: req.user,
         });
         }
          

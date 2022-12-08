@@ -12,12 +12,6 @@ router.route("/").get(APIcontroller.index);
 
 // ====================== /* PASSPORT */ ====================== //
 
-/* CHECK IF LOGGED IN - Use APIcontroller.isLoggedIn FIRST, on relevant routes, to force login */
-exports.isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) return next(); // If user is authenticated in the session, carry on
-    res.redirect("/login"); // if false, redirect to login
-  };
-
   /* LOGIN ROUTES */
 router
 .route("/login")
@@ -59,14 +53,14 @@ router.route("/confirm").get(APIcontroller.confirm);
 
 /**user panel screen for Wetap API */
 router
-.route("/user_panel").get(APIcontroller.user_panel);
+.route("/user_panel").get(APIcontroller.isLoggedIn,APIcontroller.user_panel);
 
 router
-.route("/user_panel/update/useractive/:id").get(APIcontroller.user_status_active);
+.route("/user_panel/update/useractive/:id").get(APIcontroller.isLoggedIn,APIcontroller.user_status_active);
 router
-.route("/user_panel/update/usernotactive/:id").get(APIcontroller.user_status_notactive);
+.route("/user_panel/update/usernotactive/:id").get(APIcontroller.isLoggedIn,APIcontroller.user_status_notactive);
 router
-.route("/user_panel/deleteuser/:id").get(APIcontroller.deleteuser);
+.route("/user_panel/deleteuser/:id").get(APIcontroller.isLoggedIn,APIcontroller.deleteuser);
 
 // ============================================ //
 // ====================== /* PROFILE */ ====================== //
@@ -76,22 +70,22 @@ router
 .get(APIcontroller.profile)
 .post(APIcontroller.update_profile);
 router
-.route("/profile/deleteuserProfile/:id").get(APIcontroller.deleteuserprofile);
+.route("/profile/deleteuserProfile/:id").get(APIcontroller.isLoggedIn,APIcontroller.deleteuserprofile);
 
 // ============================================ //
 // ====================== /* DASHBOARD */ ====================== //
 /**dashboard screen for Wetap API */
-router.route("/dashboard").get(APIcontroller.dashboard);
+router.route("/dashboard").get(APIcontroller.isLoggedIn,APIcontroller.dashboard);
 /**create company screen for Wetap API */
 router.route("/create_company")
-.get(APIcontroller.create_company)
-.post(APIcontroller.insert_company);
+.get(APIcontroller.isLoggedIn,APIcontroller.create_company)
+.post(APIcontroller.isLoggedIn,APIcontroller.insert_company);
 /**update company screen for Wetap API */
 // router.route("/update_company").get(APIcontroller.update_company);
 router
-.route("/update_company/:cvr").get(APIcontroller.update_company);
+.route("/update_company/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.update_company);
 router
-.route("/update_company").post(APIcontroller.updating_company);
+.route("/update_company").post(APIcontroller.isLoggedIn,APIcontroller.updating_company);
 
 
 
@@ -99,50 +93,58 @@ router
 // ====================== /* DASHBOARD company*/ ====================== //
 //Get dashboard company by CVR
 router
-.route("/dashboard_company/:cvr").get(APIcontroller.dashboard_company);
+.route("/dashboard_company/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.dashboard_company);
 //Get dashboard create company by CVR
 router
-.route("/create_company_product/:cvr").get(APIcontroller.create_company_product);
+.route("/create_company_product/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.create_company_product);
 // Create company product
 router
-.route("/create_company_product").post(upload.single('Product_file'),APIcontroller.creating_company_product);
+.route("/create_company_product").post(APIcontroller.isLoggedIn,upload.single('Product_file'),APIcontroller.creating_company_product);
 // Create company product
 router
-.route("/dashboard_company/delete/:cvr").get(APIcontroller.delete_company);
+.route("/dashboard_company/delete/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.delete_company);
 //Get create company product when failed
-router.route("/create_company_product_fail/:cvr").get(APIcontroller.get_create_company_product_fail);
+router.route("/create_company_product_fail/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.get_create_company_product_fail);
 //Get create company product when success
-router.route("/create_company_product_success/:cvr").get(APIcontroller.get_create_company_product_success);
+router.route("/create_company_product_success/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.get_create_company_product_success);
 //Get create company product when success
-router.route("/dashboard_company_fail/:cvr").get(APIcontroller.dashboard_company_fail);
-//Get update company product
-router.route("/update_company_product/:produktnummer").get(APIcontroller.update_company_product);
+router.route("/dashboard_company_fail/:cvr").get(APIcontroller.isLoggedIn,APIcontroller.dashboard_company_fail);
+
 //Post update company product
-router.route("/update_company_product").post(upload.single('Product_file'),APIcontroller.updating_company_product);
+router.route("/update_company_product").post(APIcontroller.isLoggedIn,upload.single('Product_file'),APIcontroller.updating_company_product);
+//Get update company product
+router.route("/update_company_product/:produktnummer").get(APIcontroller.isLoggedIn,APIcontroller.update_company_product);
+//Get update company product when error
+router.route("/update_company_product_error/:produktnummer").get(APIcontroller.isLoggedIn,APIcontroller.get_updating_company_product_fail);
+//Get update company product when success
+router.route("/update_company_product_success/:produktnummer").get(APIcontroller.isLoggedIn,APIcontroller.get_updating_company_product_success);
+//Get update company product when updaing picture fails
+router.route("/update_company_product_errorPicture/:produktnummer").get(APIcontroller.isLoggedIn,APIcontroller.get_updating_company_product_picture_fail);
+
 // ============================================ //
 
 // ====================== /* PRODUCT  */ ====================== //
 
 /**product panel screen for Wetap API */
-router.route("/product_panel").get(APIcontroller.product_panel);
+router.route("/product_panel").get(APIcontroller.isLoggedIn,APIcontroller.product_panel);
 /**create product water supply screen for Wetap API */
 router
 .route("/create_product_water_supply")
-.get(APIcontroller.create_product_water_supply)
-.post(upload.single('Product_file'),APIcontroller.insert_product_water_supply);
+.get(APIcontroller.isLoggedIn,APIcontroller.create_product_water_supply)
+.post(APIcontroller.isLoggedIn,upload.single('Product_file'),APIcontroller.insert_product_water_supply);
 
 
 /**update product water supply screen for Wetap API */
 // router.route("/update_product_water_supply").get(APIcontroller.update_product_water_supply);
 /**delete product water supply in  Wetap API */
 router
-.route("/product_panel/deleteProduct/:id").get(APIcontroller.product_delete);
+.route("/product_panel/deleteProduct/:id").get(APIcontroller.isLoggedIn,APIcontroller.product_delete);
 /**update product water supply in  Wetap API */
 router
-.route("/product_panel/:id").get(APIcontroller.update_product_water_supply);
+.route("/product_panel/:id").get(APIcontroller.isLoggedIn,APIcontroller.update_product_water_supply);
 router
 .route("/update_product_water_supply")
-.post(upload.single('Product_file'),APIcontroller.updating_product_water_supply);
+.post(APIcontroller.isLoggedIn,upload.single('Product_file'),APIcontroller.updating_product_water_supply);
 
 // ============================================ //
 
