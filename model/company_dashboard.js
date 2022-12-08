@@ -116,8 +116,15 @@ module.exports = {
     try {
         // using prepared statement to avoid sql injection
       const { cvr } = req.params;      
-      let sql = `delete from firma where cvr = ?`;
-      let udatebrugere = [cvr];
+      let sql = `start TRANSACTION;
+
+      delete from firma where cvr = ?;
+      update brugere
+      LEFT JOIN brugere_erhverv ON brugere_erhverv.email = brugere.email
+      SET brugere.rolle = "kunde" WHERE brugere_erhverv.cvr = ?;
+
+      commit;`
+      let udatebrugere = [cvr,cvr];
       await pool.query(sql, udatebrugere);
       return true;
     } catch (e) {

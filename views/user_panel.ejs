@@ -25,8 +25,8 @@
             <td><%= brugere.email %></td>
             <td><%= brugere.telefonnummer %></td>
             <% if (brugere.rolle == "admin") { %>
-            <td></td>
-            <td></td>
+              <td><%= brugere.status_bruger %></td>
+              <td></td>
             <% } else { %>
               <% if (user.rolle == "admin") { %>
                 <% if (brugere.status_bruger == "aktiv") { %>
@@ -40,7 +40,6 @@
                 <td></td>
               <% } %>
             <% } %>
-
         </tr>
         <% }); %>
         <!-- Loop end -->  
