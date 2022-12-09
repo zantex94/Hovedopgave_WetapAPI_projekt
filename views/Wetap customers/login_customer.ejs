@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+      <h1>in customer</h1>
+    </div>
+  </div>
+  <div class="innerDiv">
+    <form class="login-form" action="/customer/login_customer" method="post">
+    <div class="boxDiv_login">
+      <p class="p_Title">E-mail:</p>
+      <input class="input_login" type="email" name="email" placeholder="Eksempel@gmail.com" required>
+      <p class="p_Title">Password:</p>
+      <input class="input_login" name="password" type="password" required>
+      <% if (message.length > 0) { %>
+        <p class="p_Title_error"><%= message %></p>
+        <% } %>
+      <div class="div_forgot_password">
+        <a href="/">Glemt adgangskode?</a>
+      </div>
+
+      <div class="div_button">
+        <button class="button_login" type="submit">Login</button>
+      </div>
+      <div class="div_button">
+        <a class="btn_button" href="/customer/register_customer"><p class="p_btn_button">Register</p></a>
+      </div>
+  </div>
+  </form>
+  </div>
+</main>
+  </body>
+</html>

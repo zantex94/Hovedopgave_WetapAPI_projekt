@@ -13,11 +13,25 @@ const validate = function (e) {
     return false;
   }
 };
+const validateCustomer = function (e) {
+  // validation example, if not alike, prevent submission
+  if ($("register-customer-form").password.value !== $("register-customer-form").password2.value) {
+    e.preventDefault();
+    window.alert("Adgangskoder giver ingen match");
+    console.log($("register-customer-form").password + ":" + $("register-customer-form").password2);
+    $("password").select();
+    return false;
+  }
+};
 
 const init = function () {
   if ($("register-form")) {
     // looking for particular form, if found setup validation
     $("register-form").addEventListener("submit", validate);
+  }
+  if ($("register-customer-form")) {
+    // looking for particular form, if found setup validation
+    $("register-customer-form").addEventListener("submit", validateCustomer);
   }
 };
 window.addEventListener("load", init);

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>  
+  <body>
+    <%- include('customer_navigation_bar.ejs'); -%>
+    <%- include('navigation_bar_customer.ejs'); -%>
+    <main>
+      <div class="mainDiv_dashboard_company">
+        <div class="boxDiv_title_dashboard_company">
+          <select class="select_dashboard_company" name="product" id="product">
+            <option>Sommer season</option>
+          </select>
+          <h1><%= getFirmaTitle[0].firma %></h1>
+        </div>
+        <div>
+        </div>
+      </div>
+        <!-- Loop start -->
+        <% getAllProducts.forEach(function(getAllProducts) { %> 
+<div class="innerDiv">
+  <div class="boxDiv_dashboard_overview">
+    
+    <div class="boxDiv_dashboard_company">
+      <div class="boxDiv_product_overview">
+        <div>
+          <p style="margin-left: 7%;"> Produktnummer: <%= getAllProducts.produktnummer %></p>
+        </div>
+        <div>
+          <p><img style="width: 17px" src="../public/images/Oprettet.png" alt="Oprettet"> Oprettet: <%= getAllProducts.oprettet %></p>
+        </div>
+        <div>
+          <p><img style="width: 17px" src="../public/images/Tapning.png" alt="Tapninger"> Antal tapninger: ingen data.</p>
+        </div>
+        <div>
+          <p><img style="width: 17px" src="../public/images/Co2.png" alt="Co2"> Sparet miljø: ingen data.</p>
+        </div>
+        <div>
+          <p><img style="width: 17px" src="../public/images/Support.png" alt="Support"> Næste service: <%= getAllProducts.service_tjek %></p>
+        </div>
+      </div>
+      <div>
+        <h3 class="h3_title">Produkt: <%= getAllProducts.title %></h3>
+        <img class="custom_img_product" src="data:<%= getAllProducts.produktcontenttype %>;base64,<%= getAllProducts.produktbilledet.toString('base64') %>">
+        <!-- <img class="custom_img_product" src="../public/images/Macr2.jpeg" alt="produkt"> -->
+      </div>
+      <div class="div_img">
+        <img class="custom_img_product_cart" src="data:<%= getAllProducts.contenttype %>;base64,<%= getAllProducts.billedet.toString('base64') %>">
+        <!-- <img class="custom_img" src="../public/images/Faarup sommerland.png" alt="kort"> -->
+      </div>
+    </div>
+  
+  </div>
+</div>
+<% }); %>
+<!-- Loop end --> 
+  <div class="innerDiv">
+    <div class="boxDiv_dashboard_overview">
+      <div class="boxDiv_dashboard_company">
+        <div class="boxDiv_product_overview_overall">
+          <div>
+            <p><img style="width: 13px" src="../public/images/Maskiner.png" alt="tapning"> Antal vandmaskiner: <%= countAllProducts[0].antal_produkter %></p>
+          </div>
+          <div>
+            <p><img style="width: 17px" src="../public/images/Tapning.png" alt="tapning"> Antal tapninger: ingen data.</p>
+          </div>
+          <div>
+            <p><img style="width: 17px" src="../public/images/Co2.png" alt="Co2"> Miljø sparet: ingen data.</p>
+          </div>
+          <div>
+            <p><img style="width: 13px" src="../public/images/Flasker.png" alt="Flasker"> Flasker solgt: ingen data.</p>
+          </div>
+          <div>
+            <p><img style="width: 17px" src="../public/images/Chip.png" alt="Mærker"> Mærker solgt: ingen data.</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="h3_title">Samlet oversigt</h3>
+        </div>
+        <div class="div_img">
+          <!-- <img class="custom_img" src="../public/images/Faarup sommerland.png" alt="kort"> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+  </body>
+</html>

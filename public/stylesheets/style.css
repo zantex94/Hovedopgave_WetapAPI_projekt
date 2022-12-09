@@ -2,7 +2,11 @@
 main {
   width: 100%;
   min-height: 81vh;
-  /* background-color: #EAEAEA; */
+}
+.customerMain{
+  width: 90%;
+  min-height: 81vh;
+  margin-left: 5.5%;
 }
 body {
   font-family: "Barlow", sans-serif;
@@ -117,7 +121,27 @@ textarea{
 /**************************************************************************/
 
 /******************************************HEADER_BAR**************************************************************************/
-/* holds the header navigation */
+/* holds the header navigation for Faarup */
+.topnav_faarup{
+  overflow: hidden;
+  background-color: white;
+  border-bottom: solid black;
+
+}
+.topnav_faarup a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  /* border: solid black; */
+}
+
+.toptopnav_faarupnav a:hover {
+  color: #338794;
+}
 .topnav {
   overflow: hidden;
   background-color: #FAFAFA;
@@ -133,15 +157,6 @@ textarea{
   font-size: 17px;
   /* border: solid black; */
 }
-.img_picture {
-  float: left !important;
-  display: block !important;
-  color: black !important;
-  text-align: center !important;
-  padding: 7px 16px !important;
-  text-decoration: none !important;
-  font-size: 17px !important;
-}
 
 .topnav a:hover {
   /* background-color: #ddd; */
@@ -149,6 +164,34 @@ textarea{
 }
 
 .topnav a.active {
+  /* background-color: #2196F3; */
+  color: #338794;
+}
+/* holds the header navigation for customer  */
+.topnav_customer {
+  overflow: hidden;
+  width: 90%;
+  margin-left: 5.5%;
+  background-color: #FAFAFA;
+}
+
+.topnav_customer a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  /* border: solid black; */
+}
+
+.topnav_customer a:hover {
+  /* background-color: #ddd; */
+  color: #338794;
+}
+
+.topnav_customer a.active {
   /* background-color: #2196F3; */
   color: #338794;
 }
@@ -169,6 +212,15 @@ textarea{
   /* width: 100px;
   overflow: hidden;
   text-overflow: ellipsis; */
+}
+.img_picture {
+  float: left !important;
+  display: block !important;
+  color: black !important;
+  text-align: center !important;
+  padding: 7px 16px !important;
+  text-decoration: none !important;
+  font-size: 17px !important;
 }
 
 .dropdown {

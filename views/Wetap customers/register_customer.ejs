@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="../../public/javascripts/register.js"></script>
+  </head>
+  <body>
+    <main>
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <form id="register-customer-form" action="/customer/register_customer" method="post">
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Navn:</p>
+            <input type="text" name="name" placeholder="Navn" maxlength="100" required>
+        </div>
+        <div class="boxDiv_register">
+            <p class="p_Title">Telefonnummer:</p>
+            <input type="number" name="phonenumber" placeholder="Telefonnummer" maxlength="20" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">E-mail:</p>
+            <input class="custom_input" type="email" name="email" placeholder="Eksempel@gmail.com" maxlength="100" required>
+            <% if (message.length > 0) { %>
+                <p class="p_Title_error"><%= message %></p>
+                <% } %>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Adresse:</p>
+            <input class="custom_input" type="text" name="address" placeholder="Adresse" maxlength="200" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+        <p class="p_Title">Postnummer:</p>
+        <input type="number" name="zip_code" placeholder="Postnummer" maxlength="4" required>
+        </div>
+    <div class="boxDiv_register">
+        <p class="p_Title">By:</p>
+        <input type="text" name="city" placeholder="By" maxlength="100" required>
+    </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">CVR-nummer:</p>
+            <input class="custom_input" type="number" name="cvr" placeholder="Firma cvr nummer" maxlength="100" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Adgangskode:</p>
+            <input class="custom_input" type="password" name="password" maxlength="100" placeholder="adgangskode" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_register">
+            <p class="p_Title">Gentag adgangskode:</p>
+            <input class="custom_input" type="password" name="password2" placeholder="gentag adgangskode" maxlength="100" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="div_button_register">
+            <button type="submit">Opret</button>
+            <a class="btn_button_2" href="/customer/login_customer"><p class="p_btn_button">Fortryd</p></a>
+        </div>
+    </div>
+    </form>  
+</main>
+  </body>
+</html>

@@ -4,6 +4,10 @@ const APIcontroller = require("../controller/APIcontroller");
 const passport = require("passport");
 const multer = require("multer");
 const upload = multer({storage: multer.memoryStorage()});
+const customerController = require("../controller/customerController");
+
+
+
 // ====================== /* INDEX */ ====================== //
 /**Index home screen */
 router.route("/").get(APIcontroller.index);
@@ -160,7 +164,14 @@ router
 
 // router.route("/dashboard_company").get(APIcontroller.dashboard_company);
 
+//Routers with url parameters must be displayed here.
+//Customers 
+router
+.route("/user_panel_customer/update/useractive/:id").get(customerController.user_status_active);
+router
+.route("/user_panel_customer/update/usernotactive/:id").get(customerController.user_status_notactive);
 
-
+router
+.route("/user_panel_customer/deleteCustomer/:id").get(customerController.deleteuser);
 
 module.exports = router;

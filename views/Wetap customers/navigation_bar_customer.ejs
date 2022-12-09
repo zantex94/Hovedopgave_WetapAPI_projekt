@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  <div class="topnav_customer">
+    <a class="img_picture"href="/customer/dashboard_customer"><img src="../../public/images/Wetap_logo.png" alt="dashboard" width="100px" height="40px"></a>
+    <%if (locals.dashboard) { %>
+    <a class="active" href="/customer/dashboard_customer">Overview</a>
+    <% } else { %>
+      <a href="/customer/dashboard_customer">Overview</a>
+    <% } %>
+    <%if (locals.brugere) { %>
+    <a class="active" href="/customer/user_panel_customer">Brugere</a>
+    <% } else { %>
+      <a href="/customer/user_panel_customer">Brugere</a>
+      <% } %>
+      <div class="dropdown">
+        <button class="dropbtn"><%= user.navn %><i class="fa fa-user-circle"></i></button>
+        <div class="dropdown-content">
+          <a href="/customer/profile_customer">Indstillinger</a>
+          <a href="/customer/logout">Log ud</a>
+        </div>
+      </div>
+  </div>
+  </body>
+</html>

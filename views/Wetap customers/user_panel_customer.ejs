@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head_includes_customer.ejs'); -%>
+  <body>
+    <%- include('customer_navigation_bar.ejs'); -%>
+    <%- include('navigation_bar_customer.ejs'); -%>
+    <main class="customerMain">
+    <div class="mainDiv">
+    <div>
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Navn</th>
+            <th>E-mail</th>
+            <th>Telefonnummer</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+          <!-- Loop start -->
+        <% brugere.forEach(function(brugere) { %> 
+        <tr>
+            <td><%= brugere.navn %></td>  
+            <td><%= brugere.email %></td>
+            <td><%= brugere.telefonnummer %></td>
+            <% if (brugere.rolle == "kundeadmin") { %>
+              <td><%= brugere.status_bruger %></td>
+              <td></td>
+            <% } else { %>
+              <% if (user.rolle == "kundeadmin") { %>
+                <% if (brugere.status_bruger == "aktiv") { %>
+                  <td><a href="/user_panel_customer/update/usernotactive/<%= brugere.id %>" class="admin_active" title="deaktivere bruger">Aktiv</a></td>
+                <% } else { %>
+                 <td><a href="/user_panel_customer/update/useractive/<%= brugere.id %>" class="admin_notactive" title="aktiver bruger">Deaktiveret</a></td>
+                <% } %>
+              <td><button type="submit" class="admin_delete" title="fjern bruger" onclick="deleteCustomer('<%= brugere.id %>')">Fjern</button></td>
+              <% } else { %>
+                <td><%= brugere.status_bruger %></td>
+                <td></td>
+              <% } %>
+            <% } %>
+        </tr>
+        <% }); %>
+        <!-- Loop end -->  
+    </table>
+  
+  </div>
+</main>
+  </body>
+</html>

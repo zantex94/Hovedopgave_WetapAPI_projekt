@@ -8,16 +8,28 @@ const $ = function (rs) {
         location.href = '/user_panel/deleteuser/' + id;
     }
 }
+// delete a user on user_panel
+function deleteCustomer(id) {
+  if (confirm("Sikker på at fjerne profilen permanent?")) {
+      location.href = '/user_panel_customer/deleteCustomer/' + id;
+  }
+}
 // delete a product on product_panel
 function deleteProduct(id) {
   if (confirm("Sikker på at fjerne produktet permanent? Dette kan medføre alvorlige konsekvenser for kunder der gør brug af dette!")) {
       location.href = '/product_panel/deleteProduct/' + id;
   }
 }
-// delete a user from profile
+// delete a user from Wetap
 function deleteUserProfile(id) {
   if (confirm("Sikker på at fjerne profilen permanent profilen?")) {
       location.href = '/profile/deleteuserProfile/' + id;
+  }
+}
+// delete a customer
+function deleteUserProfileCustomer(id) {
+  if (confirm("Sikker på at fjerne kunde profilen permanent?")) {
+      location.href = '/customer/deleteuserProfile/' + id;
   }
 }
 // delete a company from wetap
