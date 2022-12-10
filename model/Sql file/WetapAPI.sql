@@ -64,7 +64,7 @@ PRIMARY KEY (cvr),
 foreign key(email) references brugere(email) on delete cascade
 );
 INSERT INTO `firma` (`cvr`, `title`, `email`, `teknikker`) VALUES
-('39528045', `'faarup sommerland'`, 'jensfaarup@gmail.com', '32412354');
+('39528045', "faarup sommerland", 'jensfaarup@gmail.com', '37984515');
 
 
 CREATE TABLE produktkategori(

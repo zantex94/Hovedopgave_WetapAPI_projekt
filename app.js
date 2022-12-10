@@ -12,6 +12,32 @@ const helmet = require("helmet");
 
 var indexRouter = require('./routes/index');
 var customerRouter = require('./routes/customer');
+// cross-site scripting extra prevention layer.
+app.use(helmet.xssFilter());
+//Previnting hackers from clickable attacks.
+app.use(
+ helmet.frameguard({
+   action: "deny",
+ })
+);
+// strict transport secruity.
+app.use(
+ helmet.hsts({
+   maxAge: 123456,
+   includeSubDomains: false,
+ })
+);
+//CSP preventing cross-site scription. if not set all HTTP response on the browser.
+app.use(
+ helmet.contentSecurityPolicy({
+   useDefaults: true,
+   directives: {
+     "script-src": ["'self'", "securecoding.com"],
+     "style-src": null,
+   },
+ })
+);
+
 
 var app = express();
 // Passport config
