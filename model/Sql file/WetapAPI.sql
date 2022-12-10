@@ -22,7 +22,7 @@ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 billede MEDIUMBLOB NOT NULL,
 email VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(email) references brugere(email) on delete cascade
+foreign key(email) references brugere(email) on delete cascade on update cascade
 );
 
 CREATE TABLE brugere_erhverv(
@@ -86,7 +86,7 @@ contenttype VARCHAR(32) NOT NULL,
 vægt VARCHAR(200) NOT NULL,
 kategori VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(kategori) references produktkategori(kategori) on delete cascade
+foreign key(kategori) references produktkategori(kategori) on delete cascade on update cascade
 );
 
 CREATE TABLE firmaprodukt(
@@ -98,43 +98,43 @@ contenttype VARCHAR(32) NOT NULL,
 cvr BIGINT UNSIGNED NOT NULL,
 title VARCHAR(300) NOT NULL,
 PRIMARY KEY (produktnummer),
-foreign key(cvr) references firma(cvr) on delete cascade,
-foreign key(title) references produkt(title) on delete cascade
+foreign key(cvr) references firma(cvr) on delete cascade on update cascade,
+foreign key(title) references produkt(title) on delete cascade on update cascade
 );
 /** flaske **/
 CREATE TABLE farve(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE volume(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE højde(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE diameter(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE kvalitetsmærke(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 /** vandpost **/
 
@@ -142,104 +142,103 @@ CREATE TABLE berøringsfri_betjening(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE automatisk_rens(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE betalingsløsning(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE produkt_filter(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE frostsikker(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE lækagesystem(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE plc_styring(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE kabinetmateriale(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE køletemperatur(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
-
 CREATE TABLE vandtrykskrav(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE strømforsyning(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE dimensioner(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE lys(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 CREATE TABLE kølekapacitet(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 CREATE TABLE vandtype(
 id BIGINT UNSIGNED NOT NULL,
 beskrivelse VARCHAR(200) NOT NULL,
 PRIMARY KEY (id),
-foreign key(id) references produkt(id) on delete cascade
+foreign key(id) references produkt(id) on delete cascade on update cascade
 );
 
 
