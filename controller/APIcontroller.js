@@ -393,17 +393,18 @@ exports.logout = (req, res) => {
       console.log(req.body);
       if(updateAProduct){
         if(req.body.Contenttype != ''){
+          console.log('dont');
           let updateProduct = await model_company_product.UpdateCompanyProductPicture(req, res);
           if(updateProduct){
             //success
-            res.redirect('/update_company_product_success/' + req.body.Old_produktnummer);
+            res.redirect('/update_company_product_success/' + req.body.Product_number);
           }else{
             //fail on updating picture
-            res.redirect('/update_company_product_errorPicture/' + req.body.Old_produktnummer);
+            res.redirect('/update_company_product_errorPicture/' + req.body.Product_number);
           }
         }else{
           //success
-          res.redirect('/update_company_product_success/' + req.body.Old_produktnummer);
+          res.redirect('/update_company_product_success/' + req.body.Product_number);
         }
       }else{
         //fail.
@@ -443,6 +444,7 @@ exports.logout = (req, res) => {
      exports.get_updating_company_product_success = async(req, res) => {
       let getAProduct = await model_company_dashboard.GetACompanyProduct(req, res);
       let getAllProducts = await model_product.GetWetapProductTitle(req, res);
+      console.log(getAProduct[0]);
       res.render("update_company_product", {
         title: "Opdatere firma produkt",
         dashboard: "active",

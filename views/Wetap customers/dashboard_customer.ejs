@@ -14,7 +14,7 @@
           <select class="select_dashboard_company" name="product" id="product">
             <option>Sommer season</option>
           </select>
-          <% if (locals.getFirmaTitle) { %>
+          <% if (locals.getFirmaTitle != 0) { %>
           <h1><%= getFirmaTitle[0].firma %></h1>
           <% } else { %>
             <h1>Endnu intet firma oprettet</h1>

@@ -63,8 +63,8 @@ teknikker INT(50) NOT NULL,
 PRIMARY KEY (cvr),
 foreign key(email) references brugere(email) on delete cascade
 );
-INSERT INTO `firma` (`cvr`, `title` `email`, `teknikker`) VALUES
-('39528045', `faarup sommerland` 'jensfaarup@gmail.com', '32412354');
+INSERT INTO `firma` (`cvr`, `title`, `email`, `teknikker`) VALUES
+('39528045', `'faarup sommerland'`, 'jensfaarup@gmail.com', '32412354');
 
 
 CREATE TABLE produktkategori(
