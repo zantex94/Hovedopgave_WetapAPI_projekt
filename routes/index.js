@@ -164,7 +164,7 @@ router
 
 // router.route("/dashboard_company").get(APIcontroller.dashboard_company);
 
-//Routers with url parameters must be displayed here.
+//Routers with url parameters from customer must be displayed here.
 //Customers 
 router
 .route("/user_panel_customer/update/useractive/:id").get(customerController.user_status_active);
@@ -172,6 +172,6 @@ router
 .route("/user_panel_customer/update/usernotactive/:id").get(customerController.user_status_notactive);
 
 router
-.route("/user_panel_customer/deleteCustomer/:id").get(customerController.deleteuser);
+.route("/user_panel_customer/deleteCustomer/:id").get(customerController.deletecustomerprofile);
 
 module.exports = router;

@@ -49,7 +49,7 @@
     <div class="innerDiv">
         <div class="boxDiv_profile">
         <p class="p_Title">Postnummer:</p>
-        <input type="number" name="Zip_code" placeholder="Postnummer" maxlength="4" value="<%= user.postnummer %>" required>
+        <input type="number" name="Zip_code" placeholder="Postnummer" maxlength="4" value="<%= user.postnummer %>" pattern="\d{4}" required>
         </div>
     <div class="boxDiv_profile">
         <p class="p_Title">By:</p>

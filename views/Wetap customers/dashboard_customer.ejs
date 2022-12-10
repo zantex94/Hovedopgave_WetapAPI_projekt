@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head class="customerMain">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -14,7 +14,11 @@
           <select class="select_dashboard_company" name="product" id="product">
             <option>Sommer season</option>
           </select>
+          <% if (locals.getFirmaTitle) { %>
           <h1><%= getFirmaTitle[0].firma %></h1>
+          <% } else { %>
+            <h1>Endnu intet firma oprettet</h1>
+            <% } %>
         </div>
         <div>
         </div>

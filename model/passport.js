@@ -119,6 +119,13 @@ module.exports = function (passport) {
                     return res.status(400).json({ errors: errors.array() });
                   }
                 };
+                // customers do not have permission.
+                if(rows[0].rolle == "kunde" || rows[0].rolle == "kundeadmin")
+                return done(
+                  null,
+                  false,
+                  req.flash("loginMessage", "Kunder ingen tilladelse")
+                );
                 //If the user is not active.
                 if(rows[0].status_bruger == "deaktiveret")
                 return done(
@@ -171,7 +178,7 @@ module.exports = function (passport) {
                   postnummer: req.body.zip_code,
                   _by: req.body.city,
                   password: bcrypt.hashSync(password.toString(), 10),
-                  rolle: 'kundeadmin',
+                  rolle: 'kunde',
                   status_bruger: 'deaktiveret',
                   cvr : req.body.cvr,
                 };
@@ -248,6 +255,13 @@ module.exports = function (passport) {
                     return res.status(400).json({ errors: errors.array() });
                   }
                 };
+                 // Wetap owners do not have permission.
+                 if(rows[0].rolle == "medarbejder" || rows[0].rolle == "admin")
+                 return done(
+                   null,
+                   false,
+                   req.flash("loginMessage", "Kun adgang for Faarup")
+                 );
                 //If the user is not active.
                 if(rows[0].status_bruger == "deaktiveret")
                 return done(
@@ -256,12 +270,12 @@ module.exports = function (passport) {
                   req.flash("loginMessage", "Bruger ikke aktiv")
                 );
                 //If the user is not from FAARUP don´t allow access.
-                // if(rows[0].cvr == 37984515)
-                // return done(
-                //   null,
-                //   false,
-                //   req.flash("loginMessage", "Ikke bruger hos Faarup")
-                // );
+                if(rows[0].cvr != 37984515)
+                return done(
+                  null,
+                  false,
+                  req.flash("loginMessage", "Ikke bruger hos Faarup")
+                );
             // If the user is found but the password is wrong
             if (!bcrypt.compareSync(password, rows[0].password))
               return done(

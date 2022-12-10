@@ -16,13 +16,12 @@ exports.index = (req, res) => {
 
 /* CHECK IF LOGGED IN - Use APIcontroller.isLoggedIn FIRST, on relevant routes, to force login */
 exports.isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) return next(); // If user is authenticated in the session, carry on
+  if (req.isAuthenticated() && req.user.rolle == "admin" || req.user.rolle == "medarbejder") return next(); // If user is authenticated in the session, carry on
   res.redirect("/login"); // if false, redirect to login
 };
 
 /* LOGIN */
 exports.login = (req, res) => {
-  console.log(req.user);
   res.render("login", { 
   message: req.flash("loginMessage"),
    title: "Login" 
@@ -63,7 +62,6 @@ exports.logout = (req, res) => {
 // ====================== /* PROFILE */ ====================== //
     /* GET profile PAGE */
   exports.profile = (req, res) => {
-    // console.log(req.user);
     res.render("profile", {
       title: "Profil",
       user: req.user,

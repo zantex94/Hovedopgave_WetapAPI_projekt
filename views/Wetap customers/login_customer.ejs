@@ -5,12 +5,20 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <%- include('customer_navigation_bar.ejs'); -%>
+
     <main>
-    <div class="mainDiv">
-    <div>
-      <h1><%= title %></h1>
-      <h1>in customer</h1>
+      <div class="mainDiv">
+        <div class="innerDiv">
+          <div class="boxDiv_login">
+              <img class="img_picture_update" src="../../public/images/Wetap_logo.png">
+          </div>
+        </div> 
     </div>
+    <div class="mainDiv">
+      <div>
+        <h1><%= title %></h1>
+      </div>
   </div>
   <div class="innerDiv">
     <form class="login-form" action="/customer/login_customer" method="post">
@@ -23,7 +31,7 @@
         <p class="p_Title_error"><%= message %></p>
         <% } %>
       <div class="div_forgot_password">
-        <a href="/">Glemt adgangskode?</a>
+        <a href="/">Tilbage til velkommen side</a>
       </div>
 
       <div class="div_button">

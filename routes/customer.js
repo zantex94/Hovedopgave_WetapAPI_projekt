@@ -3,35 +3,18 @@ var router = express.Router();
 const customerController = require("../controller/customerController");
 const passport = require("passport");
 
-/* GET users listing. */
-router.get('/test', function(req, res, next) {
-    res.render("./Wetap customers/test", {
-      title: "Bekræftelse",
-    });
-
-});
-
-//Get dashboard company by CVR
-// router
-// .route("/customer/Wetap customers/test/:id").get(customerController.test);
-
 // ====================== /* DASHBOARD company*/ ====================== //
 
 //Get dashboard company by CVR
 router
-.route("/dashboard_customer").get(customerController.dashboard_company);
+.route("/dashboard_customer").get(customerController.isLoggedIn,customerController.dashboard_company);
 // ============================================ //
 // ====================== /* User_panel company*/ ====================== //
 
 //Get User panel
 router
-.route("/user_panel_customer").get(customerController.user_panel);
-router
-.route("/user_panel_customer/update/useractive/:id").get(customerController.user_status_active);
-router
-.route("/user_panel_customer/update/usernotactive/:id").get(customerController.user_status_notactive);
-router
-.route("/user_panel_customer/deleteuser/:id").get(customerController.deleteuser);
+.route("/user_panel_customer").get(customerController.isLoggedIn,customerController.user_panel);
+
 // ============================================ //
 
  /* LOGIN ROUTES */
@@ -69,14 +52,12 @@ router
  /**confrim screen for Wetap API */
  router.route("/confirm").get(customerController.confirm);
 
-  /* Profile ROUTES */
-  router
+// ====================== /* DASHBOARD company*/ ====================== //
+router
   .route("/profile_customer")
-  .get(customerController.profile)
-  .post(customerController.update_profile);
-
-  router
-.route("/customer/deleteuserProfile/:id").get(customerController.deletecustomerprofile);
+  .get(customerController.isLoggedIn,customerController.profile)
+  .post(customerController.isLoggedIn,customerController.update_profile);
+// ============================================ //
 
 
 

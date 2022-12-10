@@ -9,9 +9,9 @@ const bcrypt = require("bcrypt");
 
 // ====================== /* PASSPORT */ ====================== //
 
-/* CHECK IF LOGGED IN - Use APIcontroller.isLoggedIn FIRST, on relevant routes, to force login */
+/* CHECK IF LOGGED IN - Use customerController.isLoggedIn FIRST, on relevant routes, to force login */
 exports.isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) return next(); // If user is authenticated in the session, carry on
+  if (req.isAuthenticated() && req.user.rolle == "kunde" || req.user.rolle == "kundeadmin") return next(); // If user is authenticated in the session, carry on
   res.redirect("/login"); // if false, redirect to login
 };
 /* LOGIN */
@@ -64,7 +64,7 @@ exports.logout = (req, res) => {
 // ====================== /* PROFILE */ ====================== //
  /* GET profile PAGE */
  exports.profile = (req, res) => {
-  // console.log(req.user);
+  console.log(req.user);
   res.render("./Wetap customers/profile_customer", {
     title: "Profil",
     user: req.user,
@@ -72,17 +72,17 @@ exports.logout = (req, res) => {
 };
   /* Update profile PAGE */
   exports.update_profile = async(req, res) => {
+    console.log(req.body);
     //checking if the user puts ind old and new password in field
     if(req.body.Old_password > 0 && req.body.New_password > 0){
       //compare old one with exsisting one (password)
       if (bcrypt.compareSync(req.body.Old_password, req.user.password)){
         let newPasword = bcrypt.hashSync(req.body.New_password.toString(), 10)
       //updating user in database.
-      let updateBruger = await model.updateWetapBruger(req, res, newPasword);
+     let update = await model_customer_company_product.updateCustomerBruger(req, res, newPasword);
       //get updated user from database.
-      let updatedBruger = await model.GetUpdatedWetapBruger(req, res);
+      let updatedBruger = await model_customer_company_product.GetUpdatedCustomer(req, res);
         //updating user session.
-      console.log(updatedBruger[0][0]);
       req.user.navn = updatedBruger[0][0].navn;
       req.user.email = updatedBruger[0][0].email;
       req.user.adresse = updatedBruger[0][0].adresse;
@@ -92,23 +92,25 @@ exports.logout = (req, res) => {
       req.user.status_bruger = updatedBruger[0][0].status_bruger;
       req.user.password = updatedBruger[0][0].password;
       req.user.rolle = updatedBruger[0][0].rolle;
+      req.user.cvr = updatedBruger[0][0].cvr;
+
       //successfull.
-      res.render("profile", {
+      res.render("./Wetap customers/profile_customer", {
         title: "Profil",
         user: req.user,
         success: 'Bruger opdateret'
       });
       }else{
         //not successful. password dosen´t match.
-        res.render("profile", {
+        res.render("./Wetap customers/profile_customer", {
           title: "Profil",
           user: req.user,
           error: 'Password matcher ikke. Kunne ikke opdatere'
         });
       }
     }else{
-      let updateBruger = await model.updateWetapBruger(req, res);
-      let updatedBruger = await model.GetUpdatedWetapBruger(req, res);
+      let update = await model_customer_company_product.updateCustomerBruger(req, res);
+      let updatedBruger = await model_customer_company_product.GetUpdatedCustomer(req, res);
         //updating user session.
       req.user.navn = updatedBruger[0][0].navn;
       req.user.email = updatedBruger[0][0].email;
@@ -119,7 +121,9 @@ exports.logout = (req, res) => {
       req.user.status_bruger = updatedBruger[0][0].status_bruger;
       req.user.password = updatedBruger[0][0].password;
       req.user.rolle = updatedBruger[0][0].rolle;
-        res.render("profile", {
+      req.user.cvr = updatedBruger[0][0].cvr;
+
+        res.render("./Wetap customers/profile_customer", {
           title: "Profil",
           user: req.user,
           success: 'Bruger opdateret'
@@ -129,7 +133,6 @@ exports.logout = (req, res) => {
   };
   /* delete profile PAGE */
   exports.deletecustomerprofile = async(req, res) => {
-    console.log('in scope');
     let deleteUser = await model.deleteWetapProfile(req, res);
     if(deleteUser){
       res.redirect("/customer/login_customer");

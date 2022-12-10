@@ -30,7 +30,7 @@ id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 cvr INT NOT NULL,
 email VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
-foreign key(email) references brugere(email) on delete cascade
+foreign key(email) references brugere(email) on delete cascade on update cascade
 );
 
 
@@ -38,16 +38,16 @@ INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefon
 ('test@gmail.com', 'René Seebach', 'Lærkevej 3', 6200, 'kliplev', 20913871, 'aktiv', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAKiC', "admin");
 
 INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
-('jensfaarup@gmail.com', 'Jens Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
+('jensfaarup@gmail.com', 'Jens Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'aktiv', '$2b$10$aQ/QyTP7n1l5MOiXD5wYq.kjDZ5AhkS5ZnQ6y1pr.xYp0CmyKuzK2', "kundeadmin");
 
 INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
-('40296077', 'jensfaarup@gmail.com');
+('37984515', 'jensfaarup@gmail.com');
 
 INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
-('larsfaarup@gmail.com', 'Lars Jensen', 'Lærkevej 3', 6200, 'Vojens', 54342312, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
+('larsfaarup@gmail.com', 'Lars Jensen', 'Lærkevej 3', 6200, 'Vojens', 54342312, 'deaktiveret', '$2b$10$WWG2UAFFn3XbdObGPvwCUuSD2Ev/qbqvLS.UlYQPNn30KZB4yiduq', "kunde");
 
 INSERT INTO `brugere_erhverv` (`cvr`, `email`) VALUES
-('40296077', 'larsfaarup@gmail.com');
+('37984515', 'larsfaarup@gmail.com');
 
 INSERT INTO `brugere` (`email`, `navn`, `adresse`, `postnummer`, `_by`, `telefonnummer`, `status_bruger`, `password`, `rolle`) VALUES
 ('bentdjursland@gmail.com', 'Bent Bøgner', 'Lærkevej 3', 6200, 'Tinglev', 22938732, 'deaktiveret', '$2b$10$xrHb1jXOEwFMfXbbSUX8U.c1G6bPWUjMxpLayoXv2t76PFRGCAK43', "kunde");
@@ -63,6 +63,9 @@ teknikker INT(50) NOT NULL,
 PRIMARY KEY (cvr),
 foreign key(email) references brugere(email) on delete cascade
 );
+INSERT INTO `firma` (`cvr`, `title` `email`, `teknikker`) VALUES
+('39528045', `faarup sommerland` 'jensfaarup@gmail.com', '32412354');
+
 
 CREATE TABLE produktkategori(
 kategori VARCHAR(200) NOT NULL,

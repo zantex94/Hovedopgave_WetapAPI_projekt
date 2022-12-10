@@ -4,7 +4,7 @@
   <body>
     <%- include('customer_navigation_bar.ejs'); -%>
     <%- include('navigation_bar_customer.ejs'); -%>
-    <main>
+    <main class="customerMain">
     <div class="mainDiv">
     <div>
       <h1><%= title %></h1>
@@ -43,6 +43,12 @@
     </div>
     <div class="innerDiv">
         <div class="boxDiv_profile">
+            <p class="p_Title">Cvr-nummer:</p>
+            <input class="custom_input" type="number" name="Cvr" placeholder="Indtast Cvr-nummer" maxlength="100" value="<%= user.cvr %>" required>
+        </div>
+    </div>
+    <div class="innerDiv">
+        <div class="boxDiv_profile">
             <p class="p_Title">Adresse:</p>
             <input class="custom_input" type="text" name="Address" placeholder="Adresse" maxlength="200" value="<%= user.adresse %>" required>
         </div>
@@ -50,7 +56,7 @@
     <div class="innerDiv">
         <div class="boxDiv_profile">
         <p class="p_Title">Postnummer:</p>
-        <input type="number" name="Zip_code" placeholder="Postnummer" maxlength="4" value="<%= user.postnummer %>" required>
+        <input type="text" name="Zip_code" placeholder="Postnummer" maxlength="4" value="<%= user.postnummer %>" pattern="\d{4}" required>
         </div>
     <div class="boxDiv_profile">
         <p class="p_Title">By:</p>

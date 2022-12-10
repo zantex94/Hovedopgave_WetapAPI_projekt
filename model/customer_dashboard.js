@@ -100,4 +100,82 @@ module.exports = {
         console.error(e.message);
       }
     },
+     // update brugere from Wetap. 
+     async updateCustomerBruger(req, res, newPasword) {
+      console.log(req.user.id);
+      //check if password needs updating.
+      if(newPasword !== undefined){
+        console.log('new password' + newPasword);
+        try {
+          // using prepared statement to avoid sql injection
+        let {
+          Name,
+          Phonenumber,
+          Email,
+          useremail = req.user.email,
+          Address,
+          Zip_code,
+          City,
+          Cvr,
+          changePassword = newPasword,
+          id = req.user.id
+        } = req.body;
+        let sql = `
+        start TRANSACTION;
+        update brugere set navn = ?, telefonnummer = ?, email = ?, adresse = ?, postnummer = ?,
+        _by = ?, password = ?  where id = ?;
+        update brugere_erhverv set brugere_erhverv.cvr = ? where brugere_erhverv.email = ?;       
+         commit;`;
+        let udatebrugere = [ Cvr, useremail,Name, Phonenumber, Email, Address, Zip_code, City, changePassword, id];
+        await pool.query(sql, udatebrugere);
+        //selecting data.
+        return true;
+      } catch (e) {
+        console.error(e.message);
+      }
+
+      }else{
+        //Password don´t need update so without updating it.
+    try {
+        // using prepared statement to avoid sql injection
+      let {
+        Name,
+        Phonenumber,
+        Email,
+        Address,
+        Zip_code,
+        City,
+        Cvr,
+        useremail = req.user.email,
+        id = req.user.id
+      } = req.body;
+      let sql = `
+      start TRANSACTION;
+      update brugere set navn = ?, telefonnummer = ?, email = ?, adresse = ?, postnummer = ?, _by = ?  where id = ?;
+      update brugere_erhverv set brugere_erhverv.cvr = ? where brugere_erhverv.email = ?;
+      commit;`;
+      let udatebrugere = [Name, Phonenumber, Email, Address, Zip_code, City, id, Cvr, Email];
+      let updateduser = await pool.query(sql, udatebrugere);
+      return updateduser;
+    } catch (e) {
+      console.error(e.message);
+    }
+  }
+  },
+   // Get updated bruger from Wetap. 
+   async GetUpdatedCustomer(req, res) {
+    try {
+        // using prepared statement to avoid sql injection
+    //   const brugere = 'medarbejder';
+      let id = req.user.id;
+      let sql = `select brugere.navn, brugere.email, brugere.adresse, brugere.postnummer,
+      brugere._by, brugere.telefonnummer, brugere.status_bruger, brugere.password, brugere.rolle,
+      brugere_erhverv.cvr from brugere left join brugere_erhverv on brugere_erhverv.email = brugere.email where brugere.id = ?`;
+      let bool = [id];
+      let updatedBruger = await pool.query(sql, bool);
+      return updatedBruger;
+    } catch (e) {
+      console.error(e.message);
+    }
+  },
 }

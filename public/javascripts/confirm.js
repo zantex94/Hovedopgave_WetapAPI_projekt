@@ -29,7 +29,7 @@ function deleteUserProfile(id) {
 // delete a customer
 function deleteUserProfileCustomer(id) {
   if (confirm("Sikker på at fjerne kunde profilen permanent?")) {
-      location.href = '/customer/deleteuserProfile/' + id;
+      location.href = '/user_panel_customer/deleteCustomer/' + id;
   }
 }
 // delete a company from wetap
