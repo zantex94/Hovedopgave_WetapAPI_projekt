@@ -12,6 +12,10 @@ const helmet = require("helmet");
 
 var indexRouter = require('./routes/index');
 var customerRouter = require('./routes/customer');
+
+var app = express();
+// Passport config
+require("./model/passport")(passport);
 // cross-site scripting extra prevention layer.
 app.use(helmet.xssFilter());
 //Previnting hackers from clickable attacks.
@@ -39,9 +43,7 @@ app.use(
 );
 
 
-var app = express();
-// Passport config
-require("./model/passport")(passport);
+
 
 // Body parser
 app.use(
