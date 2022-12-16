@@ -11,7 +11,7 @@ const bcrypt = require("bcrypt");
 
 /* CHECK IF LOGGED IN - Use customerController.isLoggedIn FIRST, on relevant routes, to force login */
 exports.isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated() && req.user.rolle == "kunde" || req.user.rolle == "kundeadmin") return next(); // If user is authenticated in the session, carry on
+  if (req.isAuthenticated() && (req.user.rolle == "kunde" || req.user.rolle == "kundeadmin")) return next(); // If user is authenticated in the session, carry on
   res.redirect("/login"); // if false, redirect to login
 };
 /* LOGIN */

@@ -20,6 +20,7 @@ PRIMARY KEY (id)
 CREATE TABLE billedet(
 id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 billede MEDIUMBLOB NOT NULL,
+contenttype VARCHAR(32) NOT NULL,
 email VARCHAR(100) NOT NULL,
 PRIMARY KEY (id),
 foreign key(email) references brugere(email) on delete cascade on update cascade
@@ -64,7 +65,7 @@ PRIMARY KEY (cvr),
 foreign key(email) references brugere(email) on delete cascade
 );
 INSERT INTO `firma` (`cvr`, `title`, `email`, `teknikker`) VALUES
-('39528045', `'faarup sommerland'`, 'jensfaarup@gmail.com', '32412354');
+('37984515', `'faarup sommerland'`, 'jensfaarup@gmail.com', '32412354');
 
 
 CREATE TABLE produktkategori(
@@ -84,7 +85,7 @@ beskrivelse VARCHAR(800) NOT NULL,
 billedet MEDIUMBLOB NOT NULL,
 contenttype VARCHAR(32) NOT NULL,
 vægt VARCHAR(200) NOT NULL,
-kategori VARCHAR(100) NOT NULL,
+kategori VARCHAR(200) NOT NULL,
 PRIMARY KEY (id),
 foreign key(kategori) references produktkategori(kategori) on delete cascade on update cascade
 );

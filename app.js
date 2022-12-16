@@ -17,6 +17,42 @@ var app = express();
 // Passport config
 require("./model/passport")(passport);
 
+// //helmet security.
+// app.use(helmet());
+// // X-Powered-By preventing to tell what system it runs on.
+// app.use(helmet.hidePoweredBy({setTo: 'Django/1.2.2 SVN:65334'}));
+// //Referrer-Policy that refer to the http adress.
+// app.use(
+//   helmet.referrerPolicy({
+//     policy: ["origin", "unsafe-url"],
+//   })
+//  );
+//  // cross-site scripting extra prevention layer.
+//  app.use(helmet.xssFilter());
+//  //Previnting hackers from clickable attacks.
+//  app.use(
+//   helmet.frameguard({
+//     action: "deny",
+//   })
+//  );
+//  // strict transport secruity.
+//  app.use(
+//   helmet.hsts({
+//     maxAge: 123456,
+//     includeSubDomains: false,
+//   })
+//  );
+//  //CSP preventing cross-site scription. if not set all HTTP response on the browser.
+//  app.use(
+//   helmet.contentSecurityPolicy({
+//     useDefaults: true,
+//     directives: {
+//       "script-src": ["'self'", "securecoding.com"],
+//       "style-src": null,
+//     },
+//   })
+//  );
+
 // Body parser
 app.use(
   bodyParser.urlencoded({
